@@ -5,7 +5,7 @@
     "js": {
         "login": {
             "error": {
-                "invalidValue": "* Valeur invalide",
+                "invalidValue": "* Valeur incorrecte",
                 "requiredValue": "* Requis",
                 "userMigrated": {
                     "title": "Error During Login:<br>Invalid Credentials",
@@ -35,14 +35,14 @@
                     "title": "Error During Login:<br>Unknown Error"
                 }
             },
-            "login": "Connexion",
-            "loggingIn": "Connexion en cours",
-            "success": "Connecté",
+            "login": "CONNEXION",
+            "loggingIn": "CONNEXION EN COURS",
+            "success": "CONNEXION RÉUSSITE",
             "tryAgain": "Réessayer"
         },
         "landing": {
             "launch": {
-                "pleaseWait": "Veuillez patienter..."
+                "pleaseWait": "Merci de patienter..."
             }
         }
     }

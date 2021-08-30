@@ -1,5 +1,5 @@
 {
-  "$schema": "file:///C:/Users/jovan/Documents/GitHub/Friday-the-13th-Launcher/NebulaFiles/schemas/ServerMetaSchema.schema.json",
+  "$schema": "file:///C:/Users/jovan/Documents/GitHub/FallenGlory-Launcher/NebulaFiles/schemas/ServerMetaSchema.schema.json",
   "meta": {
     "version": "1.0.0",
     "name": "fgserver (Minecraft 1.12.2)",

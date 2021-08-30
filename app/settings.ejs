@@ -34,7 +34,7 @@
                 </button>
             </div>
             <div id="settingsCurrentAccountsHeader">
-                <span class="settingsFieldTitle">Comptes actuels</span>
+                <span class="settingsFieldTitle">Compte actuel</span>
             </div>
             <div id="settingsCurrentAccounts">
                 <!-- Auth accounts populated here. -->
@@ -43,7 +43,7 @@
         <div id="settingsTabMinecraft" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
                 <span class="settingsTabHeaderText">Paramètres Minecraft</span>
-                <span class="settingsTabHeaderDesc">Options relatifs au lancement du jeu.</span>
+                <span class="settingsTabHeaderDesc">Options relatives au lancement du jeu.</span>
             </div>
             <div id="settingsGameResolutionContainer">
                 <span class="settingsFieldTitle">Résolution du Jeu</span>
@@ -78,7 +78,7 @@
             <div class="settingsFieldContainer">
                 <div class="settingsFieldLeft">
                     <span class="settingsFieldTitle">Lancer le jeu dans une fenêtre détachée.</span>
-                    <span class="settingsFieldDesc">Si le jeu n'est pas détaché, fermé le launcher fermera aussi le jeu.</span>
+                    <span class="settingsFieldDesc">Si le jeu n'est pas détaché, fermer le launcher fermera aussi le jeu.</span>
                 </div>
                 <div class="settingsFieldRight">
                     <label class="toggleSwitch">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div id="settingsOptModsContainer">
-                    <div class="settingsModsHeader">Mods Optionnel</div>
+                    <div class="settingsModsHeader">Mods Optionnels</div>
                     <div id="settingsOptModsContent">
                         
                     </div>
@@ -125,11 +125,11 @@
                 </div>
                 <div id="settingsShadersContainer" style="display: none;">
                     <div class="settingsModsHeader">Shaderpacks</div>
-                    <div id="settingsShaderpackDesc">Enable or disable shaders. Please note, shaders will only run smoothly on powerful setups. You may add custom packs here.</div>
+                    <div id="settingsShaderpackDesc">Activer ou désactiver un Shaderpack.</div>
                     <div id="settingsShaderpackWrapper">
                         <button id="settingsShaderpackButton"> + </button>
                         <div class="settingsSelectContainer">
-                            <div class="settingsSelectSelected" id="settingsShadersSelected">Select Shaderpack</div>
+                            <div class="settingsSelectSelected" id="settingsShadersSelected">Sélectionner le Shaderpack</div>
                             <div class="settingsSelectOptions" id="settingsShadersOptions" hidden>
 
                             </div>
@@ -140,7 +140,7 @@
         </div>
         <div id="settingsTabJava" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
-                <span class="settingsTabHeaderText">Paramètres de Java</span>
+                <span class="settingsTabHeaderText">Paramètres Java</span>
                 <span class="settingsTabHeaderDesc">Gérer la configuration Java (avancé).</span>
             </div>
             <div id="settingsMemoryContainer">
@@ -148,26 +148,26 @@
                 <div id="settingsMemoryContent">
                     <div id="settingsMemoryContentLeft">
                         <div class="settingsMemoryContentItem">
-                            <span class="settingsMemoryHeader">Maximum RAM</span>
+                            <span class="settingsMemoryHeader">RAM Maximale</span>
                             <div class="settingsMemoryActionContainer">
-                                <div id="settingsMaxRAMRange" class="rangeSlider" cValue="MaxRAM" min="3" max="8" value="3" step="0.5">
+                                <div id="settingsMaxRAMRange" class="rangeSlider" cValue="MaxRAM" min="2" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
-                                <span id="settingsMaxRAMLabel" class="settingsMemoryLabel">3G</span>
+                                <span id="settingsMaxRAMLabel" class="settingsMemoryLabel">2G</span>
                             </div>
                         </div>
                         <div class="settingsMemoryContentItem">
-                            <span class="settingsMemoryHeader">Minimum RAM</span>
+                            <span class="settingsMemoryHeader">RAM Minimale</span>
                             <div class="settingsMemoryActionContainer">
-                                <div id="settingsMinRAMRange" class="rangeSlider" cValue="MinRAM" min="3" max="8" value="3" step="0.5">
+                                <div id="settingsMinRAMRange" class="rangeSlider" cValue="MinRAM" min="2" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
                                 <span id="settingsMinRAMLabel" class="settingsMemoryLabel">3G</span>
                             </div>
                         </div>
-                        <div id="settingsMemoryDesc">La Mémoire RAM recommender est de 3G pour avoir une meilleur expérience de jeu.</div>
+                        <div id="settingsMemoryDesc">La Mémoire RAM recommander est de 2-3G pour avoir une meilleur expérience de jeu.</div>
                     </div>
                     <div id="settingsMemoryContentRight">
                         <div id="settingsMemoryStatus">
@@ -186,7 +186,7 @@
             <div class="settingsFileSelContainer">
                 <div class="settingsFileSelTitle">Java Executable</div>
                 <div class="settingsFileSelContent">
-                    <div id="settingsJavaExecDetails">Selected: Java 8 Update 172 (x64)</div>
+                    <div id="settingsJavaExecDetails">Sélectionné : Java 8 Update 172 (x64)</div>
                     <div class="settingsFileSelActions">
                         <div class="settingsFileSelIcon">
                             <svg class="settingsFileSelSVG" x="0px" y="0px" viewBox="0 0 305.001 305.001">
@@ -203,7 +203,7 @@
                             </svg>
                         </div>
                         <input class="settingsFileSelVal" id="settingsJavaExecVal" type="text" value="null" cValue="JavaExecutable" disabled>
-                        <button class="settingsFileSelButton" id="settingsJavaExecSel" dialogTitle="Select Java Executable" dialogDirectory="false">Choose File</button>
+                        <button class="settingsFileSelButton" id="settingsJavaExecSel" dialogTitle="Select Java Executable" dialogDirectory="false">Choisir le fichier</button>
                     </div>
                 </div>
                 <div class="settingsFileSelDesc">The Java executable is validated before game launch. <strong>Requires Java 8 x64.</strong><br>The path should end with <strong>bin<%= process.platform === 'win32' ? '\\javaw.exe' : '/java' %></strong>.</div>
@@ -233,9 +233,9 @@
         <div id="settingsTabLauncher" class="settingsTab" style="display: none;">
             <div class="settingsTabHeader">
                 <span class="settingsTabHeaderText">Paramètres du Launcher</span>
-                <span class="settingsTabHeaderDesc">Options relatifs au launcher lui-même.</span>
+                <span class="settingsTabHeaderDesc">Options relatives au launcher lui-même.</span>
             </div>
-            <div class="settingsFieldContainer">
+            <div class="settingsFieldContainer" style="display: none;">
                 <div class="settingsFieldLeft">
                     <span class="settingsFieldTitle">Autoriser les Pré-Versions.</span>
                     <span class="settingsFieldDesc">Les Pré-Versions incluent de nouvelles fonctionnalités qui n'ont peut-être pas été entièrement testées ou intégrées.<br>Cela sera toujours vrai si vous utilisez une Pré-Version.</span>
@@ -249,7 +249,7 @@
             </div>
             <div class="settingsFileSelContainer">
                 <div class="settingsFileSelContent">
-                    <div class="settingsFieldTitle" id="settingsDataDirTitle">Data Directory</div>
+                    <div class="settingsFieldTitle" id="settingsDataDirTitle">Dossier du jeu</div>
                     <div class="settingsFileSelActions">
                         <div class="settingsFileSelIcon">
                             <svg class="settingsFileSelSVG">
@@ -276,7 +276,7 @@
                 <div id="settingsAboutCurrentContent">
                     <div id="settingsAboutCurrentHeadline">
                         <img id="settingsAboutLogo" src="./assets/images/SealCircle.png">
-                        <span id="settingsAboutTitle">Friday the 13th Launcher</span>
+                        <span id="settingsAboutTitle">FallenGlory Launcher</span>
                     </div>
                     <div id="settingsAboutCurrentVersion">
                         <div id="settingsAboutCurrentVersionCheck">&#10003;</div>
@@ -304,11 +304,11 @@
                         <div class="settingsChangelogTitle">Changelog</div>
                     </div>
                     <div class="settingsChangelogText">
-                        Aucune note de mise à jour
+                        Aucune note de mise à jour de version
                     </div>
                 </div>
                 <div class="settingsChangelogActions">
-                    <a class="settingsChangelogButton settingsAboutButton" href="#">Voir les notes de version sur Github</a>
+                    <a class="settingsChangelogButton settingsAboutButton" href="#">Voir les notes de mise à jour sur Github</a>
                 </div>
             </div>
         </div>
@@ -320,7 +320,7 @@
             <div id="settingsUpdateStatusContainer">
                 <div id="settingsUpdateStatusContent">
                     <div id="settingsUpdateStatusHeadline">
-                        <span id="settingsUpdateTitle">Vous utilisez la dernière version</span>
+                        <span id="settingsUpdateTitle">Vous utilisez la dernière version du launcher !</span>
                     </div>
                     <div id="settingsUpdateVersion">
                         <div id="settingsUpdateVersionCheck">&#10003;</div>
@@ -340,11 +340,11 @@
             <div class="settingsChangelogContainer">
                 <div class="settingsChangelogContent">
                     <div class="settingsChangelogHeadline">
-                        <div class="settingsChangelogLabel">Quoi de neuf ?</div>
+                        <div class="settingsChangelogLabel">Quoi de nouveaux ?</div>
                         <div class="settingsChangelogTitle">Notes de mise à jour de version</div>
                     </div>
                     <div class="settingsChangelogText">
-                        Aucune notes de mise à jour
+                        Aucune notes de mise à jour de version
                     </div>
                 </div>
             </div>
