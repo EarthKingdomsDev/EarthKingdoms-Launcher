@@ -2,13 +2,16 @@ require('@electron/remote/main').initialize()
 
 // Requirements
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-const autoUpdater                   = require('electron-updater').autoUpdater
-const ejse                          = require('ejs-electron')
-const fs                            = require('fs')
-const isDev                         = require('./app/assets/js/isdev')
-const path                          = require('path')
-const semver                        = require('semver')
-const { pathToFileURL }             = require('url')
+const autoUpdater = require('electron-updater').autoUpdater
+const ejse = require('ejs-electron')
+const fs = require('fs')
+const isDev = require('./app/assets/js/isdev')
+const path = require('path')
+const semver = require('semver')
+const url = require('url')
+
+const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
+const clientID = '2480b911-818e-4de8-b435-dde19d782997'
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
@@ -87,6 +90,70 @@ ipcMain.on('distributionIndexDone', (event, res) => {
 // https://electronjs.org/docs/tutorial/offscreen-rendering
 app.disableHardwareAcceleration()
 
+let MSALoginWindow = null
+
+// Open the Microsoft Account Login window
+ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
+    if(MSALoginWindow != null){ 
+        ipcEvent.sender.send('MSALoginWindowNotification', 'error', 'AlreadyOpenException')
+        return
+    }
+    MSALoginWindow = new BrowserWindow({
+        title: 'Microsoft-Login',
+        backgroundColor: '#222222',
+        width: 520,
+        height: 600,
+        frame: false,
+        icon: getPlatformIcon('SealCircle')
+    })
+
+    MSALoginWindow.on('closed', () => {
+        MSALoginWindow = null
+    })
+
+    MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
+        if(uri.startsWith(redirectUriPrefix)) {
+            let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
+            let queryMap = new Map()
+
+            querys.forEach(query => {
+                let arr = query.split('=')
+                queryMap.set(arr[0], decodeURI(arr[1]))
+            })
+
+            ipcEvent.reply('MSALoginWindowReply', queryMap)
+
+            MSALoginWindow.close()
+            MSALoginWindow = null
+        }
+    })
+
+    MSALoginWindow.removeMenu()
+    MSALoginWindow.loadURL('https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=consent&client_id=' + clientID + '&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient')
+})
+
+let MSALogoutWindow = null
+
+ipcMain.on('openMSALogoutWindow', (ipcEvent, args) => {
+    if (MSALogoutWindow == null) {
+        MSALogoutWindow = new BrowserWindow({
+            title: 'Microsoft Logout',
+            backgroundColor: '#222222',
+            width: 520,
+            height: 600,
+            frame: true,
+            icon: getPlatformIcon('SealCircle')
+        })
+        MSALogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
+        MSALogoutWindow.webContents.on('did-navigate', (e) => {
+            setTimeout(() => {
+                ipcEvent.reply('MSALogoutWindowReply')
+            }, 5000)
+
+        })
+    }
+})
+
 // https://github.com/electron/electron/issues/18397
 app.allowRendererProcessReuse = true
 
@@ -105,14 +172,19 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            worldSafeExecuteJavaScript: true
         },
         backgroundColor: '#171614'
     })
 
     ejse.data('bkid', Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)))
 
-    win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, 'app', 'app.ejs'),
+        protocol: 'file:',
+        slashes: true
+    }))
 
     /*win.once('ready-to-show', () => {
         win.show()

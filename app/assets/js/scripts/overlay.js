@@ -9,7 +9,7 @@
  * 
  * @returns {boolean} Whether or not the overlay is visible.
  */
-function isOverlayVisible(){
+ function isOverlayVisible() {
     return document.getElementById('main').hasAttribute('overlay')
 }
 
@@ -267,6 +267,9 @@ function populateServerListings(){
     const servers = distro.getServers()
     let htmlString = ''
     for(const serv of servers){
+        if(serv.getServerCode() && !ConfigManager.getServerCodes().includes(serv.getServerCode())){
+            continue
+        }
         htmlString += `<button class="serverListing" servid="${serv.getID()}" ${serv.getID() === giaSel ? 'selected' : ''}>
             <img class="serverListingImg" src="${serv.getIcon()}"/>
             <div class="serverListingDetails">
@@ -299,7 +302,7 @@ function populateAccountListings(){
     let htmlString = ''
     for(let i=0; i<accounts.length; i++){
         htmlString += `<button class="accountListing" uuid="${accounts[i].uuid}" ${i===0 ? 'selected' : ''}>
-            <img src="https://mc-heads.net/head/${accounts[i].uuid}/40">
+            <img src="https://crafatar.com/renders/head/${accounts[i].uuid}?scale=2&default=MHF_Steve&overlay">
             <div class="accountListingName">${accounts[i].displayName}</div>
         </button>`
     }

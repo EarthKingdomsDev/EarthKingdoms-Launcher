@@ -6,7 +6,7 @@ const logger = require('./loggerutil')('%c[ConfigManager]', 'color: #a02d2a; fon
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 // TODO change
-const dataPath = path.join(sysRoot, '.helioslauncher')
+const dataPath = path.join(sysRoot, '.f13mclauncher')
 
 // Forked processes do not have access to electron, so we have this workaround.
 const launcherDir = process.env.CONFIG_DIRECT_PATH || require('@electron/remote').app.getPath('userData')
@@ -37,6 +37,24 @@ exports.getDataDirectory = function(def = false){
  */
 exports.setDataDirectory = function(dataDirectory){
     config.settings.launcher.dataDirectory = dataDirectory
+}
+
+/**
+ * Get the launcher's available server codes. This will be used to load hidden servers.
+ *
+ * @returns {string[]} The server codes list that has been put into the launcher's configuration
+ */
+ exports.getServerCodes = function(){
+    return config.settings.launcher.serverCodes
+}
+
+/**
+ * Set the new server code
+ *
+ * @param {string[]} serverCodes The new server code list.
+ */
+exports.setServerCodes = function(serverCodes){
+    config.settings.launcher.serverCodes = serverCodes
 }
 
 const configPath = path.join(exports.getLauncherDirectory(), 'config.json')
@@ -87,11 +105,12 @@ const DEFAULT_CONFIG = {
             resHeight: 720,
             fullscreen: false,
             autoConnect: true,
-            launchDetached: true
+            launchDetached: false
         },
         launcher: {
             allowPrerelease: false,
-            dataDirectory: dataPath
+            dataDirectory: dataPath,
+            serverCodes: []
         }
     },
     newsCache: {
@@ -103,7 +122,8 @@ const DEFAULT_CONFIG = {
     selectedServer: null, // Resolved
     selectedAccount: null,
     authenticationDatabase: {},
-    modConfigurations: []
+    modConfigurations: [],
+    microsoftAuth: {}
 }
 
 let config = null
@@ -325,13 +345,35 @@ exports.getAuthAccount = function(uuid){
  * 
  * @returns {Object} The authenticated account object created by this action.
  */
-exports.updateAuthAccount = function(uuid, accessToken){
+ exports.updateAuthAccount = function(uuid, accessToken, expiresAt = undefined){
     config.authenticationDatabase[uuid].accessToken = accessToken
+    config.authenticationDatabase[uuid].expiresAt = expiresAt
     return config.authenticationDatabase[uuid]
 }
 
 /**
- * Adds an authenticated account to the database to be stored.
+ * Update the tokens of an authenticated microsoft account.
+ * 
+ * @param {string} uuid The uuid of the authenticated account.
+ * @param {string} accessToken The new Access Token.
+ * @param {string} msAccessToken The new Microsoft Access Token
+ * @param {string} msRefreshToken The new Microsoft Refresh Token
+ * @param {date} msExpires The date when the microsoft access token expires
+ * @param {date} mcExpires The date when the mojang access token expires
+ * 
+ * @returns {Object} The authenticated account object created by this action.
+ */
+ exports.updateAuthAccount = function(uuid, accessToken, msAccessToken, msRefreshToken, msExpires, mcExpires){
+    config.authenticationDatabase[uuid].accessToken = accessToken
+    config.authenticationDatabase[uuid].expiresAt = mcExpires
+    config.authenticationDatabase[uuid].microsoft.access_token = msAccessToken
+    config.authenticationDatabase[uuid].microsoft.refresh_token = msRefreshToken
+    config.authenticationDatabase[uuid].microsoft.expires_at = msRefreshToken
+    return config.authenticationDatabase[uuid]
+}
+
+/**
+ * Adds an authenticated mojang account to the database to be stored.
  * 
  * @param {string} uuid The uuid of the authenticated account.
  * @param {string} accessToken The accessToken of the authenticated account.
@@ -340,13 +382,46 @@ exports.updateAuthAccount = function(uuid, accessToken){
  * 
  * @returns {Object} The authenticated account object created by this action.
  */
-exports.addAuthAccount = function(uuid, accessToken, username, displayName){
+ exports.addAuthAccount = function(uuid, accessToken, username, displayName, expiresAt = null, type = 'mojang'){
     config.selectedAccount = uuid
     config.authenticationDatabase[uuid] = {
         accessToken,
         username: username.trim(),
         uuid: uuid.trim(),
-        displayName: displayName.trim()
+        displayName: displayName.trim(),
+        expiresAt: expiresAt,
+        type: type
+    }
+    return config.authenticationDatabase[uuid]
+}
+
+/**
+ * Adds an authenticated microsoft account to the database to be stored.
+ * 
+ * @param {string} uuid The uuid of the authenticated account.
+ * @param {string} accessToken The accessToken of the authenticated account.
+ * @param {string} name The in game name of the authenticated account.
+ * @param {date} mcExpires The date when the mojang access token expires
+ * @param {string} msAccessToken The microsoft access token
+ * @param {string} msRefreshToken The microsoft refresh token
+ * @param {date} msExpires The date when the microsoft access token expires
+ * 
+ * @returns {Object} The authenticated account object created by this action.
+ */
+exports.addMsAuthAccount = function(uuid, accessToken, name, mcExpires, msAccessToken, msRefreshToken, msExpires){
+    config.selectedAccount = uuid
+    config.authenticationDatabase[uuid] = {
+        accessToken,
+        username: name.trim(),
+        uuid: uuid.trim(),
+        displayName: name.trim(),
+        expiresAt: mcExpires,
+        type: 'microsoft',
+        microsoft: {
+            access_token: msAccessToken,
+            refresh_token: msRefreshToken,
+            expires_at: msExpires
+        }
     }
     return config.authenticationDatabase[uuid]
 }
@@ -685,4 +760,19 @@ exports.getAllowPrerelease = function(def = false){
  */
 exports.setAllowPrerelease = function(allowPrerelease){
     config.settings.launcher.allowPrerelease = allowPrerelease
+}
+
+exports.setMicrosoftAuth = microsoftAuth => {
+    config.microsoftAuth = microsoftAuth
+}
+
+exports.getMicrosoftAuth = () => {
+    return config.microsoftAuth
+}
+
+exports.updateMicrosoftAuth = (accessToken, expiresAt) => {
+    config.microsoftAuth.access_token = accessToken
+    config.microsoftAuth.expires_at = expiresAt
+
+    return config.microsoftAuth
 }
