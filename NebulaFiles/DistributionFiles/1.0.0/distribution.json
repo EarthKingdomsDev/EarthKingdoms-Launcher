@@ -9,18 +9,18 @@
   "servers": [
     {
       "id": "fgserver-1.12.2",
-      "name": "fgserver (Minecraft 1.12.2)",
-      "description": "fgserver Running Minecraft 1.12.2 (Forge v14.23.5.2855)",
-      "icon": null,
+      "name": "FallenGlory Serveur",
+      "description": "Pvp-Faction",
+      "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
       "version": "1.0.0",
-      "address": "localhost:25565",
+      "address": "82.65.109.5:25565",
       "minecraftVersion": "1.12.2",
       "discord": {
         "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
         "largeImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
         "largeImageKey": "<FILL IN OR REMOVE DISCORD OBJECT>"
       },
-      "mainServer": false,
+      "mainServer": true,
       "autoconnect": false,
       "modules": [
         {
