@@ -1,9 +1,9 @@
 {
   "name": "fallenglorylauncher",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "productName": "FallenGlory Launcher",
   "description": "Modded Minecraft Launcher for FallenGlory's server",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/) et OrgeAlexj06 (https://github.com/OrgeAlexj06",
+  "author": "OrgeAlexj06 (https://github.com/OrgeAlexj06) et Daniel Scalzi (https://github.com/dscalzi/)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/FallenGloryDevelopment/FallenGlory-Launcher",
   "bugs": {
