@@ -11,7 +11,7 @@
       "id": "fgserver-1.12.2",
       "name": "FallenGlory Serveur",
       "description": "Serveur Pvp-Faction",
-      "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
+      "icon": null,
       "version": "1.0.0",
       "address": "82.65.109.5:25565",
       "minecraftVersion": "1.12.2",
@@ -296,13 +296,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:3.5.2@jar",
+          "id": "net.mcreator:fallenglorymods:3.5.1@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4093835,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.5.2.jar",
-            "MD5": "1f1ea687ea240e402e091986e2303561"
+            "size": 4093437,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.5.1.jar",
+            "MD5": "1919636d123b1c48460c5202e560aea7"
           }
         },
         {
