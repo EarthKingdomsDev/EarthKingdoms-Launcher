@@ -10,7 +10,7 @@
     {
       "id": "fgserver-1.12.2",
       "name": "FallenGlory Serveur",
-      "description": "",
+      "description": "Serveur Pvp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
       "version": "1.0.0",
       "address": "82.65.109.5:25565",
@@ -296,13 +296,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:3.5.1@jar",
+          "id": "net.mcreator:fallenglorymods:3.5.2@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4093437,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.5.1.jar",
-            "MD5": "1919636d123b1c48460c5202e560aea7"
+            "size": 4093835,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.5.2.jar",
+            "MD5": "1f1ea687ea240e402e091986e2303561"
           }
         },
         {
@@ -386,6 +386,16 @@
           }
         },
         {
+          "id": "com.github.lunatrius.core:lunatriuscore:1.2.0.42@jar",
+          "name": "LunatriusCore",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 76753,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/LunatriusCore-1.12.2-1.2.0.42-universal.jar",
+            "MD5": "0dae43ef5376822db0399ad254207aa3"
+          }
+        },
+        {
           "id": "mekanism:mekanism:1.12.2-9.8.3.390@jar",
           "name": "Mekanism",
           "type": "ForgeMod",
@@ -436,6 +446,16 @@
           }
         },
         {
+          "id": "com.github.lunatrius:schematica:1.8.0.169@jar",
+          "name": "Schematica",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 336150,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Schematica-1.12.2-1.8.0.169-universal.jar",
+            "MD5": "c779a8cd4fd0e99572385a529b790c73"
+          }
+        },
+        {
           "id": "trackapi:trackapi:1.2@jar",
           "name": "Track API",
           "type": "ForgeMod",
@@ -483,17 +503,6 @@
             "size": 12673663,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/zawa-1.12.2-2.1.3.jar",
             "MD5": "8f993a87fd5ae86e48dd50aeba3aff47"
-          }
-        },
-        {
-          "id": "maj.PNG",
-          "name": "maj.PNG",
-          "type": "File",
-          "artifact": {
-            "size": 1050940,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/maj.PNG",
-            "MD5": "6f251236885c2939f0da49c5e6c93474",
-            "path": "resourcepacks/maj.PNG"
           }
         }
       ]
