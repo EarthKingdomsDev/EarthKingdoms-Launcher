@@ -13,7 +13,7 @@
       "description": "fgserver Running Minecraft 1.12.2 (Forge v14.23.5.2855)",
       "icon": null,
       "version": "1.0.0",
-      "address": "localhost:25565",
+      "address": "188.165.144.18:25577",
       "minecraftVersion": "1.12.2",
       "discord": {
         "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
