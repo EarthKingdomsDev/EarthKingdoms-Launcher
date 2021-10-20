@@ -13,7 +13,7 @@
       "description": "fgserver Running Minecraft 1.12.2 (Forge v14.23.5.2855)",
       "icon": null,
       "version": "1.0.0",
-      "address": "188.165.144.18:25577",
+      "address": "localhost:25565",
       "minecraftVersion": "1.12.2",
       "discord": {
         "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
@@ -326,6 +326,16 @@
           }
         },
         {
+          "id": "fr.orgealexj06.fgcore:fallenglorycore:1.4@jar",
+          "name": "FallenGloryCore",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 34513,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-1.4.jar",
+            "MD5": "4ff58e2c3130b735d62b86468a83d7f6"
+          }
+        },
+        {
           "id": "com.flansmod:flansmod:5.10.0@jar",
           "name": "Flan's Mod",
           "type": "ForgeMod",
@@ -543,6 +553,39 @@
             "size": 12673663,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/zawa-1.12.2-2.1.3.jar",
             "MD5": "8f993a87fd5ae86e48dd50aeba3aff47"
+          }
+        },
+        {
+          "id": "Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
+          "name": "Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
+          "type": "File",
+          "artifact": {
+            "size": 30240221,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/flan/Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
+            "MD5": "c7fbaf1f1bcdfab62016e61f51a8d347",
+            "path": "flan/Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar"
+          }
+        },
+        {
+          "id": "SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+          "name": "SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+          "type": "File",
+          "artifact": {
+            "size": 237132,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/flan/SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+            "MD5": "97d6e5d81d1cd9bf6cd1f1fcec657f4d",
+            "path": "flan/SimpleParts-ContentPack-1.12.2-5.7.2.jar"
+          }
+        },
+        {
+          "id": "WW2-ContentPack-1.12.2-5.7.2.jar",
+          "name": "WW2-ContentPack-1.12.2-5.7.2.jar",
+          "type": "File",
+          "artifact": {
+            "size": 5636950,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/flan/WW2-ContentPack-1.12.2-5.7.2.jar",
+            "MD5": "0f4b59db4605f5ccab6ece88d22f21b3",
+            "path": "flan/WW2-ContentPack-1.12.2-5.7.2.jar"
           }
         }
       ]
