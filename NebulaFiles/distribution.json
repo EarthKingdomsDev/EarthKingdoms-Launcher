@@ -326,16 +326,6 @@
           }
         },
         {
-          "id": "fr.orgealexj06.fgcore:fallenglorycore:1.4@jar",
-          "name": "FallenGloryCore",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 34513,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-1.4.jar",
-            "MD5": "4ff58e2c3130b735d62b86468a83d7f6"
-          }
-        },
-        {
           "id": "com.flansmod:flansmod:5.10.0@jar",
           "name": "Flan's Mod",
           "type": "ForgeMod",
