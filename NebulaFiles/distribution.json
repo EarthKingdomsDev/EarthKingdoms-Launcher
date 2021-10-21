@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "rss": "http://fetchrss.com/rss/6171688a70eee60af3335d83617168714ec93e0077288172.xml",
+  "rss": "",
   "discord": {
     "clientId": "<FILL IN OR REMOVE DISCORD OBJECT>",
     "smallImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
