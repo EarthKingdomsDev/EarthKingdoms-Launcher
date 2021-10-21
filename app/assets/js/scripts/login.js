@@ -321,7 +321,7 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
         let errorDesc = queryMap.get('error_description')
         if(error === 'access_denied'){
             error = 'ERREUR'
-            errorDesc = 'Pour utiliser Friday the 13th Launcher, vous devez donner l\'autorisation à Microsoft ! Autrement, vous ne pourrez pas utiliser ce Launcher avec un compte Microsoft.'
+            errorDesc = 'Pour utiliser FallenGlory Launcher, vous devez donner l\'autorisation à Microsoft ! Autrement, vous ne pourrez pas utiliser ce Launcher avec un compte Microsoft.'
         }        
         setOverlayContent(error, errorDesc, 'OK')
         setOverlayHandler(() => {

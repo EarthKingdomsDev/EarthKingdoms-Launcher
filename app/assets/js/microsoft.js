@@ -2,7 +2,7 @@
 const request = require('request')
 
 // Constants
-const clientId = '2480b911-818e-4de8-b435-dde19d782997'
+const clientId = '000000004C12AE6F'
 const tokenUri = 'https://login.microsoftonline.com/consumers/oauth2/v2.0/token'
 const authXBLUri = 'https://user.auth.xboxlive.com/user/authenticate'
 const authXSTSUri = 'https://xsts.auth.xboxlive.com/xsts/authorize'
@@ -77,7 +77,7 @@ function getXSTSToken(XBLToken) {
 
                     case 2148916238: 
                         reject({
-                            message: 'Vous n\'avez pas 18 ans, un adulte doit vous donner l\'accès pour que vous puissiez utiliser Friday the 13th Launcher !'
+                            message: 'Vous n\'avez pas 18 ans, un adulte doit vous donner l\'accès pour que vous puissiez utiliser FallenGlory Launcher !'
                         })
                         return
 
