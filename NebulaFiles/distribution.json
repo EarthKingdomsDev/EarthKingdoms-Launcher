@@ -416,6 +416,20 @@
           }
         },
         {
+          "id": "com.github.lunatrius.core:lunatriuscore:1.2.0.42@jar",
+          "name": "LunatriusCore",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 76753,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/LunatriusCore-1.12.2-1.2.0.42-universal.jar",
+            "MD5": "0dae43ef5376822db0399ad254207aa3"
+          },
+          "required": {
+            "value": false,
+            "def": false
+          }
+        },
+        {
           "id": "mekanism:mekanism:1.12.2-9.8.3.390@jar",
           "name": "Mekanism",
           "type": "ForgeMod",
@@ -473,6 +487,20 @@
             "size": 169483,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PTRLib-1.0.4.jar",
             "MD5": "7cdde85216395abe430a7ff185650370"
+          }
+        },
+        {
+          "id": "com.github.lunatrius:schematica:1.8.0.169@jar",
+          "name": "Schematica",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 336150,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/Schematica-1.12.2-1.8.0.169-universal.jar",
+            "MD5": "c779a8cd4fd0e99572385a529b790c73"
+          },
+          "required": {
+            "value": false,
+            "def": false
           }
         },
         {
@@ -596,6 +624,17 @@
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/flan/WW2-ContentPack-1.12.2-5.7.2.jar",
             "MD5": "0f4b59db4605f5ccab6ece88d22f21b3",
             "path": "flan/WW2-ContentPack-1.12.2-5.7.2.jar"
+          }
+        },
+        {
+          "id": "jeiintegration.cfg",
+          "name": "jeiintegration.cfg",
+          "type": "File",
+          "artifact": {
+            "size": 2439,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/jeiintegration.cfg",
+            "MD5": "cb8500c84bb706a880911bba008d1403",
+            "path": "config/jeiintegration.cfg"
           }
         }
       ]
