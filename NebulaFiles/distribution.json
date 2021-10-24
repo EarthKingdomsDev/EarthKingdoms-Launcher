@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "rss": "",
+  "rss": "<LINK TO RSS FEED>",
   "discord": {
     "clientId": "<FILL IN OR REMOVE DISCORD OBJECT>",
     "smallImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
@@ -316,13 +316,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:3.6.0@jar",
+          "id": "net.mcreator:fallenglorymods:3.6.1@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 3711911,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.6.0.jar",
-            "MD5": "0850ff67f7cdf03d9000261d816286bc"
+            "size": 3710274,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.6.1.jar",
+            "MD5": "f53d9ca682394e5d1846ac0e416bf7df"
           }
         },
         {
@@ -393,6 +393,16 @@
             "size": 653210,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jei_1.12.2-4.16.1.302.jar",
             "MD5": "2dc4b6046812e64c514ff4d18bc5cb03"
+          }
+        },
+        {
+          "id": "com.snowshock35:jeiintegration:1.6.0@jar",
+          "name": "JEI Integration",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 25196,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jeiintegration_1.12.2-1.6.0.jar",
+            "MD5": "591f2eef8dc65ebc6850bce0acd88f41"
           }
         },
         {
