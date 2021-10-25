@@ -514,16 +514,6 @@
           }
         },
         {
-          "id": "mrriegel.storagenetwork:storagenetwork:1.12.2-1.8.1@jar",
-          "name": "Simple Storage Network",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 442982,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/SimpleStorageNetwork-1.12.2-1.8.1.jar",
-            "MD5": "bf52ab83a0abb15cff1ff17d93d57a10"
-          }
-        },
-        {
           "id": "com.jaquadro.minecraft:storagedrawers:1.12.2-5.4.2@jar",
           "name": "Storage Drawers",
           "type": "ForgeMod",
