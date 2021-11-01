@@ -241,8 +241,12 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 33683,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/AppleSkin-mc1.12-1.0.14.jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/AppleSkin-mc1.12-1.0.14.jar",
             "MD5": "b435860d5cfa23bc53d3b8e120be91d4"
+          },
+          "required": {
+            "value": false,
+            "def": false
           }
         },
         {
@@ -263,6 +267,16 @@
             "size": 1925728,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/bookworm-1.12.2-2.5.2.1.jar",
             "MD5": "f31cf69f387844f97fa3de429f26b2f7"
+          }
+        },
+        {
+          "id": "buildcraft.compat:buildcraftlib:7.99.24.8@jar",
+          "name": "BuildCraft Lib",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 4879732,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/buildcraft-all-7.99.24.8.jar",
+            "MD5": "df73e94d29b8c6bde42c451ff6018761"
           }
         },
         {
@@ -313,6 +327,16 @@
             "size": 16747522,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Decocraft-2.6.3_1.12.2.jar",
             "MD5": "f9a8eb5ac8e45f1438ef937dc48b882b"
+          }
+        },
+        {
+          "id": "erogenousbeef.bigreactors:bigreactors:1.12.2-0.4.5.68@jar",
+          "name": "Extreme Reactors",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 1149733,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ExtremeReactors-1.12.2-0.4.5.68.jar",
+            "MD5": "ea53f47ee48439a3fea2586e023bd6c8"
           }
         },
         {
@@ -581,6 +605,16 @@
             "size": 5358415,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/WorldFlags-1.1.1.jar",
             "MD5": "69d15234dbb12601452aeb7bbedd7699"
+          }
+        },
+        {
+          "id": "it.zerono.mods:zerocore:1.12.2-0.1.2.9@jar",
+          "name": "Zero CORE",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 227426,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/zerocore-1.12.2-0.1.2.9.jar",
+            "MD5": "8e15e85a8975db0f7a2285f336b47688"
           }
         },
         {

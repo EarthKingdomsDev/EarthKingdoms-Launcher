@@ -11,7 +11,7 @@ const semver = require('semver')
 const url = require('url')
 
 const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
-const clientID = '000000004C12AE6F'
+const clientID = '7cdeace7-efbe-43fb-9561-793345132a14'
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
@@ -129,7 +129,7 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
     })
 
     MSALoginWindow.removeMenu()
-    MSALoginWindow.loadURL('https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=consent&client_id=' + clientID + '&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient')
+    MSALoginWindow.loadURL('https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=select_account&client_id=' + clientID + '&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient')
 })
 
 let MSALogoutWindow = null
