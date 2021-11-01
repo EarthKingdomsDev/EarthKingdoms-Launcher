@@ -504,13 +504,13 @@
           }
         },
         {
-          "id": "com.wynprice:secretroomsmod:5.6.4@jar",
+          "id": "com.wynprice:secretroomsmod:5.1.1@jar",
           "name": "Secret Rooms 5",
           "type": "ForgeMod",
           "artifact": {
-            "size": 343453,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/secretroomsmod-1.12.2-5.6.4.jar",
-            "MD5": "d853b4060cf429ce7765a750501de764"
+            "size": 232954,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/secretroomsmod-5.1.1.jar",
+            "MD5": "d43a7278b7dfb3fd2b09042cbd7e0b01"
           }
         },
         {
