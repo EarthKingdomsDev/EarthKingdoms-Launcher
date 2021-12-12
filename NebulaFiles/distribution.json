@@ -658,6 +658,16 @@
           }
         },
         {
+          "id": "net.gliby.voicechat:gvc:1.2.5@jar",
+          "name": "Gliby's Voice Chat Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 423682,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/VoiceChatReloaded-1.2.5.jar",
+            "MD5": "13344fa9ab436f944f354fb8687306d8"
+          }
+        },
+        {
           "id": "toastyjack.worldflags:worldflags:1.0.0@jar",
           "name": "World Flags",
           "type": "ForgeMod",
