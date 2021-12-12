@@ -330,6 +330,16 @@
           }
         },
         {
+          "id": "com.the_millman:christmasfestivity:1.2.9@jar",
+          "name": "Christmas Festivity Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 7739608,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/christmasfestivity-1.2.9-1.12.2.jar",
+            "MD5": "2ff544e3bab79268ae6ea7feb3f7b014"
+          }
+        },
+        {
           "id": "team.chisel:ctm:MC1.12.2-1.0.2.31@jar",
           "name": "CTM",
           "type": "ForgeMod",
@@ -357,6 +367,16 @@
             "size": 16747522,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Decocraft-2.6.3_1.12.2.jar",
             "MD5": "f9a8eb5ac8e45f1438ef937dc48b882b"
+          }
+        },
+        {
+          "id": "ichttt.mods:eternalwinter:1.0.0@jar",
+          "name": "Eternal Winter",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 10724,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/eternalwinter-1.0.3.jar",
+            "MD5": "02afb8662d33897097e295a192eb0e7f"
           }
         },
         {
@@ -457,6 +477,16 @@
             "size": 25196,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jeiintegration_1.12.2-1.6.0.jar",
             "MD5": "591f2eef8dc65ebc6850bce0acd88f41"
+          }
+        },
+        {
+          "id": "joshuastone.joshxmas:joshxmas:1.12.2-1.2.0@jar",
+          "name": "Joshua's Christmas Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 7492231,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/joshxmas-1.12.2-1.2.0.jar",
+            "MD5": "68a893004d8f643c6f8fc5fd2dedefcd"
           }
         },
         {
