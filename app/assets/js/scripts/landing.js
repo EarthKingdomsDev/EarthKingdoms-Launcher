@@ -4,7 +4,8 @@
 // Requirements
 const cp                      = require('child_process')
 const crypto                  = require('crypto')
-const {URL}                   = require('url')
+const { URL }                 = require('url')
+const { getServerStatus }     = require('helios-core')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -225,11 +226,10 @@ const refreshServerStatus = async function(fade = false){
 
     try {
         const serverURL = new URL('my://' + serv.getAddress())
-        const servStat = await ServerStatus.getStatus(serverURL.hostname, serverURL.port)
-        if(servStat.online){
-            pLabel = 'Joueurs'
-            pVal = servStat.onlinePlayers + '/' + servStat.maxPlayers
-        }
+        const servStat = await getServerStatus(47, serverURL.hostname, Number(serverURL.port))
+        console.log(servStat)
+        pLabel = 'Joueurs'
+        pVal = servStat.players.online + '/' + servStat.players.max
 
     } catch (err) {
         loggerLanding.warn('Unable to refresh server status, assuming offline.')
