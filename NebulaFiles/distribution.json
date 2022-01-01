@@ -380,13 +380,13 @@
           }
         },
         {
-          "id": "fr.orgealexj06:fallenglorycore:2.1@jar",
+          "id": "fr.orgealexj06:fallenglorycore:2.2@jar",
           "name": "FallenGloryCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 15943,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-2.1.jar",
-            "MD5": "fca274af18785fae7e6408ba75f2adfd"
+            "size": 15737,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-2.2.jar",
+            "MD5": "dadc647556c233c17044d22ad9f8a21c"
           }
         },
         {
