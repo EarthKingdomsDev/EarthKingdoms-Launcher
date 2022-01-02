@@ -1,9 +1,9 @@
 {
-  "name": "fallenglorylauncher",
+  "name": "helioslauncher",
   "version": "1.0.0",
-  "productName": "FallenGlory Launcher",
-  "description": "Modded Minecraft Launcher for FallenGlory server",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/) and OrgeAlexj06",
+  "productName": "Helios Launcher",
+  "description": "Modded Minecraft Launcher",
+  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/FallenGloryDevelopment/FallenGlory-Launcher",
   "bugs": {
