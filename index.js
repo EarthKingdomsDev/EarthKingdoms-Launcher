@@ -92,11 +92,13 @@ ipcMain.on('distributionIndexDone', (event, res) => {
 app.disableHardwareAcceleration()
 
 let MSALoginWindow = null
+let login = false
 
 // Open the Microsoft Account Login window
 ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
-    if(MSALoginWindow != null){ 
-        ipcEvent.sender.send('MSALoginWindowNotification', 'error', 'AlreadyOpenException')
+    login = false
+    if (MSALoginWindow != null) {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AlreadyOpenException')
         return
     }
     MSALoginWindow = new BrowserWindow({
@@ -104,7 +106,7 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
         backgroundColor: '#222222',
         width: 520,
         height: 600,
-        frame: false,
+        frame: true,
         icon: getPlatformIcon('SealCircle')
     })
 
@@ -112,8 +114,14 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
         MSALoginWindow = null
     })
 
+    MSALoginWindow.on('close', event => {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AuthNotFinished')
+
+    })
+
     MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
-        if(uri.startsWith(redirectUriPrefix)) {
+        login = true
+        if (uri.startsWith(redirectUriPrefix)) {
             let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
             let queryMap = new Map()
 
