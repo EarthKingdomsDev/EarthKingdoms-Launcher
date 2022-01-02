@@ -1,12 +1,12 @@
 {
     "html": {
-        "avatarOverlay": "Modifier"
+        "avatarOverlay": "Edit"
     },
     "js": {
         "login": {
             "error": {
-                "invalidValue": "* Valeur incorrecte",
-                "requiredValue": "* Requis",
+                "invalidValue": "* Invalid Value",
+                "requiredValue": "* Required",
                 "userMigrated": {
                     "title": "Error During Login:<br>Invalid Credentials",
                     "desc": "You've attempted to login with a migrated account. Try again using the account email as the username."
@@ -35,14 +35,14 @@
                     "title": "Error During Login:<br>Unknown Error"
                 }
             },
-            "login": "CONNEXION",
-            "loggingIn": "CONNEXION EN COURS",
-            "success": "CONNEXION RÉUSSITE",
-            "tryAgain": "Réessayer"
+            "login": "LOGIN",
+            "loggingIn": "LOGGING IN",
+            "success": "SUCCESS",
+            "tryAgain": "Try Again"
         },
         "landing": {
             "launch": {
-                "pleaseWait": "Merci de patienter..."
+                "pleaseWait": "Please wait.."
             }
         }
     }

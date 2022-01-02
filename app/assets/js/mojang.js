@@ -19,25 +19,25 @@ const statuses = [
     {
         service: 'session.minecraft.net',
         status: 'grey',
-        name: 'Service des sessions Multijoueurs',
+        name: 'Multiplayer Session Service',
         essential: true
     },
     {
         service: 'authserver.mojang.com',
         status: 'grey',
-        name: 'Service d\'Authentication',
+        name: 'Authentication Service',
         essential: true
     },
     {
         service: 'textures.minecraft.net',
         status: 'grey',
-        name: 'Skins Minecraft',
+        name: 'Minecraft Skins',
         essential: false
     },
     {
         service: 'api.mojang.com',
         status: 'grey',
-        name: 'API Publique',
+        name: 'Public API',
         essential: false
     },
     {
