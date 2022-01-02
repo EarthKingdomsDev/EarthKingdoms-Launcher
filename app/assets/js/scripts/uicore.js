@@ -49,7 +49,7 @@ if(!isDev){
                 loggerAutoUpdaterSuccess.log('Nouvelle mise à jour Disponible', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/dscalzi/HeliosLauncher/releases/download/v${info.version}/helioslauncher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : ''}.dmg`
+                    info.darwindownload = `https://github.com/FallenGloryDevelopment/FallenGlory-Launcher/releases/download/v${info.version}/fallenglorylauncher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : ''}.dmg`
                     showUpdateUI(info)
                 }
                 
