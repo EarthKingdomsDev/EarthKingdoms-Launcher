@@ -1,15 +1,14 @@
-const remoteMain = require('@electron/remote/main')
-remoteMain.initialize()
+require('@electron/remote/main').initialize()
 
 // Requirements
 const { app, BrowserWindow, ipcMain, Menu } = require('electron')
-const autoUpdater                   = require('electron-updater').autoUpdater
-const ejse                          = require('ejs-electron')
-const fs                            = require('fs')
-const isDev                         = require('./app/assets/js/isdev')
-const path                          = require('path')
-const semver                        = require('semver')
-const { pathToFileURL }             = require('url')
+const autoUpdater = require('electron-updater').autoUpdater
+const ejse = require('ejs-electron')
+const fs = require('fs')
+const isDev = require('./app/assets/js/isdev')
+const path = require('path')
+const semver = require('semver')
+const url = require('url')
 
 const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
 const clientID = '7cdeace7-efbe-43fb-9561-793345132a14'
@@ -92,13 +91,11 @@ ipcMain.on('distributionIndexDone', (event, res) => {
 app.disableHardwareAcceleration()
 
 let MSALoginWindow = null
-let login = false
 
 // Open the Microsoft Account Login window
 ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
-    login = false
-    if (MSALoginWindow != null) {
-        ipcEvent.reply('MSALoginWindowReply', 'error', 'AlreadyOpenException')
+    if(MSALoginWindow != null){ 
+        ipcEvent.sender.send('MSALoginWindowNotification', 'error', 'AlreadyOpenException')
         return
     }
     MSALoginWindow = new BrowserWindow({
@@ -106,7 +103,7 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
         backgroundColor: '#222222',
         width: 520,
         height: 600,
-        frame: true,
+        frame: false,
         icon: getPlatformIcon('SealCircle')
     })
 
@@ -114,14 +111,8 @@ ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
         MSALoginWindow = null
     })
 
-    MSALoginWindow.on('close', event => {
-        ipcEvent.reply('MSALoginWindowReply', 'error', 'AuthNotFinished')
-
-    })
-
     MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
-        login = true
-        if (uri.startsWith(redirectUriPrefix)) {
+        if(uri.startsWith(redirectUriPrefix)) {
             let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
             let queryMap = new Map()
 
@@ -180,15 +171,20 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            enableRemoteModule: true,
+            worldSafeExecuteJavaScript: true
         },
         backgroundColor: '#171614'
     })
-    remoteMain.enable(win.webContents)
 
     ejse.data('bkid', Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)))
 
-    win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, 'app', 'app.ejs'),
+        protocol: 'file:',
+        slashes: true
+    }))
 
     /*win.once('ready-to-show', () => {
         win.show()
