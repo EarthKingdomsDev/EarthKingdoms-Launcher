@@ -42,22 +42,22 @@ if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
             case 'checking-for-update':
-                loggerAutoUpdater.log('Checking for update..')
-                settingsUpdateButtonStatus('Checking for Updates..', true)
+                loggerAutoUpdater.log('Recherche de mise à jour...')
+                settingsUpdateButtonStatus('Recherche de mise à jour...', true)
                 break
             case 'update-available':
-                loggerAutoUpdaterSuccess.log('New update available', info.version)
+                loggerAutoUpdaterSuccess.log('Nouvelle mise à jour Disponible', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/dscalzi/HeliosLauncher/releases/download/v${info.version}/helioslauncher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : ''}.dmg`
+                    info.darwindownload = `https://github.com/FallenGloryDevelopment/FallenGlory-Launcher/releases/download/v${info.version}/FallenGlory_Launcher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : ''}.dmg`
                     showUpdateUI(info)
                 }
                 
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdaterSuccess.log('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus('Install Now', false, () => {
+                loggerAutoUpdaterSuccess.log('La Mise à jour ' + info.version + ' est prête à être installer.')
+                settingsUpdateButtonStatus('Installer Maintenant', false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -65,8 +65,8 @@ if(!isDev){
                 showUpdateUI(info)
                 break
             case 'update-not-available':
-                loggerAutoUpdater.log('No new update found.')
-                settingsUpdateButtonStatus('Check for Updates')
+                loggerAutoUpdater.log('Aucune nouvelle mise à jour.')
+                settingsUpdateButtonStatus('Recherche de mise à jour')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {

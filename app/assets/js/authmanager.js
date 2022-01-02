@@ -154,7 +154,7 @@ exports.addMSAccount = async authCode => {
         const minecraftBuyed = await Microsoft.checkMCStore(MCAccessToken.access_token)
         if(!minecraftBuyed)
             return Promise.reject({
-                message: 'You didn\'t buy Minecraft! Please use another Microsoft account or buy Minecraft.'
+                message: 'Vous n\'avez pas acheté Minecraft ! Merci d\'utiliser un autre compte Microsoft ou acheter Minecraft.'
             })
         const MCProfile = await Microsoft.getMCProfile(MCAccessToken.access_token)
         const ret = ConfigManager.addAuthAccount(MCProfile.id, MCAccessToken.access_token, MCProfile.name, MCProfile.name, MCAccessToken.expires_at, 'microsoft')

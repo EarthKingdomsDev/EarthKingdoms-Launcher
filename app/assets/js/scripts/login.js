@@ -322,7 +322,7 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
                 return
             }
             case 'AuthNotFinished': {
-                setOverlayContent('ERROR', 'You have to finish the login process to use ModRealms Launcher. The window will close by itself when you have successfully logged in.', 'OK')
+                setOverlayContent('ERROR', 'Vous devez finir de vous connectez pour utiliser le FallenGlory Launcher. La fenêtre se fermera toute seul lorsque vous vous aurez authentifié', 'OK')
                 setOverlayHandler(() => {
                     toggleOverlay(false)
                     toggleOverlay(false, false, 'msOverlay')
@@ -340,7 +340,7 @@ ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
         let errorDesc = queryMap.get('error_description')
         if(error === 'access_denied'){
             error = 'ERRPR'
-            errorDesc = 'To use our launcher, you must agree to the required permissions, otherwise you can\'t use this launcher with Microsoft accounts.<br><br>Despite agreeing to the permissions you don\'t give us the possibility to do anything with your account, because all data will always be sent back to you (the launcher).'
+            errorDesc = 'Pour utiliser notre Launcher, vous devez accepter les permissions requis, sinon vous ne pourez pas utiliser votre compte Microsoft.<br><br>Despite agreeing to the permissions you don\'t give us the possibility to do anything with your account, because all data will always be sent back to you (the launcher).'
         }        
         setOverlayContent(error, errorDesc, 'OK')
         setOverlayHandler(() => {

@@ -1,5 +1,5 @@
 appId: 'fallenglorylauncher'
-productName: 'FallenGlory Launcher'
+productName: 'FallenGlory_Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 copyright: 'FallenGlory © - 2020-2022 - OrgeAlexj06'
