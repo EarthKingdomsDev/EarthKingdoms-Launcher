@@ -290,6 +290,16 @@
           }
         },
         {
+          "id": "com.brandon3055:brandonscore:1.12.2-2.4.20.22@jar",
+          "name": "Brandon's Core",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 827900,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/BrandonsCore-1.12.2-2.4.20.162-universal.jar",
+            "MD5": "4a67ccad9d684466010c02164d7ff13e"
+          }
+        },
+        {
           "id": "buildcraft.compat:buildcraftlib:7.99.24.8@jar",
           "name": "BuildCraft Lib",
           "type": "ForgeMod",
@@ -320,13 +330,13 @@
           }
         },
         {
-          "id": "com.the_millman:christmasfestivity:1.2.9@jar",
-          "name": "Christmas Festivity Mod",
+          "id": "codechicken.lib:codechickenlib:3.2.3.358@jar",
+          "name": "CodeChicken Lib",
           "type": "ForgeMod",
           "artifact": {
-            "size": 7739608,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/christmasfestivity-1.2.9-1.12.2.jar",
-            "MD5": "2ff544e3bab79268ae6ea7feb3f7b014"
+            "size": 704330,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
+            "MD5": "3b5e44db5ac96fb23a439590b6731a31"
           }
         },
         {
@@ -357,6 +367,16 @@
             "size": 16747522,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Decocraft-2.6.3_1.12.2.jar",
             "MD5": "f9a8eb5ac8e45f1438ef937dc48b882b"
+          }
+        },
+        {
+          "id": "com.brandon3055:draconicevolution:1.12.2-2.3.28.193@jar",
+          "name": "Draconic Evolution",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 5708839,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Draconic-Evolution-1.12.2-2.3.28.354-universal.jar",
+            "MD5": "e6c70ebe71c94d00b1056f6e4bef207f"
           }
         },
         {
@@ -460,16 +480,6 @@
           }
         },
         {
-          "id": "joshuastone.joshxmas:joshxmas:1.12.2-1.2.0@jar",
-          "name": "Joshua's Christmas Mod",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 7492231,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/joshxmas-1.12.2-1.2.0.jar",
-            "MD5": "68a893004d8f643c6f8fc5fd2dedefcd"
-          }
-        },
-        {
           "id": "journeymap:journeymap:1.12.2-5.7.1@jar",
           "name": "JourneyMap",
           "type": "ForgeMod",
@@ -551,6 +561,16 @@
             "size": 169483,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PTRLib-1.0.4.jar",
             "MD5": "7cdde85216395abe430a7ff185650370"
+          }
+        },
+        {
+          "id": "cofh.redstoneflux:redstoneflux:2.1.1.1@jar",
+          "name": "Redstone Flux",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 31802,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/RedstoneFlux-1.12-2.1.1.1-universal.jar",
+            "MD5": "93b1715f05be1878da93fca36dd37f2a"
           }
         },
         {
