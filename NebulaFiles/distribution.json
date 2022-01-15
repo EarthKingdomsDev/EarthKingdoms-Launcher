@@ -256,17 +256,13 @@
           ]
         },
         {
-          "id": "squeek.appleskin:appleskin:1.0.14@jar",
-          "name": "AppleSkin",
+          "id": "de.mennomax:astikorcarts:0.1.2.7@jar",
+          "name": "AstikorCarts",
           "type": "ForgeMod",
           "artifact": {
-            "size": 33683,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/AppleSkin-mc1.12-1.0.14.jar",
-            "MD5": "b435860d5cfa23bc53d3b8e120be91d4"
-          },
-          "required": {
-            "value": false,
-            "def": false
+            "size": 102639,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/astikorcarts-1.12.2-0.1.2.8.jar",
+            "MD5": "d13b6e597ddd3306368ff21dae2850e1"
           }
         },
         {
@@ -330,6 +326,16 @@
           }
         },
         {
+          "id": "mod.chiselsandbits.core:chiselsandbits:14.33@jar",
+          "name": "Chisels & Bits",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 737407,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/chiselsandbits-14.33.jar",
+            "MD5": "e056e23559965f2ebabf47aad0fe51a3"
+          }
+        },
+        {
           "id": "codechicken.lib:codechickenlib:3.2.3.358@jar",
           "name": "CodeChicken Lib",
           "type": "ForgeMod",
@@ -367,6 +373,16 @@
             "size": 16747522,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Decocraft-2.6.3_1.12.2.jar",
             "MD5": "f9a8eb5ac8e45f1438ef937dc48b882b"
+          }
+        },
+        {
+          "id": "doggytalents:doggytalents:1.15.1.6@jar",
+          "name": "Doggy Talents",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 801797,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/DoggyTalents-1.12.2-1.15.1.6.jar",
+            "MD5": "1c6d3797984e4bf2b6f01c177a99c59b"
           }
         },
         {
@@ -417,6 +433,26 @@
             "size": 2259973,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FlansMod-1.12.2-5.10.0.jar",
             "MD5": "0cc53ac00145d96448d5d20eae4e2ed6"
+          }
+        },
+        {
+          "id": "micdoodle8.mods.galacticraft.planets:galacticraftplanets:4.0.2.220@jar",
+          "name": "Galacticraft Planets",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 3912486,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Galacticraft-Planets-Mod-1.12.2.jar",
+            "MD5": "52026cdec4fe4c838d94c6b4eae46979"
+          }
+        },
+        {
+          "id": "micdoodle8.mods.galacticraft.core:galacticraftcore:4.0.2.281@jar",
+          "name": "Galacticraft Core",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 10631329,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftCore-1.12.2-4.0.2.281.jar",
+            "MD5": "02dcb094b4de11028c196c44b0debe3b"
           }
         },
         {
@@ -531,6 +567,16 @@
             "size": 159785,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MekanismTools-1.12.2-9.8.3.390.jar",
             "MD5": "0095f13a729ce5873319e36e29a5b5e1"
+          }
+        },
+        {
+          "id": "micdoodle8.mods.miccore:micdoodlecore:1.12.2@jar",
+          "name": "MicdoodleCore",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 53300,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MicdoodleCore-1.12.2.jar",
+            "MD5": "edec0fd238019a5f61bdd845cbf62e68"
           }
         },
         {
