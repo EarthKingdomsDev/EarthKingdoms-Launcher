@@ -406,16 +406,6 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:3.6.3@jar",
-          "name": "FallenGlory Mods",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 3730528,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-3.6.3.jar",
-            "MD5": "1cef80456498425dcf25546caff415c5"
-          }
-        },
-        {
           "id": "fr.orgealexj06:fallenglorycore:2.2@jar",
           "name": "FallenGloryCore",
           "type": "ForgeMod",
@@ -426,6 +416,16 @@
           }
         },
         {
+          "id": "net.mcreator:fallenglorymods:4.0.3@jar",
+          "name": "FallenGlory Mods",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 3922432,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGloryMods-[4.0.3].jar",
+            "MD5": "6b1a7496bbbebb918dc839879369f692"
+          }
+        },
+        {
           "id": "com.flansmod:flansmod:5.10.0@jar",
           "name": "Flan's Mod",
           "type": "ForgeMod",
@@ -433,6 +433,16 @@
             "size": 2259973,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FlansMod-1.12.2-5.10.0.jar",
             "MD5": "0cc53ac00145d96448d5d20eae4e2ed6"
+          }
+        },
+        {
+          "id": "com.mrcrayfish.furniture:cfm:6.3.0@jar",
+          "name": "MrCrayfish's Furniture Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 2454924,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FurnitureMod-[6.3.0].jar",
+            "MD5": "b1e5c79ed6e9e4602f25419e21497975"
           }
         },
         {
