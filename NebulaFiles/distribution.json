@@ -356,6 +356,16 @@
           }
         },
         {
+          "id": "com.mrcrayfish.device:cdm:0.4.1@jar",
+          "name": "MrCrayfish's Device Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 2733808,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/device-mod-0.4.1-1.12.2.jar",
+            "MD5": "26fa65c0fa5462834d6eebfa4055a792"
+          }
+        },
+        {
           "id": "doggytalents:doggytalents:1.15.1.6@jar",
           "name": "Doggy Talents",
           "type": "ForgeMod",
@@ -433,6 +443,16 @@
             "size": 10631329,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftCore-1.12.2-4.0.2.281.jar",
             "MD5": "02dcb094b4de11028c196c44b0debe3b"
+          }
+        },
+        {
+          "id": "mastef_chief.gitwebbuilder:gitwebbuilder:1.1@jar",
+          "name": "GitWeb Builder",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 246083,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GitWeb+Builder-1.1.jar",
+            "MD5": "4b490617405ace2c069c6cbdef9d81b2"
           }
         },
         {
@@ -557,6 +577,16 @@
             "size": 53300,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MicdoodleCore-1.12.2.jar",
             "MD5": "edec0fd238019a5f61bdd845cbf62e68"
+          }
+        },
+        {
+          "id": "com.vicmatskiv:mw:0.4.6.2@jar",
+          "name": "Modern Warfare 2.0 Contagion",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 34769031,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/mw_2.0-0.4.6.2_mc1.12.2.jar",
+            "MD5": "8b2ef750aa23bfd7e8d78f38acd2a1e6"
           }
         },
         {
