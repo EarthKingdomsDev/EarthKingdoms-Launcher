@@ -426,23 +426,23 @@
           }
         },
         {
-          "id": "micdoodle8.mods.galacticraft.planets:galacticraftplanets:4.0.2.220@jar",
-          "name": "Galacticraft Planets",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 3912486,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Galacticraft-Planets-Mod-1.12.2.jar",
-            "MD5": "52026cdec4fe4c838d94c6b4eae46979"
-          }
-        },
-        {
-          "id": "micdoodle8.mods.galacticraft.core:galacticraftcore:4.0.2.281@jar",
+          "id": "micdoodle8.mods.galacticraft.core:galacticraftcore:4.0.2.280@jar",
           "name": "Galacticraft Core",
           "type": "ForgeMod",
           "artifact": {
-            "size": 10631329,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftCore-1.12.2-4.0.2.281.jar",
-            "MD5": "02dcb094b4de11028c196c44b0debe3b"
+            "size": 10610662,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftCore-[4.0.2.280].jar",
+            "MD5": "9298e6b85b38eab9b830a0637f1fbced"
+          }
+        },
+        {
+          "id": "micdoodle8.mods.galacticraft.planets:galacticraftplanets:4.0.2.280@jar",
+          "name": "Galacticraft Planets",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 3975978,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftPlanets-[4.0.2.280].jar",
+            "MD5": "848ebcd467a3389c9461007d2b164a6c"
           }
         },
         {
@@ -570,13 +570,13 @@
           }
         },
         {
-          "id": "micdoodle8.mods.miccore:micdoodlecore:1.12.2@jar",
+          "id": "micdoodle8.mods.miccore:micdoodlecore:[4.0.2.280]@jar",
           "name": "MicdoodleCore",
           "type": "ForgeMod",
           "artifact": {
             "size": 53300,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MicdoodleCore-1.12.2.jar",
-            "MD5": "edec0fd238019a5f61bdd845cbf62e68"
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MicdoodleCore-[4.0.2.280].jar",
+            "MD5": "2b033cb0694a53ea7b80876e2f00dec5"
           }
         },
         {
