@@ -546,12 +546,12 @@ function dlAsync(login = true){
                     break
                 case 'assets':
                     setLaunchPercentage(60, 100)
-                    loggerLaunchSuite.log('Asset Validation Complete')
+                    loggerLaunchSuite.log('Validation des assets terminée')
                     setLaunchDetails('Validation des Libraries...')
                     break
                 case 'libraries':
                     setLaunchPercentage(80, 100)
-                    loggerLaunchSuite.log('Library validation complete.')
+                    loggerLaunchSuite.log('Validation des libraries terminée.')
                     setLaunchDetails('Validation du fichier divers...')
                     break
                 case 'files':
