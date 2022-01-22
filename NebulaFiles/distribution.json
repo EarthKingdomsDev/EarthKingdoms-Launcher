@@ -516,16 +516,6 @@
           }
         },
         {
-          "id": "com.dorian2712:jobs:1.4@jar",
-          "name": "Jobs",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 191315,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jobs-1.4.jar",
-            "MD5": "cdb8aaedf8b6fb306b6be2d39c4da172"
-          }
-        },
-        {
           "id": "journeymap:journeymap:1.12.2-5.7.1@jar",
           "name": "JourneyMap",
           "type": "ForgeMod",
