@@ -406,16 +406,6 @@
           }
         },
         {
-          "id": "fr.orgealexj06:fallengloryjobs:1.0@jar",
-          "name": "FallenGlory Jobs",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 174860,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallengloryjobs-1.0.jar",
-            "MD5": "7456646eb53a6e7b7c353758f68655d0"
-          }
-        },
-        {
           "id": "com.flansmod:flansmod:5.10.0@jar",
           "name": "Flan's Mod",
           "type": "ForgeMod",
@@ -523,6 +513,16 @@
             "size": 25196,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jeiintegration_1.12.2-1.6.0.jar",
             "MD5": "591f2eef8dc65ebc6850bce0acd88f41"
+          }
+        },
+        {
+          "id": "com.dorian2712:jobs:1.4@jar",
+          "name": "Jobs",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 191315,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/jobs-1.4.jar",
+            "MD5": "cdb8aaedf8b6fb306b6be2d39c4da172"
           }
         },
         {
