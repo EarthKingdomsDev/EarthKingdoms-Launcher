@@ -11,7 +11,7 @@
       "id": "fgserver-1.12.2",
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
-      "icon": null,
+      "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
       "version": "1.0.0",
       "address": "188.165.144.18:25577",
       "minecraftVersion": "1.12.2",
