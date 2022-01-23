@@ -125,7 +125,7 @@ document.getElementById('avatarOverlay').onclick = (e) => {
 
 // Bind selected account
 function updateSelectedAccount(authUser){
-    let username = 'No Account Selected'
+    let username = 'Aucun compte sélectionner'
     if(authUser != null){
         if(authUser.displayName != null){
             username = authUser.displayName
@@ -160,7 +160,7 @@ server_selection_button.onclick = (e) => {
 
 // Update Mojang Status Color
 const refreshMojangStatuses = async function(){
-    loggerLanding.log('Actualisation des Status Mojang...')
+    loggerLanding.log('Actualisation des Status Minecraft...')
 
     let status = 'grey'
     let tooltipEssentialHTML = ''
@@ -217,6 +217,7 @@ const refreshMojangStatuses = async function(){
     document.getElementById('mojang_status_icon').style.color = Mojang.statusToHex(status)
 }
 
+
 const refreshServerStatus = async function(fade = false){
     loggerLanding.log('Refreshing Server Status')
     const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
@@ -254,6 +255,8 @@ refreshMojangStatuses()
 // Set refresh rate to once every 5 minutes.
 let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 300000)
 let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
+
+setTimeout(() => refreshMojangStatuses(true), 1000) //workaround to make sure statuses are correctly shown, else its a kinda broken
 
 /**
  * Shows an error overlay, toggles off the launch area.
@@ -609,12 +612,12 @@ function dlAsync(login = true){
                     
                     if(m.error.code === 'ENOENT'){
                         showLaunchFailure(
-                            'Download Error',
+                            'Erreur de téléchargement',
                             'Could not connect to the file server. Ensure that you are connected to the internet and try again.'
                         )
                     } else {
                         showLaunchFailure(
-                            'Download Error',
+                            'Erreur de téléchargement',
                             'Check the console (CTRL + Shift + i) for more details. Please try again.'
                         )
                     }
