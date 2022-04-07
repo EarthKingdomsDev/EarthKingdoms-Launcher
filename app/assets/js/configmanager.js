@@ -103,8 +103,7 @@ const DEFAULT_CONFIG = {
     selectedServer: null, // Resolved
     selectedAccount: null,
     authenticationDatabase: {},
-    modConfigurations: [],
-    microsoftAuth: {}
+    modConfigurations: []
 }
 
 let config = null
@@ -319,21 +318,21 @@ exports.getAuthAccount = function(uuid){
 }
 
 /**
- * Update the access token of an authenticated account.
+ * Update the access token of an authenticated mojang account.
  * 
  * @param {string} uuid The uuid of the authenticated account.
  * @param {string} accessToken The new Access Token.
  * 
  * @returns {Object} The authenticated account object created by this action.
  */
- exports.updateAuthAccount = function(uuid, accessToken, expiresAt = undefined){
+exports.updateMojangAuthAccount = function(uuid, accessToken){
     config.authenticationDatabase[uuid].accessToken = accessToken
-    config.authenticationDatabase[uuid].expiresAt = expiresAt
+    config.authenticationDatabase[uuid].type = 'mojang' // For gradual conversion.
     return config.authenticationDatabase[uuid]
 }
 
 /**
- * Adds an authenticated account to the database to be stored.
+ * Adds an authenticated mojang account to the database to be stored.
  * 
  * @param {string} uuid The uuid of the authenticated account.
  * @param {string} accessToken The accessToken of the authenticated account.
@@ -342,15 +341,66 @@ exports.getAuthAccount = function(uuid){
  * 
  * @returns {Object} The authenticated account object created by this action.
  */
- exports.addAuthAccount = function(uuid, accessToken, username, displayName, expiresAt = null, type = 'mojang'){
+exports.addMojangAuthAccount = function(uuid, accessToken, username, displayName){
     config.selectedAccount = uuid
     config.authenticationDatabase[uuid] = {
+        type: 'mojang',
         accessToken,
         username: username.trim(),
         uuid: uuid.trim(),
-        displayName: displayName.trim(),
-        expiresAt: expiresAt,
-        type: type
+        displayName: displayName.trim()
+    }
+    return config.authenticationDatabase[uuid]
+}
+
+/**
+ * Update the tokens of an authenticated microsoft account.
+ * 
+ * @param {string} uuid The uuid of the authenticated account.
+ * @param {string} accessToken The new Access Token.
+ * @param {string} msAccessToken The new Microsoft Access Token
+ * @param {string} msRefreshToken The new Microsoft Refresh Token
+ * @param {date} msExpires The date when the microsoft access token expires
+ * @param {date} mcExpires The date when the mojang access token expires
+ * 
+ * @returns {Object} The authenticated account object created by this action.
+ */
+exports.updateMicrosoftAuthAccount = function(uuid, accessToken, msAccessToken, msRefreshToken, msExpires, mcExpires) {
+    config.authenticationDatabase[uuid].accessToken = accessToken
+    config.authenticationDatabase[uuid].expiresAt = mcExpires
+    config.authenticationDatabase[uuid].microsoft.access_token = msAccessToken
+    config.authenticationDatabase[uuid].microsoft.refresh_token = msRefreshToken
+    config.authenticationDatabase[uuid].microsoft.expires_at = msExpires
+    return config.authenticationDatabase[uuid]
+}
+
+/**
+ * Adds an authenticated microsoft account to the database to be stored.
+ * 
+ * @param {string} uuid The uuid of the authenticated account.
+ * @param {string} accessToken The accessToken of the authenticated account.
+ * @param {string} name The in game name of the authenticated account.
+ * @param {date} mcExpires The date when the mojang access token expires
+ * @param {string} msAccessToken The microsoft access token
+ * @param {string} msRefreshToken The microsoft refresh token
+ * @param {date} msExpires The date when the microsoft access token expires
+ * 
+ * @returns {Object} The authenticated account object created by this action.
+ */
+exports.addMicrosoftAuthAccount = function(uuid, accessToken, name, mcExpires, msAccessToken, msRefreshToken, msExpires) {
+    config.selectedAccount = uuid
+    config.authenticationDatabase[uuid] = {
+        type: 'microsoft',
+        accessToken,
+        username: name.trim(),
+        uuid: uuid.trim(),
+        displayName: name.trim(),
+        expiresAt: mcExpires,
+        microsoft: {
+            access_token: msAccessToken,
+            refresh_token: msRefreshToken,
+            expires_at: msExpires
+        }
     }
     return config.authenticationDatabase[uuid]
 }
@@ -690,18 +740,3 @@ exports.getAllowPrerelease = function(def = false){
 exports.setAllowPrerelease = function(allowPrerelease){
     config.settings.launcher.allowPrerelease = allowPrerelease
 }
-
-exports.setMicrosoftAuth = microsoftAuth => {
-    config.microsoftAuth = microsoftAuth
-}
-
-exports.getMicrosoftAuth = () => {
-    return config.microsoftAuth
-}
-
-exports.updateMicrosoftAuth = (accessToken, expiresAt) => {
-    config.microsoftAuth.access_token = accessToken
-    config.microsoftAuth.expires_at = expiresAt
-
-    return config.microsoftAuth
-} 
