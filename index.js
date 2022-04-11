@@ -2,15 +2,18 @@ const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
 // Requirements
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
-const autoUpdater                       = require('electron-updater').autoUpdater
-const ejse                              = require('ejs-electron')
-const fs                                = require('fs')
-const isDev                             = require('./app/assets/js/isdev')
-const path                              = require('path')
-const semver                            = require('semver')
-const { pathToFileURL }                 = require('url')
-const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE } = require('./app/assets/js/ipcconstants')
+const { app, BrowserWindow, ipcMain, Menu } = require('electron')
+const autoUpdater                   = require('electron-updater').autoUpdater
+const ejse                          = require('ejs-electron')
+const fs                            = require('fs')
+const isDev                         = require('./app/assets/js/isdev')
+const path                          = require('path')
+const semver                        = require('semver')
+const { pathToFileURL }             = require('url')
+
+const redirectUriPrefix = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
+const clientID = '36167761-80ec-4364-b2a3-471e652d4e5b'
+//const clientID = '7cdeace7-efbe-43fb-9561-793345132a14'
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
@@ -27,7 +30,7 @@ function initAutoUpdater(event, data) {
         autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml')
     }
     if(process.platform === 'darwin'){
-        autoUpdater.autoDownload = false
+        autoUpdater.autoDownload = true
     }
     autoUpdater.on('update-available', (info) => {
         event.sender.send('autoUpdateNotification', 'update-available', info)
@@ -85,43 +88,22 @@ ipcMain.on('distributionIndexDone', (event, res) => {
     event.sender.send('distributionIndexDone', res)
 })
 
-// Handle trash item.
-ipcMain.handle(SHELL_OPCODE.TRASH_ITEM, async (event, ...args) => {
-    try {
-        await shell.trashItem(args[0])
-        return {
-            result: true
-        }
-    } catch(error) {
-        return {
-            result: false,
-            error: error
-        }
-    }
-})
-
 // Disable hardware acceleration.
 // https://electronjs.org/docs/tutorial/offscreen-rendering
 app.disableHardwareAcceleration()
 
+let MSALoginWindow = null
+let login = false
 
-const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
-
-// Microsoft Auth Login
-let msftAuthWindow
-let msftAuthSuccess
-let msftAuthViewSuccess
-let msftAuthViewOnClose
-ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
-    if (msftAuthWindow) {
-        ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.ALREADY_OPEN, msftAuthViewOnClose)
+// Open the Microsoft Account Login window
+ipcMain.on('openMSALoginWindow', (ipcEvent, args) => {
+    login = false
+    if (MSALoginWindow != null) {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AlreadyOpenException')
         return
     }
-    msftAuthSuccess = false
-    msftAuthViewSuccess = arguments_[0]
-    msftAuthViewOnClose = arguments_[1]
-    msftAuthWindow = new BrowserWindow({
-        title: 'Connexion avec Microsoft',
+    MSALoginWindow = new BrowserWindow({
+        title: 'Microsoft-Login',
         backgroundColor: '#222222',
         width: 520,
         height: 600,
@@ -129,92 +111,61 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
         icon: getPlatformIcon('SealCircle')
     })
 
-    msftAuthWindow.on('closed', () => {
-        msftAuthWindow = undefined
+    MSALoginWindow.on('closed', () => {
+        MSALoginWindow = null
     })
 
-    msftAuthWindow.on('close', () => {
-        if(!msftAuthSuccess) {
-            ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.NOT_FINISHED, msftAuthViewOnClose)
-        }
+    MSALoginWindow.on('close', event => {
+        ipcEvent.reply('MSALoginWindowReply', 'error', 'AuthNotFinished')
+
     })
 
-    msftAuthWindow.webContents.on('did-navigate', (_, uri) => {
-        if (uri.startsWith(REDIRECT_URI_PREFIX)) {
-            let queries = uri.substring(REDIRECT_URI_PREFIX.length).split('#', 1).toString().split('&')
-            let queryMap = {}
+    MSALoginWindow.webContents.on('did-navigate', (event, uri, responseCode, statusText) => {
+        login = true
+        if (uri.startsWith(redirectUriPrefix)) {
+            let querys = uri.substring(redirectUriPrefix.length).split('#', 1).toString().split('&')
+            let queryMap = new Map()
 
-            queries.forEach(query => {
-                const [name, value] = query.split('=')
-                queryMap[name] = decodeURI(value)
+            querys.forEach(query => {
+                let arr = query.split('=')
+                queryMap.set(arr[0], decodeURI(arr[1]))
             })
 
-            ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
+            ipcEvent.reply('MSALoginWindowReply', queryMap)
 
-            msftAuthSuccess = true
-            msftAuthWindow.close()
-            msftAuthWindow = null
+            MSALoginWindow.close()
+            MSALoginWindow = null
         }
     })
 
-    msftAuthWindow.removeMenu()
-    msftAuthWindow.loadURL(`https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=select_account&client_id=${AZURE_CLIENT_ID}&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`)
+    MSALoginWindow.removeMenu()
+    MSALoginWindow.loadURL('https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=select_account&client_id=' + clientID + '&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient')
 })
 
-// Microsoft Auth Logout
-let msftLogoutWindow
-let msftLogoutSuccess
-let msftLogoutSuccessSent
-ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
-    if (msftLogoutWindow) {
-        ipcEvent.reply(MSFT_OPCODE.REPLY_LOGOUT, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.ALREADY_OPEN)
-        return
-    }
+let MSALogoutWindow = null
 
-    msftLogoutSuccess = false
-    msftLogoutSuccessSent = false
-    msftLogoutWindow = new BrowserWindow({
-        title: 'Déconnexion de Microsoft',
-        backgroundColor: '#222222',
-        width: 520,
-        height: 600,
-        frame: true,
-        icon: getPlatformIcon('SealCircle')
-    })
-
-    msftLogoutWindow.on('closed', () => {
-        msftLogoutWindow = undefined
-    })
-
-    msftLogoutWindow.on('close', () => {
-        if(!msftLogoutSuccess) {
-            ipcEvent.reply(MSFT_OPCODE.REPLY_LOGOUT, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.NOT_FINISHED)
-        } else if(!msftLogoutSuccessSent) {
-            msftLogoutSuccessSent = true
-            ipcEvent.reply(MSFT_OPCODE.REPLY_LOGOUT, MSFT_REPLY_TYPE.SUCCESS, uuid, isLastAccount)
-        }
-    })
-    
-    msftLogoutWindow.webContents.on('did-navigate', (_, uri) => {
-        if(uri.startsWith('https://login.microsoftonline.com/common/oauth2/v2.0/logoutsession')) {
-            msftLogoutSuccess = true
+ipcMain.on('openMSALogoutWindow', (ipcEvent, args) => {
+    if (MSALogoutWindow == null) {
+        MSALogoutWindow = new BrowserWindow({
+            title: 'Microsoft Logout',
+            backgroundColor: '#222222',
+            width: 520,
+            height: 600,
+            frame: true,
+            icon: getPlatformIcon('SealCircle')
+        })
+        MSALogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
+        MSALogoutWindow.webContents.on('did-navigate', (e) => {
             setTimeout(() => {
-                if(!msftLogoutSuccessSent) {
-                    msftLogoutSuccessSent = true
-                    ipcEvent.reply(MSFT_OPCODE.REPLY_LOGOUT, MSFT_REPLY_TYPE.SUCCESS, uuid, isLastAccount)
-                }
-
-                if(msftLogoutWindow) {
-                    msftLogoutWindow.close()
-                    msftLogoutWindow = null
-                }
+                ipcEvent.reply('MSALogoutWindowReply')
             }, 5000)
-        }
-    })
-    
-    msftLogoutWindow.removeMenu()
-    msftLogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
+
+        })
+    }
 })
+
+// https://github.com/electron/electron/issues/18397
+app.allowRendererProcessReuse = true
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -261,12 +212,12 @@ function createMenu() {
         let applicationSubMenu = {
             label: 'Application',
             submenu: [{
-                label: 'A propos de l\'Application',
+                label: 'About Application',
                 selector: 'orderFrontStandardAboutPanel:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Quitter',
+                label: 'Quit',
                 accelerator: 'Command+Q',
                 click: () => {
                     app.quit()
@@ -276,31 +227,31 @@ function createMenu() {
 
         // New edit menu adds support for text-editing keyboard shortcuts
         let editSubMenu = {
-            label: 'Modifier',
+            label: 'Edit',
             submenu: [{
-                label: 'Annuler',
+                label: 'Undo',
                 accelerator: 'CmdOrCtrl+Z',
                 selector: 'undo:'
             }, {
-                label: 'Rétablir',
+                label: 'Redo',
                 accelerator: 'Shift+CmdOrCtrl+Z',
                 selector: 'redo:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Couper',
+                label: 'Cut',
                 accelerator: 'CmdOrCtrl+X',
                 selector: 'cut:'
             }, {
-                label: 'Copier',
+                label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
                 selector: 'copy:'
             }, {
-                label: 'Coller',
+                label: 'Paste',
                 accelerator: 'CmdOrCtrl+V',
                 selector: 'paste:'
             }, {
-                label: 'Tout sélectionner',
+                label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
                 selector: 'selectAll:'
             }]

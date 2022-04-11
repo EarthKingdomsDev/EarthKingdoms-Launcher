@@ -1,9 +1,9 @@
 {
   "name": "fallenglorylauncher",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "productName": "FallenGlory Launcher",
   "description": "Modded Minecraft Launcher for FallenGlory Server",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/) and OrgeAlexj06",
+  "author": "Daniel Scalzi (https://github.com/dscalzi/) and OrgeAlexj06 (https://github.com/OrgeAlexj06)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/FallenGloryDevelopment/FallenGlory-Launcher",
   "bugs": {
@@ -23,17 +23,16 @@
     "node": "16.x.x"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.8",
+    "@electron/remote": "^2.0.1",
     "adm-zip": "^0.5.9",
-    "async": "^3.2.3",
-    "discord-rpc-patch": "^4.0.1",
+    "async": "^3.2.1",
+    "discord-rpc": "^3.2.0",
     "ejs": "^3.1.6",
     "ejs-electron": "^2.1.1",
-    "electron-updater": "^4.6.5",
-    "fs-extra": "^10.0.1",
+    "electron-updater": "^4.3.9",
+    "fs-extra": "^10.0.0",
     "github-syntax-dark": "^0.5.0",
-    "got": "^11.8.3",
-    "helios-core": "~0.1.0",
+    "helios-core": "^0.1.0-alpha.3",
     "jquery": "^3.6.0",
     "node-stream-zip": "^1.15.0",
     "request": "^2.88.2",
@@ -42,9 +41,9 @@
     "winreg": "^1.2.4"
   },
   "devDependencies": {
-    "electron": "^17.2.0",
-    "electron-builder": "^22.14.13",
-    "eslint": "^8.11.0"
+    "electron": "^15.2.0",
+    "electron-builder": "^22.13.1",
+    "eslint": "^8.0.1"
   },
   "repository": {
     "type": "git",

@@ -376,16 +376,6 @@
           }
         },
         {
-          "id": "xyz.vsngamer.elevator:elevatorid:1.12.2-1.3.14@jar",
-          "name": "Elevator Mod",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 108444,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ElevatorMod-[1.3.14].jar",
-            "MD5": "3726325984b2f3d35ee284fcaeed21c1"
-          }
-        },
-        {
           "id": "erogenousbeef.bigreactors:bigreactors:1.12.2-0.4.5.68@jar",
           "name": "Extreme Reactors",
           "type": "ForgeMod",
@@ -396,23 +386,23 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:4.0.9@jar",
+          "id": "net.mcreator:fallenglorymods:4.0.8@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4142613,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.9.jar",
-            "MD5": "894e9ae40209b8d2dbfef736ebd8d7f0"
+            "size": 4069298,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.8.jar",
+            "MD5": "a8eb62c383077a0816ae01c6fe83df14"
           }
         },
         {
-          "id": "fr.orgealexj06:fallenglorycore:2.4@jar",
+          "id": "fr.orgealexj06:fallenglorycore:2.3@jar",
           "name": "FallenGloryCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 8213518,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-2.4.jar",
-            "MD5": "23ef212c7c4c06009fc013c85c501099"
+            "size": 8213519,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-2.3.jar",
+            "MD5": "6dc31cbd7e1d7412c0c80f1c50ecc4de"
           }
         },
         {

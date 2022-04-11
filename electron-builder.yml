@@ -1,14 +1,14 @@
 appId: 'fallenglorylauncher'
-productName: 'FallenGlory Launcher'
+productName: 'FallenGlory_Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'FallenGlory - 2020-2022 - Copyright ©'
+copyright: 'FallenGlory © - 2020-2022 - OrgeAlexj06'
 
 asar: true
 compression: 'maximum'
 
 files:
-  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json,build.js}'
 
 extraResources:
   - 'libraries'

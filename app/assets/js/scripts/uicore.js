@@ -9,12 +9,11 @@ const $                              = require('jquery')
 const {ipcRenderer, shell, webFrame} = require('electron')
 const remote                         = require('@electron/remote')
 const isDev                          = require('./assets/js/isdev')
-const { LoggerUtil }                 = require('helios-core')
-const LoggerUtil1                    = require('./assets/js/loggerutil')
+const LoggerUtil                     = require('./assets/js/loggerutil')
 
-const loggerUICore             = LoggerUtil1('%c[UICore]', 'color: #000668; font-weight: bold')
-const loggerAutoUpdater        = LoggerUtil1('%c[AutoUpdater]', 'color: #000668; font-weight: bold')
-const loggerAutoUpdaterSuccess = LoggerUtil1('%c[AutoUpdater]', 'color: #209b07; font-weight: bold')
+const loggerUICore             = LoggerUtil('%c[UICore]', 'color: #000668; font-weight: bold')
+const loggerAutoUpdater        = LoggerUtil('%c[AutoUpdater]', 'color: #000668; font-weight: bold')
+const loggerAutoUpdaterSuccess = LoggerUtil('%c[AutoUpdater]', 'color: #209b07; font-weight: bold')
 
 // Log deprecation and process warnings.
 process.traceProcessWarnings = true
@@ -28,7 +27,7 @@ window.eval = global.eval = function () {
 
 // Display warning when devtools window is opened.
 remote.getCurrentWebContents().on('devtools-opened', () => {
-    //console.log('%cThe console is dark and full of terrors.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
+    console.log('%cThe console is dark and full of terrors.', 'color: white; -webkit-text-stroke: 4px #a02d2a; font-size: 60px; font-weight: bold')
     console.log('%cIf you\'ve been told to paste something here, you\'re being scammed.', 'font-size: 16px')
     console.log('%cUnless you know exactly what you\'re doing, close this window.', 'font-size: 16px')
 })
@@ -43,22 +42,22 @@ if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
             case 'checking-for-update':
-                loggerAutoUpdater.log('Recherche d\'une Mise à jour...')
-                settingsUpdateButtonStatus('Recherche d\'une Mise à jour...', true)
+                loggerAutoUpdater.log('Recherche de mise à jour...')
+                settingsUpdateButtonStatus('Recherche de mise à jour...', true)
                 break
             case 'update-available':
-                loggerAutoUpdaterSuccess.log('Nouvelle Mise à jour Disponible', info.version)
+                loggerAutoUpdaterSuccess.log('Nouvelle mise à jour Disponible', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/FallenGloryDevelopment/FallenGlory-Launcher/releases/download/v${info.version}/FallenGlory-Launcher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
+                    info.darwindownload = `https://github.com/FallenGloryDevelopment/FallenGlory-Launcher/releases/download/v${info.version}/FallenGlory_Launcher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : ''}.dmg`
                     showUpdateUI(info)
                 }
                 
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdaterSuccess.log('Mise à jour ' + info.version + ' prête à être installé.')
-                settingsUpdateButtonStatus('Installer', false, () => {
+                loggerAutoUpdaterSuccess.log('La Mise à jour ' + info.version + ' est prête à être installer.')
+                settingsUpdateButtonStatus('Installer Maintenant', false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -66,8 +65,8 @@ if(!isDev){
                 showUpdateUI(info)
                 break
             case 'update-not-available':
-                loggerAutoUpdater.log('Aucune nouvelle Mise à jour trouvée.')
-                settingsUpdateButtonStatus('Rechercher une Mise à jour')
+                loggerAutoUpdater.log('Aucune nouvelle mise à jour.')
+                settingsUpdateButtonStatus('Recherche de mise à jour')
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {

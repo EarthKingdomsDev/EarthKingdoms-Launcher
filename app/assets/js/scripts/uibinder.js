@@ -16,11 +16,9 @@ let fatalStartupError = false
 // Mapping of each view to their container IDs.
 const VIEWS = {
     landing: '#landingContainer',
-    loginOptions: '#loginOptionsContainer',
     login: '#loginContainer',
     settings: '#settingsContainer',
-    welcome: '#welcomeContainer',
-    waiting: '#waitingContainer'
+    welcome: '#welcomeContainer'
 }
 
 // The currently shown view container.
@@ -57,48 +55,46 @@ function getCurrentView(){
     return currentView
 }
 
-function showMainUI(data){
+async function showMainUI(data){
+    await require("./assets/js/mojang").status
 
     if(!isDev){
-        loggerAutoUpdater.log('Initializing..')
-        ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
+        await loggerAutoUpdater.log('Initializing..')
+        await ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
-    prepareSettings(true)
-    updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
-    refreshServerStatus()
-    setTimeout(() => {
+    await prepareSettings(true)
+    await updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
+    await refreshServerStatus()
+    setTimeout(async () => {
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
-        $('#main').show()
+        await $('#main').show()
 
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
 
         // If this is enabled in a development environment we'll get ratelimited.
         // The relaunch frequency is usually far too high.
         if(!isDev && isLoggedIn){
-            validateSelectedAccount()
+            await validateSelectedAccount()
         }
 
         if(ConfigManager.isFirstLaunch()){
             currentView = VIEWS.welcome
-            $(VIEWS.welcome).fadeIn(1000)
+            await $(VIEWS.welcome).fadeIn(1000)
         } else {
             if(isLoggedIn){
                 currentView = VIEWS.landing
-                $(VIEWS.landing).fadeIn(1000)
+                await $(VIEWS.landing).fadeIn(1000)
             } else {
-                loginOptionsCancelEnabled(false)
-                loginOptionsViewOnLoginSuccess = VIEWS.landing
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-                currentView = VIEWS.loginOptions
-                $(VIEWS.loginOptions).fadeIn(1000)
+                currentView = VIEWS.login
+                await $(VIEWS.login).fadeIn(1000)
             }
         }
 
-        setTimeout(() => {
-            $('#loadingContainer').fadeOut(500, () => {
-                $('#loadSpinnerImage').removeClass('rotating')
+        setTimeout(async () => {
+            await $('#loadingContainer').fadeOut(500, async () => {
+                await $('#loadSpinnerImage').removeClass('rotating')
             })
         }, 250)
         
@@ -328,52 +324,26 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Échec de l\'actualisation de la Connexion',
-                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Veuillez ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''} réessayer la Connexion.`,
-                'Connexion',
-                'Sélectionner un autre compte'
+                'Failed to Refresh Login',
+                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
+                'Login',
+                'Select Another Account'
             )
             setOverlayHandler(() => {
-
-                const isMicrosoft = selectedAcc.type === 'microsoft'
-
-                if(isMicrosoft) {
-                    // Empty for now
-                } else {
-                    // Mojang
-                    // For convenience, pre-populate the username of the account.
-                    document.getElementById('loginUsername').value = selectedAcc.username
-                    validateEmail(selectedAcc.username)
-                }
-                
-                loginOptionsViewOnLoginSuccess = getCurrentView()
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-
-                if(accLen > 0) {
-                    loginOptionsViewOnCancel = getCurrentView()
-                    loginOptionsViewCancelHandler = () => {
-                        if(isMicrosoft) {
-                            ConfigManager.addMicrosoftAuthAccount(
-                                selectedAcc.uuid,
-                                selectedAcc.accessToken,
-                                selectedAcc.username,
-                                selectedAcc.expiresAt,
-                                selectedAcc.microsoft.access_token,
-                                selectedAcc.microsoft.refresh_token,
-                                selectedAcc.microsoft.expires_at
-                            )
-                        } else {
-                            ConfigManager.addMojangAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
-                        }
+                document.getElementById('loginUsername').value = selectedAcc.username
+                validateEmail(selectedAcc.username)
+                loginViewOnSuccess = getCurrentView()
+                loginViewOnCancel = getCurrentView()
+                if(accLen > 0){
+                    loginViewCancelHandler = () => {
+                        ConfigManager.addAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
                         ConfigManager.save()
                         validateSelectedAccount()
                     }
-                    loginOptionsCancelEnabled(true)
-                } else {
-                    loginOptionsCancelEnabled(false)
+                    loginCancelEnabled(true)
                 }
                 toggleOverlay(false)
-                switchView(getCurrentView(), VIEWS.loginOptions)
+                switchView(getCurrentView(), VIEWS.login)
             })
             setDismissHandler(() => {
                 if(accLen > 1){
