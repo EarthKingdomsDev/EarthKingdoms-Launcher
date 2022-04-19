@@ -12,7 +12,7 @@
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "1.0.0",
+      "version": "1.0.4",
       "address": "188.165.144.18:25577",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -396,13 +396,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:4.0.9.2@jar",
+          "id": "net.mcreator:fallenglorymods:4.0.9.3@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4142606,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.9.2.jar",
-            "MD5": "41b1b5bd813d3df536e75075cd085dfc"
+            "size": 4141799,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.9.3.jar",
+            "MD5": "2accf543187de3b043fd0aa329c2dae1"
           }
         },
         {
