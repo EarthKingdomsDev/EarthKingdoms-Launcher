@@ -396,13 +396,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:4.0.9.3@jar",
+          "id": "net.mcreator:fallenglorymods:4.0.10@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4141799,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.9.3.jar",
-            "MD5": "2accf543187de3b043fd0aa329c2dae1"
+            "size": 4247218,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.10.jar",
+            "MD5": "a8e50f4bba8ae5cc187507957ef32c11"
           }
         },
         {
