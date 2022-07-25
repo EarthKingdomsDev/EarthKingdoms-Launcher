@@ -13,7 +13,7 @@
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
       "version": "3.4.0",
-      "address": "fallenglory.minesr.com:25644",
+      "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
         "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
