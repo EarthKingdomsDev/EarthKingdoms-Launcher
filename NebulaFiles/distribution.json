@@ -12,8 +12,8 @@
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "1.0.4",
-      "address": "188.165.144.18:25577",
+      "version": "3.4.0",
+      "address": "fallenglory.minesr.com",
       "minecraftVersion": "1.12.2",
       "discord": {
         "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
@@ -366,13 +366,13 @@
           }
         },
         {
-          "id": "doggytalents:doggytalents:1.15.1.6@jar",
-          "name": "Doggy Talents",
+          "id": "generated.forgemod:discord:rpc@jar",
+          "name": "Discord",
           "type": "ForgeMod",
           "artifact": {
-            "size": 801797,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/DoggyTalents-1.12.2-1.15.1.6.jar",
-            "MD5": "1c6d3797984e4bf2b6f01c177a99c59b"
+            "size": 2067033,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/discord-rpc.jar",
+            "MD5": "73b0b8cfe1172fe7820bbfa25280e6be"
           }
         },
         {
@@ -406,13 +406,13 @@
           }
         },
         {
-          "id": "fr.orgealexj06:fallenglorycore:2.5@jar",
+          "id": "fr.orgealexj06:fallenglorycore:3.0@jar",
           "name": "FallenGloryCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 8213401,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-2.5.jar",
-            "MD5": "2639c73e9d5303029cfe79c72a870952"
+            "size": 8235182,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-3.1.jar",
+            "MD5": "f69fe748b0b002c4e1ef9f376c174e5d"
           }
         },
         {
@@ -651,16 +651,6 @@
           "required": {
             "value": false,
             "def": false
-          }
-        },
-        {
-          "id": "com.wynprice:secretroomsmod:5.1.1@jar",
-          "name": "Secret Rooms 5",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 232954,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/secretroomsmod-5.1.1.jar",
-            "MD5": "d43a7278b7dfb3fd2b09042cbd7e0b01"
           }
         },
         {
