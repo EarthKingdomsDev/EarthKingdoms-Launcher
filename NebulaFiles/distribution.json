@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.4",
   "rss": "<LINK TO RSS FEED>",
   "discord": {
     "clientId": "<FILL IN OR REMOVE DISCORD OBJECT>",
@@ -12,7 +12,7 @@
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "3.4.0",
+      "version": "3.4.1",
       "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -396,23 +396,23 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:4.0.10.3@jar",
-          "name": "FallenGlory Mods",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 4248907,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGlory%20Mods%201.12.2-4.0.10.3.jar",
-            "MD5": "a8874fa43260f23f607b8e132c352982"
-          }
-        },
-        {
-          "id": "fr.orgealexj06:fallenglorycore:3.0@jar",
+          "id": "fr.orgealexj06:fallenglorycore:3.2@jar",
           "name": "FallenGloryCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 8235182,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-3.1.jar",
-            "MD5": "f69fe748b0b002c4e1ef9f376c174e5d"
+            "size": 8235170,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/fallenglorycore-3.2.jar",
+            "MD5": "824f008dc7d39029cd39201a2e8f0854"
+          }
+        },
+        {
+          "id": "net.mcreator:fallenglorymods:3.4.1@jar",
+          "name": "FallenGlory Mods",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 4219491,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGloryMods-[3.4.1].jar",
+            "MD5": "54e442c6126d5bc188bd7f0c3bae4f12"
           }
         },
         {
