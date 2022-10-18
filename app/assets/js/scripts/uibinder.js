@@ -16,9 +16,11 @@ let fatalStartupError = false
 // Mapping of each view to their container IDs.
 const VIEWS = {
     landing: '#landingContainer',
+    loginOptions: '#loginOptionsContainer',
     login: '#loginContainer',
     settings: '#settingsContainer',
-    welcome: '#welcomeContainer'
+    welcome: '#welcomeContainer',
+    waiting: '#waitingContainer'
 }
 
 // The currently shown view container.
@@ -55,46 +57,48 @@ function getCurrentView(){
     return currentView
 }
 
-async function showMainUI(data){
-    await require("./assets/js/mojang").status
+function showMainUI(data){
 
     if(!isDev){
-        await loggerAutoUpdater.log('Initializing..')
-        await ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
+        loggerAutoUpdater.log('Initializing..')
+        ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
-    await prepareSettings(true)
-    await updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
-    await refreshServerStatus()
-    setTimeout(async () => {
+    prepareSettings(true)
+    updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
+    refreshServerStatus()
+    setTimeout(() => {
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
-        await $('#main').show()
+        $('#main').show()
 
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
 
         // If this is enabled in a development environment we'll get ratelimited.
         // The relaunch frequency is usually far too high.
         if(!isDev && isLoggedIn){
-            await validateSelectedAccount()
+            validateSelectedAccount()
         }
 
         if(ConfigManager.isFirstLaunch()){
             currentView = VIEWS.welcome
-            await $(VIEWS.welcome).fadeIn(1000)
+            $(VIEWS.welcome).fadeIn(1000)
         } else {
             if(isLoggedIn){
                 currentView = VIEWS.landing
-                await $(VIEWS.landing).fadeIn(1000)
+                $(VIEWS.landing).fadeIn(1000)
             } else {
-                currentView = VIEWS.login
-                await $(VIEWS.login).fadeIn(1000)
+                loginOptionsCancelEnabled(false)
+                loginOptionsViewOnLoginSuccess = VIEWS.landing
+                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
+                currentView = VIEWS.loginOptions
+                $(VIEWS.loginOptions).fadeIn(1000)
             }
         }
 
-        setTimeout(async () => {
-            await $('#loadingContainer').fadeOut(500, async () => {
-                await $('#loadSpinnerImage').removeClass('rotating')
+        setTimeout(() => {
+            $('#loadingContainer').fadeOut(500, () => {
+                $('#loadSpinnerImage').removeClass('rotating')
             })
         }, 250)
         
@@ -110,9 +114,9 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Fatal Error: Unable to Load Distribution Index',
-                'A connection could not be established to our servers to download the distribution index. No local copies were available to load. <br><br>The distribution index is an essential file which provides the latest server information. The launcher is unable to start without it. Ensure you are connected to the internet and relaunch the application.',
-                'Close'
+                'Erreur Fatale : Impossible de charger le fichier de Distribution',
+                'Essayer de redémarrer votre launcher, voir votre ordinateur. Si le problème persiste, veuillez contacter un Administrateur via le Disord (https://discord.gg/PkbqPAAqE).',
+                'Fermer'
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -324,26 +328,52 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Failed to Refresh Login',
-                `We were unable to refresh the login for <strong>${selectedAcc.displayName}</strong>. Please ${accLen > 0 ? 'select another account or ' : ''} login again.`,
-                'Login',
-                'Select Another Account'
+                'Échec de l\'actualisation de la connexion',
+                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Merci de ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''} de réessayer.`,
+                'Réessayer',
+                'Sélectionner un autre compte'
             )
             setOverlayHandler(() => {
-                document.getElementById('loginUsername').value = selectedAcc.username
-                validateEmail(selectedAcc.username)
-                loginViewOnSuccess = getCurrentView()
-                loginViewOnCancel = getCurrentView()
-                if(accLen > 0){
-                    loginViewCancelHandler = () => {
-                        ConfigManager.addAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
+
+                const isMicrosoft = selectedAcc.type === 'microsoft'
+
+                if(isMicrosoft) {
+                    // Empty for now
+                } else {
+                    // Mojang
+                    // For convenience, pre-populate the username of the account.
+                    document.getElementById('loginUsername').value = selectedAcc.username
+                    validateEmail(selectedAcc.username)
+                }
+                
+                loginOptionsViewOnLoginSuccess = getCurrentView()
+                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
+
+                if(accLen > 0) {
+                    loginOptionsViewOnCancel = getCurrentView()
+                    loginOptionsViewCancelHandler = () => {
+                        if(isMicrosoft) {
+                            ConfigManager.addMicrosoftAuthAccount(
+                                selectedAcc.uuid,
+                                selectedAcc.accessToken,
+                                selectedAcc.username,
+                                selectedAcc.expiresAt,
+                                selectedAcc.microsoft.access_token,
+                                selectedAcc.microsoft.refresh_token,
+                                selectedAcc.microsoft.expires_at
+                            )
+                        } else {
+                            ConfigManager.addMojangAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
+                        }
                         ConfigManager.save()
                         validateSelectedAccount()
                     }
-                    loginCancelEnabled(true)
+                    loginOptionsCancelEnabled(true)
+                } else {
+                    loginOptionsCancelEnabled(false)
                 }
                 toggleOverlay(false)
-                switchView(getCurrentView(), VIEWS.login)
+                switchView(getCurrentView(), VIEWS.loginOptions)
             })
             setDismissHandler(() => {
                 if(accLen > 1){

@@ -17,12 +17,11 @@ const checkmarkContainer    = document.getElementById('checkmarkContainer')
 const loginRememberOption   = document.getElementById('loginRememberOption')
 const loginButton           = document.getElementById('loginButton')
 const loginForm             = document.getElementById('loginForm')
-const loginMSButton         = document.getElementById('loginMSButton')
 
 // Control variables.
 let lu = false, lp = false
 
-const loggerLogin = LoggerUtil('%c[Login]', 'color: #000668; font-weight: bold')
+const loggerLogin = LoggerUtil1('%c[Login]', 'color: #000668; font-weight: bold')
 
 
 /**
@@ -155,79 +154,6 @@ function formDisabled(v){
     loginRememberOption.disabled = v
 }
 
-/**
- * Parses an error and returns a user-friendly title and description
- * for our error overlay.
- * 
- * @param {Error | {cause: string, error: string, errorMessage: string}} err A Node.js
- * error or Mojang error response.
- */
-function resolveError(err){
-    // Mojang Response => err.cause | err.error | err.errorMessage
-    // Node error => err.code | err.message
-    if(err.cause != null && err.cause === 'UserMigratedException') {
-        return {
-            title: Lang.queryJS('login.error.userMigrated.title'),
-            desc: Lang.queryJS('login.error.userMigrated.desc')
-        }
-    } else {
-        if(err.error != null){
-            if(err.error === 'ForbiddenOperationException'){
-                if(err.errorMessage != null){
-                    if(err.errorMessage === 'Invalid credentials. Invalid username or password.'){
-                        return {
-                            title: Lang.queryJS('login.error.invalidCredentials.title'),
-                            desc: Lang.queryJS('login.error.invalidCredentials.desc')
-                        }
-                    } else if(err.errorMessage === 'Invalid credentials.'){
-                        return {
-                            title: Lang.queryJS('login.error.rateLimit.title'),
-                            desc: Lang.queryJS('login.error.rateLimit.desc')
-                        }
-                    }
-                }
-            }
-        } else {
-            // Request errors (from Node).
-            if(err.code != null){
-                if(err.code === 'ENOENT'){
-                    // No Internet.
-                    return {
-                        title: Lang.queryJS('login.error.noInternet.title'),
-                        desc: Lang.queryJS('login.error.noInternet.desc')
-                    }
-                } else if(err.code === 'ENOTFOUND'){
-                    // Could not reach server.
-                    return {
-                        title: Lang.queryJS('login.error.authDown.title'),
-                        desc: Lang.queryJS('login.error.authDown.desc')
-                    }
-                }
-            }
-        }
-    }
-    if(err.message != null){
-        if(err.message === 'NotPaidAccount'){
-            return {
-                title: Lang.queryJS('login.error.notPaid.title'),
-                desc: Lang.queryJS('login.error.notPaid.desc')
-            }
-        } else {
-            // Unknown error with request.
-            return {
-                title: Lang.queryJS('login.error.unknown.title'),
-                desc: err.message
-            }
-        }
-    } else {
-        // Unknown Mojang error.
-        return {
-            title: err.error,
-            desc: err.errorMessage
-        }
-    }
-}
-
 let loginViewOnSuccess = VIEWS.landing
 let loginViewOnCancel = VIEWS.settings
 let loginViewCancelHandler
@@ -263,7 +189,7 @@ loginButton.addEventListener('click', () => {
     // Show loading stuff.
     loginLoading(true)
 
-    AuthManager.addAccount(loginUsername.value, loginPassword.value).then((value) => {
+    AuthManager.addMojangAccount(loginUsername.value, loginPassword.value).then((value) => {
         updateSelectedAccount(value)
         loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'))
         $('.circle-loader').toggleClass('load-complete')
@@ -286,109 +212,28 @@ loginButton.addEventListener('click', () => {
                 formDisabled(false)
             })
         }, 1000)
-    }).catch((err) => {
+    }).catch((displayableError) => {
         loginLoading(false)
-        const errF = resolveError(err)
-        setOverlayContent(errF.title, errF.desc, Lang.queryJS('login.tryAgain'))
-        setOverlayHandler(() => {
-            formDisabled(false)
-            toggleOverlay(false)
-        })
-        toggleOverlay(true)
-        loggerLogin.log('Error while logging in.', err)
-    })
-})
 
-loginMSButton.addEventListener('click', (event) => {
-    // Show loading stuff.
-    toggleOverlay(true, false, 'msOverlay')
-    loginMSButton.disabled = true
-    ipcRenderer.send('openMSALoginWindow', 'open')
-})
-
-ipcRenderer.on('MSALoginWindowReply', (event, ...args) => {
-    if (args[0] === 'error') {
-        
-        loginMSButton.disabled = false
-        loginLoading(false)
-        switch (args[1]){
-            case 'AlreadyOpenException': {
-                setOverlayContent('ERROR', 'There is already a login window open!', 'OK')
-                setOverlayHandler(() => {
-                    toggleOverlay(false)
-                    toggleOverlay(false, false, 'msOverlay')
-                })
-                toggleOverlay(true)
-                return
-            }
-            case 'AuthNotFinished': {
-                setOverlayContent('ERROR', 'Vous devez finir de vous connectez pour utiliser le FallenGlory Launcher. La fenêtre se fermera toute seul lorsque vous vous aurez authentifié', 'OK')
-                setOverlayHandler(() => {
-                    toggleOverlay(false)
-                    toggleOverlay(false, false, 'msOverlay')
-                })
-                toggleOverlay(true)
-                return
+        let actualDisplayableError
+        if(isDisplayableError(displayableError)) {
+            msftLoginLogger.error('Error while logging in.', displayableError)
+            actualDisplayableError = displayableError
+        } else {
+            // Uh oh.
+            msftLoginLogger.error('Unhandled error during login.', displayableError)
+            actualDisplayableError = {
+                title: 'Erreur inconnue lors de la connexion',
+                desc: 'Une erreur inconnue s\'est produite. Veuillez consulter la console pour plus de détails.'
             }
         }
-        
-    }
-    toggleOverlay(false, false, 'msOverlay')
-    const queryMap = args[0]
-    if (queryMap.has('error')) {
-        let error = queryMap.get('error')
-        let errorDesc = queryMap.get('error_description')
-        if(error === 'access_denied'){
-            error = 'ERRPR'
-            errorDesc = 'Pour utiliser notre Launcher, vous devez accepter les permissions requis, sinon vous ne pourez pas utiliser votre compte Microsoft.<br><br>Despite agreeing to the permissions you don\'t give us the possibility to do anything with your account, because all data will always be sent back to you (the launcher).'
-        }        
-        setOverlayContent(error, errorDesc, 'OK')
-        setOverlayHandler(() => {
-            loginMSButton.disabled = false
-            toggleOverlay(false)
-        })
-        toggleOverlay(true)
-        return
-    }
 
-    // Disable form.
-    formDisabled(true)
-
-    const authCode = queryMap.get('code')
-    AuthManager.addMSAccount(authCode).then(account => {
-        updateSelectedAccount(account)
-        loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'))
-        $('.circle-loader').toggleClass('load-complete')
-        $('.checkmark').toggle()
-        setTimeout(() => {
-            switchView(VIEWS.login, loginViewOnSuccess, 500, 500, () => {
-                // Temporary workaround
-                if (loginViewOnSuccess === VIEWS.settings) {
-                    prepareSettings()
-                }
-                loginViewOnSuccess = VIEWS.landing // Reset this for good measure.
-                loginCancelEnabled(false) // Reset this for good measure.
-                loginViewCancelHandler = null // Reset this for good measure.
-                loginUsername.value = ''
-                loginPassword.value = ''
-                $('.circle-loader').toggleClass('load-complete')
-                $('.checkmark').toggle()
-                loginLoading(false)
-                loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.success'), Lang.queryJS('login.login'))
-                formDisabled(false)
-            })
-            toggleOverlay(false)
-        }, 1000)
-    }).catch(error => {
-        loginMSButton.disabled = false
-        loginLoading(false)
-        setOverlayContent('ERROR', error.message ? error.message : 'An error occurred while logging in with Microsoft! For more detailed information please check the log. You can open it with CTRL + SHIFT + I.', Lang.queryJS('login.tryAgain'))
+        setOverlayContent(actualDisplayableError.title, actualDisplayableError.desc, Lang.queryJS('login.tryAgain'))
         setOverlayHandler(() => {
             formDisabled(false)
             toggleOverlay(false)
         })
         toggleOverlay(true)
-        loggerLogin.error(error)
     })
 
 })

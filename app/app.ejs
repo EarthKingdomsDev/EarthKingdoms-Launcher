@@ -1,7 +1,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-In6B8teKZQll5heMl9bS7CESTbGvuAt3VVV86BUQBDk='"/>
-    <title>FallenGlory Launcher</title>
+    <title>Helios Launcher</title>
     <script src="./assets/js/scripts/uicore.js"></script>
     <script src="./assets/js/scripts/uibinder.js"></script>
     <link type="text/css" rel="stylesheet" href="./assets/css/launcher.css">
@@ -31,6 +31,8 @@
     <div id="main">
         <%- include('welcome') %>
         <%- include('login') %>
+        <%- include('waiting') %>
+        <%- include('loginOptions') %>
         <%- include('settings') %>
         <%- include('landing') %>
     </div>
@@ -39,7 +41,7 @@
         <div id="loadingContent">
             <div id="loadSpinnerContainer">
                 <img id="loadCenterImage" src="assets/images/LoadingSeal.png">
-                <!--<img id="loadSpinnerImage" class="rotating" src="assets/images/LoadingText.png">-->
+                <!--img id="loadSpinnerImage" class="rotating" src="assets/images/LoadingText.png"-->
             </div>
         </div>
     </div>
