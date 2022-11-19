@@ -326,6 +326,16 @@
           }
         },
         {
+          "id": "com.the_millman:christmasfestivity:1.2.10@jar",
+          "name": "Christmas Festivity Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 8037954,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/christmasfestivity-[1.2.10].jar",
+            "MD5": "a1b7fd7cfe639b0562c654fb66983aed"
+          }
+        },
+        {
           "id": "team.chisel:ctm:MC1.12.2-1.0.2.31@jar",
           "name": "CTM",
           "type": "ForgeMod",
@@ -406,13 +416,13 @@
           }
         },
         {
-          "id": "net.mcreator:fallenglorymods:3.4.3@jar",
+          "id": "net.mcreator:fallenglorymods:3.4.5@jar",
           "name": "FallenGlory Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4207873,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGloryMods-[3.4.3].jar",
-            "MD5": "0a2ce208e947933ae8c3e0966619673a"
+            "size": 4206741,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGloryMods-[3.4.5].jar",
+            "MD5": "faac969f9e65ef53e0b90dcd35c9363e"
           }
         },
         {
