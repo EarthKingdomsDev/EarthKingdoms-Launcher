@@ -12,7 +12,7 @@
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "3.4.4",
+      "version": "3.4.6",
       "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -506,16 +506,6 @@
           }
         },
         {
-          "id": "cam72cam.immersiverailroading:immersiverailroading:1.8.0-7e0f82@jar",
-          "name": "Immersive Railroading",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 103953608,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ImmersiveRailroading-[1.8.0-7e0f82].jar",
-            "MD5": "55d4a363b522b0dc9003399aacbf766a"
-          }
-        },
-        {
           "id": "mezz.jei:jei:4.16.1.302@jar",
           "name": "Just Enough Items",
           "type": "ForgeMod",
@@ -681,26 +671,6 @@
             "size": 605947,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/StorageDrawers-[5.4.2].jar",
             "MD5": "0f658c7cba3e6793abbcb934b4810902"
-          }
-        },
-        {
-          "id": "trackapi:trackapi:1.2@jar",
-          "name": "Track API",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 7374,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/TrackAPI-[1.2].jar",
-            "MD5": "b7e2756459eab54b39070240a287a128"
-          }
-        },
-        {
-          "id": "cam72cam.mod:universalmodcore:1.0.1@jar",
-          "name": "UniversalModCore",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 418224,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/UniversalModCore-[1.0.1].jar",
-            "MD5": "8421aacab354a8dc775ee5e06dc5c8e0"
           }
         },
         {
