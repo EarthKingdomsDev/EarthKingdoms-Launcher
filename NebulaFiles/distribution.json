@@ -12,7 +12,7 @@
       "name": "FallenGlory Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "3.4.7",
+      "version": "3.4.8",
       "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -316,16 +316,6 @@
           }
         },
         {
-          "id": "com.the_millman:christmasfestivity:1.2.10@jar",
-          "name": "Christmas Festivity Mod",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 8037954,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/christmasfestivity-[1.2.10].jar",
-            "MD5": "a1b7fd7cfe639b0562c654fb66983aed"
-          }
-        },
-        {
           "id": "team.chisel:ctm:MC1.12.2-1.0.2.31@jar",
           "name": "CTM",
           "type": "ForgeMod",
@@ -376,6 +366,16 @@
           }
         },
         {
+          "id": "fr.orgealexj06:earthkingdomscore:1.0@jar",
+          "name": "EarthKingdomsCore",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 8237452,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/EarthKingdomsCore-[1.0].jar",
+            "MD5": "c6ae7f426cb606d318d1df7492b4a743"
+          }
+        },
+        {
           "id": "xyz.vsngamer.elevator:elevatorid:1.12.2-1.3.14@jar",
           "name": "Elevator Mod",
           "type": "ForgeMod",
@@ -403,16 +403,6 @@
             "size": 1149733,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ExtremeReactors-[0.4.5.68].jar",
             "MD5": "ea53f47ee48439a3fea2586e023bd6c8"
-          }
-        },
-        {
-          "id": "fr.orgealexj06:fallenglorycore:3.4@jar",
-          "name": "FallenGloryCore",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 8240399,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FallenGloryCore-[3.4].jar",
-            "MD5": "5b26e2f9b7f2a23dd39b877f0404bc81"
           }
         },
         {
