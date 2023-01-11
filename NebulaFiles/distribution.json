@@ -386,16 +386,6 @@
           }
         },
         {
-          "id": "ichttt.mods:eternalwinter:1.0.0@jar",
-          "name": "Eternal Winter",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 10724,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/eternalwinter-[1.0.3].jar",
-            "MD5": "02afb8662d33897097e295a192eb0e7f"
-          }
-        },
-        {
           "id": "erogenousbeef.bigreactors:bigreactors:1.12.2-0.4.5.68@jar",
           "name": "Extreme Reactors",
           "type": "ForgeMod",
