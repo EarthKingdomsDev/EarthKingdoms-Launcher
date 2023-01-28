@@ -286,6 +286,16 @@
           }
         },
         {
+          "id": "com.brandon3055:brandonscore:1.12.2-2.4.20.22@jar",
+          "name": "Brandon's Core",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 827900,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/BrandonsCore-1.12.2-2.4.20.162-universal.jar",
+            "MD5": "4a67ccad9d684466010c02164d7ff13e"
+          }
+        },
+        {
           "id": "com.jaquadro.minecraft:chameleon:1.12-4.1.3@jar",
           "name": "Chameleon",
           "type": "ForgeMod",
@@ -313,6 +323,16 @@
             "size": 737407,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/chiselsandbits-[14.33].jar",
             "MD5": "e056e23559965f2ebabf47aad0fe51a3"
+          }
+        },
+        {
+          "id": "codechicken.lib:codechickenlib:3.2.3.358@jar",
+          "name": "CodeChicken Lib",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 704330,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/CodeChickenLib-1.12.2-3.2.3.358-universal.jar",
+            "MD5": "3b5e44db5ac96fb23a439590b6731a31"
           }
         },
         {
@@ -363,6 +383,16 @@
             "size": 2067033,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/discord-rpc.jar",
             "MD5": "73b0b8cfe1172fe7820bbfa25280e6be"
+          }
+        },
+        {
+          "id": "com.brandon3055:draconicevolution:1.12.2-2.3.28.193@jar",
+          "name": "Draconic Evolution",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 5708839,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Draconic-Evolution-1.12.2-2.3.28.354-universal.jar",
+            "MD5": "e6c70ebe71c94d00b1056f6e4bef207f"
           }
         },
         {
@@ -617,6 +647,16 @@
             "size": 169483,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PTRLib-[1.0.4].jar",
             "MD5": "7cdde85216395abe430a7ff185650370"
+          }
+        },
+        {
+          "id": "cofh.redstoneflux:redstoneflux:2.1.1.1@jar",
+          "name": "Redstone Flux",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 31802,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/RedstoneFlux-1.12-2.1.1.1-universal.jar",
+            "MD5": "93b1715f05be1878da93fca36dd37f2a"
           }
         },
         {
