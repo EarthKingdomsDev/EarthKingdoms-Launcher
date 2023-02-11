@@ -261,7 +261,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 102639,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Astikorcarts-[0.1.2.8].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Astikorcarts-[0.1.2.8].jar",
             "MD5": "d13b6e597ddd3306368ff21dae2850e1"
           }
         },
@@ -271,7 +271,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 1925728,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/BookWorm-[2.5.2.1].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/BookWorm-[2.5.2.1].jar",
             "MD5": "f31cf69f387844f97fa3de429f26b2f7"
           }
         },
@@ -281,7 +281,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 96859,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Chameleon-[4.1.3].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Chameleon-[4.1.3].jar",
             "MD5": "e42efa8f4fd42d2918128a826b740e98"
           }
         },
@@ -291,7 +291,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 4755282,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Chisel-[1.0.2.45].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Chisel-[1.0.2.45].jar",
             "MD5": "54afc298f94e708f0e1cdf399200b2cb"
           }
         },
@@ -301,7 +301,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 737407,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ChiselsAndBits-[14.33].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ChiselsAndBits-[14.33].jar",
             "MD5": "e056e23559965f2ebabf47aad0fe51a3"
           }
         },
@@ -311,7 +311,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 199045,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/CTM-[1.0.2.31].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/CTM-[1.0.2.31].jar",
             "MD5": "77a8bb5486c97e3eaa6f45e5bd768864"
           }
         },
@@ -321,7 +321,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 977090,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/CustomLoadingScreen-[1.5.7].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/CustomLoadingScreen-[1.5.7].jar",
             "MD5": "0e118f0b22c3feaff4452634ab8322c7"
           }
         },
@@ -331,7 +331,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 9911871,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/CustomNPCs-[05Jul20].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/CustomNPCs-[05Jul20].jar",
             "MD5": "3ab1a5c4b069d574631da5bc1880ebf7"
           }
         },
@@ -341,7 +341,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 16976718,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Decocraft-[2.6.3.7].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Decocraft-[2.6.3.7].jar",
             "MD5": "083cf0c798ebfd6065c2db0af0419c12"
           }
         },
@@ -351,7 +351,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 2067033,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/discord-rpc.jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/discord-rpc.jar",
             "MD5": "73b0b8cfe1172fe7820bbfa25280e6be"
           }
         },
@@ -361,7 +361,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 8237410,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/EarthKingdoms-Core-[1.2].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-[1.2].jar",
             "MD5": "a21b81cb73c52a145296341012f14a60"
           }
         },
@@ -371,7 +371,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 192831,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/EarthKingdoms-Jobs-[1.0].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Jobs-[1.0].jar",
             "MD5": "6502558ddedf777db82477a341356492"
           }
         },
@@ -381,7 +381,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 4113816,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[1.0.0].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[1.0.0].jar",
             "MD5": "56624b12cb5f89d75c19896395fc2cad"
           }
         },
@@ -391,7 +391,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 1149733,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ExtremeReactors-[0.4.5.68].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ExtremeReactors-[0.4.5.68].jar",
             "MD5": "ea53f47ee48439a3fea2586e023bd6c8"
           }
         },
@@ -401,7 +401,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 6278399,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Forgelin-[1.8.4].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Forgelin-[1.8.4].jar",
             "MD5": "2da79fce72265eab0541e565636d389d"
           }
         },
@@ -411,7 +411,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 2439199,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/FurnitureMod-[6.3.2].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/FurnitureMod-[6.3.2].jar",
             "MD5": "c337d9b9b5465ba6ac78a2ca9f3dbf7c"
           }
         },
@@ -421,7 +421,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 14238111,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Futuremc-[0.2.11].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Futuremc-[0.2.11].jar",
             "MD5": "3f2f1cbb4bd47f9cd79cf83e6e9fbdd9"
           }
         },
@@ -431,7 +431,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 10610662,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftCore-[4.0.2.280].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftCore-[4.0.2.280].jar",
             "MD5": "9298e6b85b38eab9b830a0637f1fbced"
           }
         },
@@ -441,7 +441,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 3975978,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GalacticraftPlanets-[4.0.2.280].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftPlanets-[4.0.2.280].jar",
             "MD5": "848ebcd467a3389c9461007d2b164a6c"
           }
         },
@@ -451,7 +451,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 129433,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/GraveStone-[1.10.3].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GraveStone-[1.10.3].jar",
             "MD5": "44c8e473abb93250df0f51fc0b050041"
           }
         },
@@ -461,7 +461,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 453778,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Hwyla-[1.8.26].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Hwyla-[1.8.26].jar",
             "MD5": "bca1c069d9171d331d211d24e8a3b770"
           }
         },
@@ -471,7 +471,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 6730873,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ICBM-[4.1.0b20211106011048].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ICBM-[4.1.0b20211106011048].jar",
             "MD5": "271d1e18eb2fc68dd787df21ee758f34"
           }
         },
@@ -481,7 +481,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 6360959,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ImmersiveEngineering-[0.12-98].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ImmersiveEngineering-[0.12-98].jar",
             "MD5": "affce9a7f7cb9ab257135da89314e07e"
           }
         },
@@ -491,7 +491,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 6990968,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/JourneyMap-[5.7.1].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/JourneyMap-[5.7.1].jar",
             "MD5": "8160b970fc14cff30dff2785bb9f964c"
           }
         },
@@ -501,7 +501,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 653212,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/JustEnoughItems-[4.16.1.1000].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/JustEnoughItems-[4.16.1.1000].jar",
             "MD5": "aa8381fcceae902a7a3b99ec79334241"
           }
         },
@@ -511,7 +511,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 222270,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/JustEnoughResources-[0.9.2.60].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/JustEnoughResources-[0.9.2.60].jar",
             "MD5": "87a4666549a60d8fb423883dd4ee6232"
           }
         },
@@ -521,7 +521,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 76753,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/LunatriusCore-[1.2.0.42].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/optionaloff/LunatriusCore-[1.2.0.42].jar",
             "MD5": "0dae43ef5376822db0399ad254207aa3"
           },
           "required": {
@@ -535,7 +535,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 544856,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Mcjtylib-[3.5.4].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Mcjtylib-[3.5.4].jar",
             "MD5": "45ac9983da9fd2bc7fe3446b9f4287c1"
           }
         },
@@ -545,7 +545,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 173426,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MCMultiPart-[2.5.3].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MCMultiPart-[2.5.3].jar",
             "MD5": "47987d111d6f1e48403bc3cbb23f5503"
           }
         },
@@ -555,7 +555,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 7863657,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Mekanism-[9.8.3.390].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Mekanism-[9.8.3.390].jar",
             "MD5": "e622b8365b9a1190b3b6cc042854e870"
           }
         },
@@ -565,7 +565,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 336364,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MekanismGenerators-[9.8.3.390].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MekanismGenerators-[9.8.3.390].jar",
             "MD5": "d75ddb11a6c1353b046c70d8904fe61e"
           }
         },
@@ -575,7 +575,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 159785,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MekanismTools-[9.8.3.390].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MekanismTools-[9.8.3.390].jar",
             "MD5": "0095f13a729ce5873319e36e29a5b5e1"
           }
         },
@@ -585,7 +585,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 53300,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/MicdoodleCore-[4.0.2.280].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MicdoodleCore-[4.0.2.280].jar",
             "MD5": "2b033cb0694a53ea7b80876e2f00dec5"
           }
         },
@@ -595,7 +595,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 34769031,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ModernWarfare-[2.0-0.4.6.2].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ModernWarfare-[2.0-0.4.6.2].jar",
             "MD5": "8b2ef750aa23bfd7e8d78f38acd2a1e6"
           }
         },
@@ -605,7 +605,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 129099,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Obfuscate-[0.4.2].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Obfuscate-[0.4.2].jar",
             "MD5": "a5d3ac71ec8762fe72a91465de6d30a3"
           }
         },
@@ -615,7 +615,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 2669107,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/OptiFine-[HD_U_G5].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/OptiFine-[HD_U_G5].jar",
             "MD5": "54e561e441192cf009803ae95873c5d0"
           }
         },
@@ -625,7 +625,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 4912890,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PamsHarvestCraft-[1.12.2zg].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/PamsHarvestCraft-[1.12.2zg].jar",
             "MD5": "e8e1ac67accdeea50116e1e92e592397"
           }
         },
@@ -635,7 +635,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 6464982,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PreFab-[1.3.1.5].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/PreFab-[1.3.1.5].jar",
             "MD5": "f74b60c90d4c09c255f27b9c7ec54a8d"
           }
         },
@@ -645,7 +645,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 169749,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/PTRLib-[1.0.5].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/PTRLib-[1.0.5].jar",
             "MD5": "7376e09acb5d531d28cb4d28a7f190fd"
           }
         },
@@ -655,7 +655,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 2895803,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/Rftools-[7.73].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Rftools-[7.73].jar",
             "MD5": "3af6f5864243b044a8dd6f2cb1a4b0cf"
           }
         },
@@ -665,7 +665,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 336150,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/optionaloff/Schematica-[1.8.0.169].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/optionaloff/Schematica-[1.8.0.169].jar",
             "MD5": "c779a8cd4fd0e99572385a529b790c73"
           },
           "required": {
@@ -679,7 +679,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 605947,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/StorageDrawers-[5.4.2].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/StorageDrawers-[5.4.2].jar",
             "MD5": "0f658c7cba3e6793abbcb934b4810902"
           }
         },
@@ -689,7 +689,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 1772395,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/VariedCommodities-[13Jan22].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/VariedCommodities-[13Jan22].jar",
             "MD5": "9734c2e5953ef87e7345c964e84835b7"
           }
         },
@@ -699,7 +699,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 2139906,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/VehicleMod-[0.44.1].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/VehicleMod-[0.44.1].jar",
             "MD5": "276818770667c1bff569d92287c53d95"
           }
         },
@@ -709,7 +709,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 8816350,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/VoiceChat-[2.3.27].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/VoiceChat-[2.3.27].jar",
             "MD5": "24edcebd9a8371c1a9680021d6028b51"
           }
         },
@@ -719,7 +719,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 5358415,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/WorldFlags-[1.1.1].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/WorldFlags-[1.1.1].jar",
             "MD5": "69d15234dbb12601452aeb7bbedd7699"
           }
         },
@@ -729,7 +729,7 @@
           "type": "ForgeMod",
           "artifact": {
             "size": 227426,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/forgemods/required/ZeroCore-[0.1.2.9].jar",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ZeroCore-[0.1.2.9].jar",
             "MD5": "8e15e85a8975db0f7a2285f336b47688"
           }
         },
@@ -739,7 +739,7 @@
           "type": "File",
           "artifact": {
             "size": 2439,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/fgserver-1.12.2/files/jeiintegration.cfg",
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/jeiintegration.cfg",
             "MD5": "cb8500c84bb706a880911bba008d1403",
             "path": "jeiintegration.cfg"
           }
