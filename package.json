@@ -1,8 +1,8 @@
 {
-  "name": "fallenglorylauncher",
-  "version": "1.0.5",
-  "productName": "FallenGlory Launcher",
-  "description": "Modded Minecraft Launcher for FallenGlory Server",
+  "name": "earthkingdomslauncher",
+  "version": "1.1.0",
+  "productName": "EarthKingdoms Launcher",
+  "description": "Modded Minecraft Launcher for EarthKingdoms Server",
   "author": "Daniel Scalzi (https://github.com/dscalzi/) and OrgeAlexj06",
   "license": "UNLICENSED",
   "homepage": "https://github.com/FallenGloryDevelopment/FallenGlory-Launcher",
