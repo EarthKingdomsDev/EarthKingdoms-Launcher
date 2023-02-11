@@ -316,16 +316,6 @@
           }
         },
         {
-          "id": "alexiil.mc.mod.load:customloadingscreen:1.12.2-1.5.7@jar",
-          "name": "Custom Loading Screen",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 977090,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/CustomLoadingScreen-[1.5.7].jar",
-            "MD5": "0e118f0b22c3feaff4452634ab8322c7"
-          }
-        },
-        {
           "id": "noppes.npcs:customnpcs:1.12@jar",
           "name": "CustomNPCs",
           "type": "ForgeMod",
