@@ -316,6 +316,16 @@
           }
         },
         {
+          "id": "alexiil.mc.mod.load:customloadingscreen:1.12.2-1.5.6@jar",
+          "name": "Custom Loading Screen",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 5349757,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/CustomLoadingScreen-[1.5.6].jar",
+            "MD5": "0758d380bbfca50ea321b26556db9217"
+          }
+        },
+        {
           "id": "noppes.npcs:customnpcs:1.12@jar",
           "name": "CustomNPCs",
           "type": "ForgeMod",
@@ -731,6 +741,105 @@
             "size": 227426,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/ZeroCore-[0.1.2.9].jar",
             "MD5": "8e15e85a8975db0f7a2285f336b47688"
+          }
+        },
+        {
+          "id": "example.json",
+          "name": "example.json",
+          "type": "File",
+          "artifact": {
+            "size": 3962,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen/example.json",
+            "MD5": "dc536068f41598e08c7e2ce4967a5eb4",
+            "path": "config/customloadingscreen/example.json"
+          }
+        },
+        {
+          "id": "loading1.json",
+          "name": "loading1.json",
+          "type": "File",
+          "artifact": {
+            "size": 2112,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen/loading1.json",
+            "MD5": "4f3f656503f39df3a29ffa91b636cb7a",
+            "path": "config/customloadingscreen/loading1.json"
+          }
+        },
+        {
+          "id": "loading2.json",
+          "name": "loading2.json",
+          "type": "File",
+          "artifact": {
+            "size": 2112,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen/loading2.json",
+            "MD5": "0e0a04d5c228a13874123596aa92e5c7",
+            "path": "config/customloadingscreen/loading2.json"
+          }
+        },
+        {
+          "id": "loading3.json",
+          "name": "loading3.json",
+          "type": "File",
+          "artifact": {
+            "size": 2112,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen/loading3.json",
+            "MD5": "732419ccfb98d266ecee2193f888f741",
+            "path": "config/customloadingscreen/loading3.json"
+          }
+        },
+        {
+          "id": "loading4.json",
+          "name": "loading4.json",
+          "type": "File",
+          "artifact": {
+            "size": 2112,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen/loading4.json",
+            "MD5": "989ff57e9559ab6e31babae5474546dc",
+            "path": "config/customloadingscreen/loading4.json"
+          }
+        },
+        {
+          "id": "customloadingscreen.cfg",
+          "name": "customloadingscreen.cfg",
+          "type": "File",
+          "artifact": {
+            "size": 1033,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen.cfg",
+            "MD5": "81618c4cdef1e9cf422a51801028046c",
+            "path": "config/customloadingscreen.cfg"
+          }
+        },
+        {
+          "id": "customloadingscreen_timings.nbt",
+          "name": "customloadingscreen_timings.nbt",
+          "type": "File",
+          "artifact": {
+            "size": 144,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen_timings.nbt",
+            "MD5": "598f54a48d64869c2940a610deede308",
+            "path": "config/customloadingscreen_timings.nbt"
+          }
+        },
+        {
+          "id": "customloadingscreen_tips.txt",
+          "name": "customloadingscreen_tips.txt",
+          "type": "File",
+          "artifact": {
+            "size": 0,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/customloadingscreen_tips.txt",
+            "MD5": "d41d8cd98f00b204e9800998ecf8427e",
+            "path": "config/customloadingscreen_tips.txt"
+          }
+        },
+        {
+          "id": "splash.properties",
+          "name": "splash.properties",
+          "type": "File",
+          "artifact": {
+            "size": 376,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/config/splash.properties",
+            "MD5": "7cf45451c1f7bc214a50b2c09cfb31b7",
+            "path": "config/splash.properties"
           }
         },
         {
