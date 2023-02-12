@@ -12,7 +12,7 @@
       "name": "EarthKingdoms Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "1.0.0",
+      "version": "v1.0.0",
       "address": "earthkingdoms.minesr.com",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -386,6 +386,16 @@
           }
         },
         {
+          "id": "com.flansmod:flansmod:5.10.0@jar",
+          "name": "Flan's Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 2259973,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/FlansMod-[5.10.0].jar",
+            "MD5": "0cc53ac00145d96448d5d20eae4e2ed6"
+          }
+        },
+        {
           "id": "net.shadowfacts:forgelin:1.8.4@jar",
           "name": "Shadowfacts' Forgelin",
           "type": "ForgeMod",
@@ -724,14 +734,36 @@
           }
         },
         {
-          "id": "jeiintegration.cfg",
-          "name": "jeiintegration.cfg",
+          "id": "Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
+          "name": "Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
           "type": "File",
           "artifact": {
-            "size": 2439,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/jeiintegration.cfg",
-            "MD5": "cb8500c84bb706a880911bba008d1403",
-            "path": "jeiintegration.cfg"
+            "size": 30240221,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/flan/Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar",
+            "MD5": "c7fbaf1f1bcdfab62016e61f51a8d347",
+            "path": "flan/Modern+Warfare-Content+Pack-1.12.2-5.8.2.jar"
+          }
+        },
+        {
+          "id": "SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+          "name": "SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+          "type": "File",
+          "artifact": {
+            "size": 237132,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/flan/SimpleParts-ContentPack-1.12.2-5.7.2.jar",
+            "MD5": "97d6e5d81d1cd9bf6cd1f1fcec657f4d",
+            "path": "flan/SimpleParts-ContentPack-1.12.2-5.7.2.jar"
+          }
+        },
+        {
+          "id": "WW2-ContentPack-1.12.2-5.7.2.jar",
+          "name": "WW2-ContentPack-1.12.2-5.7.2.jar",
+          "type": "File",
+          "artifact": {
+            "size": 5636950,
+            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/flan/WW2-ContentPack-1.12.2-5.7.2.jar",
+            "MD5": "0f4b59db4605f5ccab6ece88d22f21b3",
+            "path": "flan/WW2-ContentPack-1.12.2-5.7.2.jar"
           }
         }
       ]
