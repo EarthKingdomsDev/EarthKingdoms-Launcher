@@ -12,7 +12,7 @@
       "name": "EarthKingdoms Serveur",
       "description": "Semi Rp-Faction",
       "icon": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/build/icon.png",
-      "version": "v1.0.0",
+      "version": "v1.0.1",
       "address": "earthkingdoms.minesr.com",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -366,16 +366,6 @@
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomsjobs:1.0@jar",
-          "name": "EarthKingdomsJobs",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 192831,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Jobs-[1.0].jar",
-            "MD5": "6502558ddedf777db82477a341356492"
-          }
-        },
-        {
           "id": "fr.orgealexj06:earthkingdomsmods:1.0.0@jar",
           "name": "EarthKingdoms Mods",
           "type": "ForgeMod",
@@ -637,16 +627,6 @@
             "size": 4912890,
             "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/PamsHarvestCraft-[1.12.2zg].jar",
             "MD5": "e8e1ac67accdeea50116e1e92e592397"
-          }
-        },
-        {
-          "id": "com.wuest:prefab:1.3.1.5@jar",
-          "name": "Prefab",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 6464982,
-            "url": "https://raw.githubusercontent.com/FallenGloryDevelopment/FallenGlory-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/PreFab-[1.3.1.5].jar",
-            "MD5": "f74b60c90d4c09c255f27b9c7ec54a8d"
           }
         },
         {
