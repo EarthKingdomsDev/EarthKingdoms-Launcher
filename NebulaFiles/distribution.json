@@ -256,13 +256,13 @@
           ]
         },
         {
-          "id": "moe.plushie:armourers_workshop:1.12.2-0.51.0@jar",
+          "id": "moe.plushie:armourers_workshop:1.12.2-0.50.5@jar",
           "name": "Armourer's Workshop",
           "type": "ForgeMod",
           "artifact": {
-            "size": 2678747,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Armourers-Workshop-1.12.2-0.51.0.jar",
-            "MD5": "12954551f39bed840b32fd8be8fddb54"
+            "size": 2625996,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Armourers-Workshop-1.12.2-0.50.5.jar",
+            "MD5": "cea2c120c8cc823a6de83a002b8ca375"
           }
         },
         {
