@@ -256,16 +256,6 @@
           ]
         },
         {
-          "id": "moe.plushie:armourers_workshop:1.12.2-0.50.5@jar",
-          "name": "Armourer's Workshop",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 2625996,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Armourers-Workshop-1.12.2-0.50.5.jar",
-            "MD5": "cea2c120c8cc823a6de83a002b8ca375"
-          }
-        },
-        {
           "id": "de.mennomax:astikorcarts:0.1.2.7@jar",
           "name": "AstikorCarts",
           "type": "ForgeMod",
@@ -630,6 +620,16 @@
           }
         },
         {
+          "id": "com.mrcrayfish.obfuscate.asm:obfuscate:[0.4.2]@jar",
+          "name": "Obfuscate",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 129099,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/Obfuscate-[0.4.2].jar",
+            "MD5": "a5d3ac71ec8762fe72a91465de6d30a3"
+          }
+        },
+        {
           "id": "net.optifine:optifine:1.12.2_HD_U_G5@jar",
           "name": "OptiFine 1.12.2_HD_U_G5",
           "type": "ForgeMod",
@@ -711,6 +711,16 @@
             "size": 1772395,
             "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/VariedCommodities-[13Jan22].jar",
             "MD5": "9734c2e5953ef87e7345c964e84835b7"
+          }
+        },
+        {
+          "id": "com.mrcrayfish:vehicle:0.44.1@jar",
+          "name": "MrCrayfish's Vehicle Mod",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 2139906,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/VehicleMod-[0.44.1].jar",
+            "MD5": "276818770667c1bff569d92287c53d95"
           }
         },
         {
@@ -873,6 +883,17 @@
             "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/flan/WW2-ContentPack-1.12.2-5.7.2.jar",
             "MD5": "0f4b59db4605f5ccab6ece88d22f21b3",
             "path": "flan/WW2-ContentPack-1.12.2-5.7.2.jar"
+          }
+        },
+        {
+          "id": "Armourers-Workshop-1.12.2-0.51.0.jar",
+          "name": "Armourers-Workshop-1.12.2-0.51.0.jar",
+          "type": "File",
+          "artifact": {
+            "size": 2678747,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/files/mods/Armourers-Workshop-1.12.2-0.51.0.jar",
+            "MD5": "12954551f39bed840b32fd8be8fddb54",
+            "path": "mods/Armourers-Workshop-1.12.2-0.51.0.jar"
           }
         }
       ]
