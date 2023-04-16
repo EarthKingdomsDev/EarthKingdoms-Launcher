@@ -694,6 +694,16 @@
           }
         },
         {
+          "id": "tk.zeitheron:solarflux:12.4.11@jar",
+          "name": "Solar Flux Reborn",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 715629,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/SolarFluxReborn-[12.4.11].jar",
+            "MD5": "6f6d3280641bfd71a46d0b40feeb9a64"
+          }
+        },
+        {
           "id": "com.jaquadro.minecraft:storagedrawers:1.12.2-5.4.2@jar",
           "name": "Storage Drawers",
           "type": "ForgeMod",
