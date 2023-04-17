@@ -436,23 +436,23 @@
           }
         },
         {
-          "id": "micdoodle8.mods.galacticraft.core:galacticraftcore:4.0.2.280@jar",
+          "id": "micdoodle8.mods.galacticraft.core:galacticraftcore:4.0.2.281@jar",
           "name": "Galacticraft Core",
           "type": "ForgeMod",
           "artifact": {
-            "size": 10610662,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftCore-[4.0.2.280].jar",
-            "MD5": "9298e6b85b38eab9b830a0637f1fbced"
+            "size": 10631329,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftCore-[4.0.2.281].jar",
+            "MD5": "02dcb094b4de11028c196c44b0debe3b"
           }
         },
         {
-          "id": "micdoodle8.mods.galacticraft.planets:galacticraftplanets:4.0.2.280@jar",
+          "id": "micdoodle8.mods.galacticraft.planets:galacticraftplanets:4.0.2.281@jar",
           "name": "Galacticraft Planets",
           "type": "ForgeMod",
           "artifact": {
-            "size": 3975978,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftPlanets-[4.0.2.280].jar",
-            "MD5": "848ebcd467a3389c9461007d2b164a6c"
+            "size": 3987531,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/GalacticraftPlanets-[4.0.2.281].jar",
+            "MD5": "84908698e7ea6b8d3a22e98f260cf3af"
           }
         },
         {
@@ -600,13 +600,13 @@
           }
         },
         {
-          "id": "micdoodle8.mods.miccore:micdoodlecore:[4.0.2.280]@jar",
+          "id": "micdoodle8.mods.miccore:micdoodlecore:[4.0.2.281]@jar",
           "name": "MicdoodleCore",
           "type": "ForgeMod",
           "artifact": {
             "size": 53300,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MicdoodleCore-[4.0.2.280].jar",
-            "MD5": "2b033cb0694a53ea7b80876e2f00dec5"
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/MicdoodleCore-[4.0.2.281].jar",
+            "MD5": "db0d1e7966382663d3b0888e26a8ded1"
           }
         },
         {
