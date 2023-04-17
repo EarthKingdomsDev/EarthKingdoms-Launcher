@@ -370,9 +370,9 @@
           "name": "EarthKingdoms Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4113816,
+            "size": 4478500,
             "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[1.0.0].jar",
-            "MD5": "56624b12cb5f89d75c19896395fc2cad"
+            "MD5": "5b0e737c8e99af690527cba876643e6e"
           }
         },
         {
