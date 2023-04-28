@@ -5,13 +5,33 @@
 const cp                      = require('child_process')
 const crypto                  = require('crypto')
 const { URL }                 = require('url')
-const { MojangRestAPI, getServerStatus }     = require('helios-core/mojang')
+const {
+    MojangRestAPI,
+    getServerStatus
+}                             = require('helios-core/mojang')
+const {
+    RestResponseStatus,
+    isDisplayableError,
+    validateLocalFile
+}                             = require('helios-core/common')
+const {
+    FullRepair,
+    DistributionIndexProcessor,
+    MojangIndexProcessor,
+    downloadFile
+}                             = require('helios-core/dl')
+const {
+    validateSelectedJvm,
+    ensureJavaDirIsRoot,
+    javaExecFromRoot,
+    discoverBestJvmInstallation,
+    latestOpenJDK,
+    extractJdk
+}                             = require('helios-core/java')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
-const { RestResponseStatus, isDisplayableError } = require('helios-core/common')
-const { stdout } = require('process')
 
 // Launch Elements
 const launch_content          = document.getElementById('launch_content')
@@ -53,26 +73,22 @@ function setLaunchDetails(details){
 /**
  * Set the value of the loading progress bar and display that value.
  * 
- * @param {number} value The progress value.
- * @param {number} max The total size.
- * @param {number|string} percent Optional. The percentage to display on the progress label.
+ * @param {number} percent Percentage (0-100)
  */
-function setLaunchPercentage(value, max, percent = ((value/max)*100)){
-    launch_progress.setAttribute('max', max)
-    launch_progress.setAttribute('value', value)
+function setLaunchPercentage(percent){
+    launch_progress.setAttribute('max', 100)
+    launch_progress.setAttribute('value', percent)
     launch_progress_label.innerHTML = percent + '%'
 }
 
 /**
  * Set the value of the OS progress bar and display that on the UI.
  * 
- * @param {number} value The progress value.
- * @param {number} max The total download size.
- * @param {number|string} percent Optional. The percentage to display on the progress label.
+ * @param {number} percent Percentage (0-100)
  */
-function setDownloadPercentage(value, max, percent = ((value/max)*100)){
-    remote.getCurrentWindow().setProgressBar(value/max)
-    setLaunchPercentage(value, max, percent)
+function setDownloadPercentage(percent){
+    remote.getCurrentWindow().setProgressBar(percent/100)
+    setLaunchPercentage(percent)
 }
 
 /**
@@ -85,39 +101,43 @@ function setLaunchEnabled(val){
 }
 
 // Bind launch button
-document.getElementById('launch_button').addEventListener('click', function(e){
+document.getElementById('launch_button').addEventListener('click', async e => {
     loggerLanding.info('Launching game..')
-    const mcVersion = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer()).getMinecraftVersion()
-    const jExe = ConfigManager.getJavaExecutable()
-    if(jExe == null){
-        asyncSystemScan(mcVersion)
-    } else {
+    try {
+        const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+        const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())
+        if(jExe == null){
+            await asyncSystemScan(server.effectiveJavaOptions)
+        } else {
 
-        setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'))
-        toggleLaunchArea(true)
-        setLaunchPercentage(0, 100)
+            setLaunchDetails(Lang.queryJS('landing.launch.pleaseWait'))
+            toggleLaunchArea(true)
+            setLaunchPercentage(0, 100)
 
-        const jg = new JavaGuard(mcVersion)
-        jg._validateJavaBinary(jExe).then((v) => {
-            loggerLanding.log('Java version meta', v)
-            if(v.valid){
-                dlAsync()
+            const details = await validateSelectedJvm(ensureJavaDirIsRoot(jExe), server.effectiveJavaOptions.supported)
+            if(details != null){
+                loggerLanding.info('Jvm Details', details)
+                await dlAsync()
+
             } else {
-                asyncSystemScan(mcVersion)
+                await asyncSystemScan(server.effectiveJavaOptions)
             }
-        })
+        }
+    } catch(err) {
+        loggerLanding.error('Unhandled error in during launch process.', err)
+        showLaunchFailure('Error During Launch', 'See console (CTRL + Shift + i) for more details.')
     }
 })
 
 // Bind settings button
-document.getElementById('settingsMediaButton').onclick = (e) => {
-    prepareSettings()
+document.getElementById('settingsMediaButton').onclick = async e => {
+    await prepareSettings()
     switchView(getCurrentView(), VIEWS.settings)
 }
 
 // Bind avatar overlay button.
-document.getElementById('avatarOverlay').onclick = (e) => {
-    prepareSettings()
+document.getElementById('avatarOverlay').onclick = async e => {
+    await prepareSettings()
     switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
         settingsNavItemListener(document.getElementById('settingsNavAccount'), false)
     })
@@ -141,21 +161,21 @@ updateSelectedAccount(ConfigManager.getSelectedAccount())
 // Bind selected server
 function updateSelectedServer(serv){
     if(getCurrentView() === VIEWS.settings){
-        saveAllModConfigurations()
+        fullSettingsSave()
     }
-    ConfigManager.setSelectedServer(serv != null ? serv.getID() : null)
+    ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '\u2022 ' + (serv != null ? serv.getName() : 'Aucun serveur sélectionné')
+    server_selection_button.innerHTML = '\u2022 ' + (serv != null ? serv.rawServer.name : 'Aucun compte sélectionné')
     if(getCurrentView() === VIEWS.settings){
-        animateModsTabRefresh()
+        animateSettingsTabRefresh()
     }
     setLaunchEnabled(serv != null)
 }
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '\u2022 Chargement...'
-server_selection_button.onclick = (e) => {
+server_selection_button.onclick = async e => {
     e.target.blur()
-    toggleServerSelection(true)
+    await toggleServerSelection(true)
 }
 
 // Update Mojang Status Color
@@ -219,17 +239,16 @@ const refreshMojangStatuses = async function(){
     document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
 }
 
-const refreshServerStatus = async function(fade = false){
+const refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
-    const serv = DistroManager.getDistribution().getServer(ConfigManager.getSelectedServer())
+    const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
 
     let pLabel = 'SERVEUR'
     let pVal = 'HORS-LIGNE'
 
     try {
-        const serverURL = new URL('my://' + serv.getAddress())
 
-        const servStat = await getServerStatus(47, serverURL.hostname, Number(serverURL.port))
+        const servStat = await getServerStatus(47, serv.hostname, serv.port)
         console.log(servStat)
         pLabel = 'JOUEURS'
         pVal = servStat.players.online + '/' + servStat.players.max
@@ -254,8 +273,9 @@ const refreshServerStatus = async function(fade = false){
 refreshMojangStatuses()
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
+// Refresh statuses every hour. The status page itself refreshes every day so...
+let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 60*60*1000)
 // Set refresh rate to once every 5 minutes.
-let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 300000)
 let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
 
 /**
@@ -268,7 +288,7 @@ function showLaunchFailure(title, desc){
     setOverlayContent(
         title,
         desc,
-        'Okay'
+        'Ok'
     )
     setOverlayHandler(null)
     toggleOverlay(true)
@@ -277,187 +297,145 @@ function showLaunchFailure(title, desc){
 
 /* System (Java) Scan */
 
-let sysAEx
-let scanAt
-
-let extractListener
-
 /**
  * Asynchronously scan the system for valid Java installations.
  * 
- * @param {string} mcVersion The Minecraft version we are scanning for.
  * @param {boolean} launchAfter Whether we should begin to launch after scanning. 
  */
-function asyncSystemScan(mcVersion, launchAfter = true){
+async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
 
-    setLaunchDetails('Veuillez patienter...')
+    setLaunchDetails('Vérification des informations système...')
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
-    const forkEnv = JSON.parse(JSON.stringify(process.env))
-    forkEnv.CONFIG_DIRECT_PATH = ConfigManager.getLauncherDirectory()
+    const jvmDetails = await discoverBestJvmInstallation(
+        ConfigManager.getDataDirectory(),
+        effectiveJavaOptions.supported
+    )
 
-    // Fork a process to run validations.
-    sysAEx = cp.fork(path.join(__dirname, 'assets', 'js', 'assetexec.js'), [
-        'JavaGuard',
-        mcVersion
-    ], {
-        env: forkEnv,
-        stdio: 'pipe'
-    })
-    // Stdout
-    sysAEx.stdio[1].setEncoding('utf8')
-    sysAEx.stdio[1].on('data', (data) => {
-        console.log(`\x1b[32m[SysAEx]\x1b[0m ${data}`)
-    })
-    // Stderr
-    sysAEx.stdio[2].setEncoding('utf8')
-    sysAEx.stdio[2].on('data', (data) => {
-        console.log(`\x1b[31m[SysAEx]\x1b[0m ${data}`)
-    })
-    
-    sysAEx.on('message', (m) => {
-
-        if(m.context === 'validateJava'){
-            if(m.result == null){
-                // If the result is null, no valid Java installation was found.
-                // Show this information to the user.
+    if(jvmDetails == null) {
+        // If the result is null, no valid Java installation was found.
+        // Show this information to the user.
+        setOverlayContent(
+            'Aucune installation<br>de Java trouvée',
+            `Pour rejoindre le serveur, il vous faut une installation 64-bit de Java ${effectiveJavaOptions.suggestedMajor}. Voulez-vous installer une copie ?`,
+            'Installer Java',
+            'Installer Manuellement'
+        )
+        setOverlayHandler(() => {
+            setLaunchDetails('Préparation du téléchargement Java...')
+            toggleOverlay(false)
+            
+            try {
+                downloadJava(effectiveJavaOptions, launchAfter)
+            } catch(err) {
+                loggerLanding.error('Unhandled error in Java Download', err)
+                showLaunchFailure('Error During Java Download', 'See console (CTRL + Shift + i) for more details.')
+            }
+        })
+        setDismissHandler(() => {
+            $('#overlayContent').fadeOut(250, () => {
+                //$('#overlayDismiss').toggle(false)
                 setOverlayContent(
-                    'Aucune installation<br>Java compatible trouvée',
-                    'Pour rejoindre FallenGlory, il vous faudra une installation 64-bit de Java 8. Voulez-vous l\'installer ?',
-                    'Installer Java 8',
-                    'Installer Java 8 Manuellement'
+                    'Java est Requis<br>pour Lancer le Jeu',
+                    `Une installation valide x64 de Java ${effectiveJavaOptions.suggestedMajor} est requis pour le lancement.`,
+                    'Je comprends',
+                    'Retour'
                 )
                 setOverlayHandler(() => {
-                    setLaunchDetails('Préparation de l\'installation de Java 8...')
-                    sysAEx.send({task: 'changeContext', class: 'AssetGuard', args: [ConfigManager.getCommonDirectory(),ConfigManager.getJavaExecutable()]})
-                    sysAEx.send({task: 'execute', function: '_enqueueOpenJDK', argsArr: [ConfigManager.getDataDirectory()]})
+                    toggleLaunchArea(false)
                     toggleOverlay(false)
                 })
                 setDismissHandler(() => {
-                    $('#overlayContent').fadeOut(250, () => {
-                        //$('#overlayDismiss').toggle(false)
-                        setOverlayContent(
-                            'Java 8 est Requis<br>pour lancer le jeu',
-                            'Une installation x64 valide de Java 8 est requis pour lancer le jeu.',
-                            'Je comprends',
-                            'Retour'
-                        )
-                        setOverlayHandler(() => {
-                            toggleLaunchArea(false)
-                            toggleOverlay(false)
-                        })
-                        setDismissHandler(() => {
-                            toggleOverlay(false, true)
-                            asyncSystemScan()
-                        })
-                        $('#overlayContent').fadeIn(250)
-                    })
+                    toggleOverlay(false, true)
+
+                    asyncSystemScan(effectiveJavaOptions, launchAfter)
                 })
-                toggleOverlay(true, true)
+                $('#overlayContent').fadeIn(250)
+            })
+        })
+        toggleOverlay(true, true)
+    } else {
+        // Java installation found, use this to launch the game.
+        const javaExec = javaExecFromRoot(jvmDetails.path)
+        ConfigManager.setJavaExecutable(ConfigManager.getSelectedServer(), javaExec)
+        ConfigManager.save()
 
-            } else {
-                // Java installation found, use this to launch the game.
-                ConfigManager.setJavaExecutable(m.result)
-                ConfigManager.save()
+        // We need to make sure that the updated value is on the settings UI.
+        // Just incase the settings UI is already open.
+        settingsJavaExecVal.value = javaExec
+        await populateJavaExecDetails(settingsJavaExecVal.value)
 
-                // We need to make sure that the updated value is on the settings UI.
-                // Just incase the settings UI is already open.
-                settingsJavaExecVal.value = m.result
-                populateJavaExecDetails(settingsJavaExecVal.value)
-
-                if(launchAfter){
-                    dlAsync()
-                }
-                sysAEx.disconnect()
-            }
-        } else if(m.context === '_enqueueOpenJDK'){
-
-            if(m.result === true){
-
-                // Oracle JRE enqueued successfully, begin download.
-                setLaunchDetails('Téléchargement de Java 8...')
-                sysAEx.send({task: 'execute', function: 'processDlQueues', argsArr: [[{id:'java', limit:1}]]})
-
-            } else {
-
-                // Oracle JRE enqueue failed. Probably due to a change in their website format.
-                // User will have to follow the guide to install Java.
-                setOverlayContent(
-                    'Erreur inattendue :<br>Échec de l\'installation de Java 8',
-                    'Malheureusement, il y a eu un problème lors de l\'installation de Java 8. Vous devrez installer manuellement une copie de Java 8.',
-                    'Je comprends'
-                )
-                setOverlayHandler(() => {
-                    toggleOverlay(false)
-                    toggleLaunchArea(false)
-                })
-                toggleOverlay(true)
-                sysAEx.disconnect()
-
-            }
-
-        } else if(m.context === 'progress'){
-
-            switch(m.data){
-                case 'download':
-                    // Downloading..
-                    setDownloadPercentage(m.value, m.total, m.percent)
-                    break
-            }
-
-        } else if(m.context === 'complete'){
-
-            switch(m.data){
-                case 'download': {
-                    // Show installing progress bar.
-                    remote.getCurrentWindow().setProgressBar(2)
-
-                    // Wait for extration to complete.
-                    const eLStr = 'Extracting'
-                    let dotStr = ''
-                    setLaunchDetails(eLStr)
-                    extractListener = setInterval(() => {
-                        if(dotStr.length >= 3){
-                            dotStr = ''
-                        } else {
-                            dotStr += '.'
-                        }
-                        setLaunchDetails(eLStr + dotStr)
-                    }, 750)
-                    break
-                }
-                case 'java':
-                // Download & extraction complete, remove the loading from the OS progress bar.
-                    remote.getCurrentWindow().setProgressBar(-1)
-
-                    // Extraction completed successfully.
-                    ConfigManager.setJavaExecutable(m.args[0])
-                    ConfigManager.save()
-
-                    if(extractListener != null){
-                        clearInterval(extractListener)
-                        extractListener = null
-                    }
-
-                    setLaunchDetails('Java 8 Installé !')
-
-                    if(launchAfter){
-                        dlAsync()
-                    }
-
-                    sysAEx.disconnect()
-                    break
-            }
-
-        } else if(m.context === 'error'){
-            console.log(m.error)
+        // TODO Callback hell, refactor
+        // TODO Move this out, separate concerns.
+        if(launchAfter){
+            await dlAsync()
         }
-    })
+    }
 
-    // Begin system Java scan.
-    setLaunchDetails('Vérification des informations système...')
-    sysAEx.send({task: 'execute', function: 'validateJava', argsArr: [ConfigManager.getDataDirectory()]})
+}
+
+async function downloadJava(effectiveJavaOptions, launchAfter = true) {
+
+    // TODO Error handling.
+    // asset can be null.
+    const asset = await latestOpenJDK(
+        effectiveJavaOptions.suggestedMajor,
+        ConfigManager.getDataDirectory(),
+        effectiveJavaOptions.distribution)
+
+    if(asset == null) {
+        throw new Error('Failed to find OpenJDK distribution.')
+    }
+
+    let received = 0
+    await downloadFile(asset.url, asset.path, ({ transferred }) => {
+        received = transferred
+        setDownloadPercentage(Math.trunc((transferred/asset.size)*100))
+    })
+    setDownloadPercentage(100)
+
+    if(received != asset.size) {
+        loggerLanding.warn(`Java Download : Expected ${asset.size} bytes but received ${received}`)
+        if(!await validateLocalFile(asset.path, asset.algo, asset.hash)) {
+            log.error(`Hashes do not match, ${asset.id} may be corrupted.`)
+            // Don't know how this could happen, but report it.
+            throw new Error('Downloaded JDK has bad hash, file may be corrupted.')
+        }
+    }
+
+    // Extract
+    // Show installing progress bar.
+    remote.getCurrentWindow().setProgressBar(2)
+
+    // Wait for extration to complete.
+    const eLStr = 'Extracting Java'
+    let dotStr = ''
+    setLaunchDetails(eLStr)
+    const extractListener = setInterval(() => {
+        if(dotStr.length >= 3){
+            dotStr = ''
+        } else {
+            dotStr += '.'
+        }
+        setLaunchDetails(eLStr + dotStr)
+    }, 750)
+
+    const newJavaExec = await extractJdk(asset.path)
+
+    // Extraction complete, remove the loading from the OS progress bar.
+    remote.getCurrentWindow().setProgressBar(-1)
+
+    // Extraction completed successfully.
+    ConfigManager.setJavaExecutable(ConfigManager.getSelectedServer(), newJavaExec)
+    ConfigManager.save()
+
+    clearInterval(extractListener)
+    setLaunchDetails('Java Installé !')
+
+    // TODO Callback hell
+    // Refactor the launch functions
+    asyncSystemScan(effectiveJavaOptions, launchAfter)
 
 }
 
@@ -471,21 +449,31 @@ const GAME_JOINED_REGEX = /\[.+\]: Sound engine started/
 const GAME_LAUNCH_REGEX = /^\[.+\]: (?:MinecraftForge .+ Initialized|ModLauncher .+ starting: .+)$/
 const MIN_LINGER = 5000
 
-let aEx
-let serv
-let versionData
-let forgeData
-
-let progressListener
-
-function dlAsync(login = true){
+async function dlAsync(login = true) {
 
     // Login parameter is temporary for debug purposes. Allows testing the validation/downloads without
     // launching the game.
 
+    const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
+
+    setLaunchDetails('Chargement des informations du serveur...')
+
+    let distro
+
+    try {
+        distro = await DistroAPI.refreshDistributionOrFallback()
+        onDistroRefresh(distro)
+    } catch(err) {
+        loggerLaunchSuite.error('Unable to refresh distribution index.', err)
+        showLaunchFailure('Fatal Error', 'Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details.')
+        return
+    }
+
+    const serv = distro.getServerById(ConfigManager.getSelectedServer())
+
     if(login) {
         if(ConfigManager.getSelectedAccount() == null){
-            loggerLanding.error('You must be logged into an account.')
+            loggerLanding.error('Vous devez être connecté à un compte.')
             return
         }
     }
@@ -494,272 +482,162 @@ function dlAsync(login = true){
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
-    const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
-
-    const forkEnv = JSON.parse(JSON.stringify(process.env))
-    forkEnv.CONFIG_DIRECT_PATH = ConfigManager.getLauncherDirectory()
-
-    // Start AssetExec to run validations and downloads in a forked process.
-    aEx = cp.fork(path.join(__dirname, 'assets', 'js', 'assetexec.js'), [
-        'AssetGuard',
+    const fullRepairModule = new FullRepair(
         ConfigManager.getCommonDirectory(),
-        ConfigManager.getJavaExecutable()
-    ], {
-        env: forkEnv,
-        stdio: 'pipe'
-    })
-    // Stdout
-    aEx.stdio[1].setEncoding('utf8')
-    aEx.stdio[1].on('data', (data) => {
-        console.log(`\x1b[32m[AEx]\x1b[0m ${data}`)
-    })
-    // Stderr
-    aEx.stdio[2].setEncoding('utf8')
-    aEx.stdio[2].on('data', (data) => {
-        console.log(`\x1b[31m[AEx]\x1b[0m ${data}`)
-    })
-    aEx.on('error', (err) => {
+        ConfigManager.getInstanceDirectory(),
+        ConfigManager.getLauncherDirectory(),
+        ConfigManager.getSelectedServer(),
+        DistroAPI.isDevMode()
+    )
+
+    fullRepairModule.spawnReceiver()
+
+    fullRepairModule.childProcess.on('error', (err) => {
         loggerLaunchSuite.error('Error during launch', err)
         showLaunchFailure('Error During Launch', err.message || 'See console (CTRL + Shift + i) for more details.')
     })
-    aEx.on('close', (code, signal) => {
+    fullRepairModule.childProcess.on('close', (code, _signal) => {
         if(code !== 0){
-            loggerLaunchSuite.error(`AssetExec exited with code ${code}, assuming error.`)
+            loggerLaunchSuite.error(`Full Repair Module exited with code ${code}, assuming error.`)
             showLaunchFailure('Error During Launch', 'See console (CTRL + Shift + i) for more details.')
         }
     })
 
-    // Establish communications between the AssetExec and current process.
-    aEx.on('message', (m) => {
+    loggerLaunchSuite.info('Validating files.')
+    setLaunchDetails('Validation de l\'intégrité des fichiers...')
+    let invalidFileCount = 0
+    try {
+        invalidFileCount = await fullRepairModule.verifyFiles(percent => {
+            setLaunchPercentage(percent)
+        })
+        setLaunchPercentage(100)
+    } catch (err) {
+        loggerLaunchSuite.error('Error during file validation.')
+        showLaunchFailure('Erreur lors de la vérification du fichier', err.displayable || 'See console (CTRL + Shift + i) for more details.')
+        return
+    }
+    
 
-        if(m.context === 'validate'){
-            switch(m.data){
-                case 'distribution':
-                    setLaunchPercentage(20, 100)
-                    loggerLaunchSuite.info('Validated distibution index.')
-                    setLaunchDetails('Chargement des informations de version...')
-                    break
-                case 'version':
-                    setLaunchPercentage(40, 100)
-                    loggerLaunchSuite.info('Version data loaded.')
-                    setLaunchDetails('Validation des assets...')
-                    break
-                case 'assets':
-                    setLaunchPercentage(60, 100)
-                    loggerLaunchSuite.info('Asset Validation Complete')
-                    setLaunchDetails('Validation des Libraries...')
-                    break
-                case 'libraries':
-                    setLaunchPercentage(80, 100)
-                    loggerLaunchSuite.info('Library validation complete.')
-                    setLaunchDetails('Validation des fichiers divers...')
-                    break
-                case 'files':
-                    setLaunchPercentage(100, 100)
-                    loggerLaunchSuite.info('File validation complete.')
-                    setLaunchDetails('Téléchargement des fichiers...')
-                    break
+    if(invalidFileCount > 0) {
+        loggerLaunchSuite.info('Downloading files.')
+        setLaunchDetails('Téléchargement des fichiers...')
+        setLaunchPercentage(0)
+        try {
+            await fullRepairModule.download(percent => {
+                setDownloadPercentage(percent)
+            })
+            setDownloadPercentage(100)
+        } catch(err) {
+            loggerLaunchSuite.error('Error during file download.')
+            showLaunchFailure('Erreur lors du téléchargement du fichier', err.displayable || 'See console (CTRL + Shift + i) for more details.')
+            return
+        }
+    } else {
+        loggerLaunchSuite.info('Aucun fichier invalide, téléchargement ignoré.')
+    }
+
+    // Remove download bar.
+    remote.getCurrentWindow().setProgressBar(-1)
+
+    fullRepairModule.destroyReceiver()
+
+    setLaunchDetails('Préparation au lancement...')
+
+    const mojangIndexProcessor = new MojangIndexProcessor(
+        ConfigManager.getCommonDirectory(),
+        serv.rawServer.minecraftVersion)
+    const distributionIndexProcessor = new DistributionIndexProcessor(
+        ConfigManager.getCommonDirectory(),
+        distro,
+        serv.rawServer.id
+    )
+
+    const forgeData = await distributionIndexProcessor.loadForgeVersionJson(serv)
+    const versionData = await mojangIndexProcessor.getVersionJson()
+
+    if(login) {
+        const authUser = ConfigManager.getSelectedAccount()
+        loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
+        let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
+        setLaunchDetails('Lancement du Jeu...')
+
+        // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
+        const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
+
+        const onLoadComplete = () => {
+            toggleLaunchArea(false)
+            if(hasRPC){
+                DiscordWrapper.updateDetails('Loading game..')
+                proc.stdout.on('data', gameStateChange)
             }
-        } else if(m.context === 'progress'){
-            switch(m.data){
-                case 'assets': {
-                    const perc = (m.value/m.total)*20
-                    setLaunchPercentage(40+perc, 100, parseInt(40+perc))
-                    break
-                }
-                case 'download':
-                    setDownloadPercentage(m.value, m.total, m.percent)
-                    break
-                case 'extract': {
-                    // Show installing progress bar.
-                    remote.getCurrentWindow().setProgressBar(2)
+            proc.stdout.removeListener('data', tempListener)
+            proc.stderr.removeListener('data', gameErrorListener)
+        }
+        const start = Date.now()
 
-                    // Download done, extracting.
-                    const eLStr = 'Extracting libraries'
-                    let dotStr = ''
-                    setLaunchDetails(eLStr)
-                    progressListener = setInterval(() => {
-                        if(dotStr.length >= 3){
-                            dotStr = ''
-                        } else {
-                            dotStr += '.'
-                        }
-                        setLaunchDetails(eLStr + dotStr)
-                    }, 750)
-                    break
-                }
-            }
-        } else if(m.context === 'complete'){
-            switch(m.data){
-                case 'download':
-                    // Download and extraction complete, remove the loading from the OS progress bar.
-                    remote.getCurrentWindow().setProgressBar(-1)
-                    if(progressListener != null){
-                        clearInterval(progressListener)
-                        progressListener = null
-                    }
-
-                    setLaunchDetails('Préparation au lancement...')
-                    break
-            }
-        } else if(m.context === 'error'){
-            switch(m.data){
-                case 'download':
-                    loggerLaunchSuite.error('Error while downloading:', m.error)
-                    
-                    if(m.error.code === 'ENOENT'){
-                        showLaunchFailure(
-                            'Erreur durant le téléchargement',
-                            'Impossible de se connecter au serveur de fichiers. Assurez-vous que vous êtes connecté(e) à Internet puis réessayer.'
-                        )
-                    } else {
-                        showLaunchFailure(
-                            'Erreur durant le téléchargement',
-                            'Vérifier la console (CTRL + Shift + i) pour plus de détails. Réessayer.'
-                        )
-                    }
-
-                    remote.getCurrentWindow().setProgressBar(-1)
-
-                    // Disconnect from AssetExec
-                    aEx.disconnect()
-                    break
-            }
-        } else if(m.context === 'validateEverything'){
-
-            let allGood = true
-
-            // If these properties are not defined it's likely an error.
-            if(m.result.forgeData == null || m.result.versionData == null){
-                loggerLaunchSuite.error('Error during validation:', m.result)
-
-                loggerLaunchSuite.error('Error during launch', m.result.error)
-                showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
-
-                allGood = false
-            }
-
-            forgeData = m.result.forgeData
-            versionData = m.result.versionData
-
-            if(login && allGood) {
-                const authUser = ConfigManager.getSelectedAccount()
-                loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
-                let pb = new ProcessBuilder(serv, versionData, forgeData, authUser, remote.app.getVersion())
-                setLaunchDetails('Lancement du jeu...')
-
-                // const SERVER_JOINED_REGEX = /\[.+\]: \[CHAT\] [a-zA-Z0-9_]{1,16} joined the game/
-                const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
-
-                const onLoadComplete = () => {
-                    toggleLaunchArea(false)
-                    if(hasRPC){
-                        DiscordWrapper.updateDetails('Chargement du jeu...')
-                    }
-                    proc.stdout.on('data', gameStateChange)
-                    proc.stdout.removeListener('data', tempListener)
-                    proc.stderr.removeListener('data', gameErrorListener)
-                }
-                const start = Date.now()
-
-                // Attach a temporary listener to the client output.
-                // Will wait for a certain bit of text meaning that
-                // the client application has started, and we can hide
-                // the progress bar stuff.
-                const tempListener = function(data){
-                    if(GAME_LAUNCH_REGEX.test(data.trim())){
-                        const diff = Date.now()-start
-                        if(diff < MIN_LINGER) {
-                            setTimeout(onLoadComplete, MIN_LINGER-diff)
-                        } else {
-                            onLoadComplete()
-                        }
-                    }
-                }
-
-                // Listener for Discord RPC.
-                const gameStateChange = function(data){
-                    data = data.trim()
-                    if(SERVER_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Exploring the Realm!')
-                    } else if(GAME_JOINED_REGEX.test(data)){
-                        DiscordWrapper.updateDetails('Sailing to Westeros!')
-                    }
-                }
-
-                const gameErrorListener = function(data){
-                    data = data.trim()
-                    if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
-                        loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not downloaded properly.')
-                        showLaunchFailure('Error During Launch', 'The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href="https://github.com/dscalzi/HeliosLauncher/issues">submit an issue</a> and let us know what antivirus software you use. We\'ll contact them and try to straighten things out.')
-                    }
-                }
-
-                try {
-                    // Build Minecraft process.
-                    proc = pb.build()
-
-                    // Bind listeners to stdout.
-                    proc.stdout.on('data', tempListener)
-                    proc.stderr.on('data', gameErrorListener)
-
-                    setLaunchDetails('Le jeu a été lancé !')
-
-                    // Init Discord Hook
-                    const distro = DistroManager.getDistribution()
-                    if(distro.discord != null && serv.discord != null){
-                        DiscordWrapper.initRPC(distro.discord, serv.discord)
-                        hasRPC = true
-                        proc.on('close', (code, signal) => {
-                            loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
-                            DiscordWrapper.shutdownRPC()
-                            hasRPC = false
-                            proc = null
-                        })
-                    }
-
-                } catch(err) {
-
-                    loggerLaunchSuite.error('Error during launch', err)
-                    showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
-
+        // Attach a temporary listener to the client output.
+        // Will wait for a certain bit of text meaning that
+        // the client application has started, and we can hide
+        // the progress bar stuff.
+        const tempListener = function(data){
+            if(GAME_LAUNCH_REGEX.test(data.trim())){
+                const diff = Date.now()-start
+                if(diff < MIN_LINGER) {
+                    setTimeout(onLoadComplete, MIN_LINGER-diff)
+                } else {
+                    onLoadComplete()
                 }
             }
+        }
 
-            // Disconnect from AssetExec
-            aEx.disconnect()
+        // Listener for Discord RPC.
+        const gameStateChange = function(data){
+            data = data.trim()
+            if(SERVER_JOINED_REGEX.test(data)){
+                DiscordWrapper.updateDetails('Exploring the Realm!')
+            } else if(GAME_JOINED_REGEX.test(data)){
+                DiscordWrapper.updateDetails('Sailing to Westeros!')
+            }
+        }
+
+        const gameErrorListener = function(data){
+            data = data.trim()
+            if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
+                loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not downloaded properly.')
+                showLaunchFailure('Error During Launch', 'The main file, LaunchWrapper, failed to download properly. As a result, the game cannot launch.<br><br>To fix this issue, temporarily turn off your antivirus software and launch the game again.<br><br>If you have time, please <a href="https://github.com/dscalzi/HeliosLauncher/issues">submit an issue</a> and let us know what antivirus software you use. We\'ll contact them and try to straighten things out.')
+            }
+        }
+
+        try {
+            // Build Minecraft process.
+            proc = pb.build()
+
+            // Bind listeners to stdout.
+            proc.stdout.on('data', tempListener)
+            proc.stderr.on('data', gameErrorListener)
+
+            setLaunchDetails('Le Jeu a été lancé !')
+
+            // Init Discord Hook
+            if(distro.rawDistribution.discord != null && serv.rawServerdiscord != null){
+                DiscordWrapper.initRPC(distro.rawDistribution.discord, serv.rawServer.discord)
+                hasRPC = true
+                proc.on('close', (code, signal) => {
+                    loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
+                    DiscordWrapper.shutdownRPC()
+                    hasRPC = false
+                    proc = null
+                })
+            }
+
+        } catch(err) {
+
+            loggerLaunchSuite.error('Error during launch', err)
+            showLaunchFailure('Error During Launch', 'Please check the console (CTRL + Shift + i) for more details.')
 
         }
-    })
+    }
 
-    // Begin Validations
-
-    // Validate Forge files.
-    setLaunchDetails('Chargement des informations du serveur...')
-
-    refreshDistributionIndex(true, (data) => {
-        onDistroRefresh(data)
-        serv = data.getServer(ConfigManager.getSelectedServer())
-        aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-    }, (err) => {
-        loggerLaunchSuite.info('Error while fetching a fresh copy of the distribution index.', err)
-        refreshDistributionIndex(false, (data) => {
-            onDistroRefresh(data)
-            serv = data.getServer(ConfigManager.getSelectedServer())
-            aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-        }, (err) => {
-            loggerLaunchSuite.error('Unable to refresh distribution index.', err)
-            if(DistroManager.getDistribution() == null){
-                showLaunchFailure('Fatal Error', 'Could not load a copy of the distribution index. See the console (CTRL + Shift + i) for more details.')
-
-                // Disconnect from AssetExec
-                aEx.disconnect()
-            } else {
-                serv = data.getServer(ConfigManager.getSelectedServer())
-                aEx.send({task: 'execute', function: 'validateEverything', argsArr: [ConfigManager.getSelectedServer(), DistroManager.isDevMode()]})
-            }
-        })
-    })
 }
 
 /**
@@ -862,7 +740,7 @@ let newsLoadingListener = null
  */
 function setNewsLoading(val){
     if(val){
-        const nLStr = 'Checking for News'
+        const nLStr = 'Recherche de News'
         let dotStr = '..'
         nELoadSpan.innerHTML = nLStr + dotStr
         newsLoadingListener = setInterval(() => {
@@ -939,7 +817,7 @@ function initNews(){
         let news = {}
         loadNews().then(news => {
 
-            newsArr = news.articles || null
+            newsArr = news?.articles || null
 
             if(newsArr == null){
                 // News Loading Failed
@@ -1085,10 +963,17 @@ function displayArticle(articleObject, index){
  * Load news information from the RSS feed specified in the
  * distribution index.
  */
-function loadNews(){
-    return new Promise((resolve, reject) => {
-        const distroData = DistroManager.getDistribution()
-        const newsFeed = distroData.getRSS()
+async function loadNews(){
+
+    const distroData = await DistroAPI.getDistribution()
+    if(!distroData.rawDistribution.rss) {
+        loggerLanding.debug('No RSS feed provided.')
+        return null
+    }
+
+    const promise = new Promise((resolve, reject) => {
+        
+        const newsFeed = distroData.rawDistribution.rss
         const newsHost = new URL(newsFeed).origin + '/'
         $.ajax({
             url: newsFeed,
@@ -1143,4 +1028,6 @@ function loadNews(){
             })
         })
     })
+
+    return await promise
 }

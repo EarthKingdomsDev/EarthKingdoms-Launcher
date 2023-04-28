@@ -4,10 +4,11 @@
  */
 // Requirements
 const path          = require('path')
+const { Type }      = require('helios-distribution-types')
 
 const AuthManager   = require('./assets/js/authmanager')
 const ConfigManager = require('./assets/js/configmanager')
-const DistroManager = require('./assets/js/distromanager')
+const { DistroAPI } = require('./assets/js/distromanager')
 const Lang          = require('./assets/js/langloader')
 
 let rscShouldLoad = false
@@ -40,10 +41,10 @@ let currentView
  */
 function switchView(current, next, currentFadeTime = 500, nextFadeTime = 500, onCurrentFade = () => {}, onNextFade = () => {}){
     currentView = next
-    $(`${current}`).fadeOut(currentFadeTime, () => {
-        onCurrentFade()
-        $(`${next}`).fadeIn(nextFadeTime, () => {
-            onNextFade()
+    $(`${current}`).fadeOut(currentFadeTime, async () => {
+        await onCurrentFade()
+        $(`${next}`).fadeIn(nextFadeTime, async () => {
+            await onNextFade()
         })
     })
 }
@@ -57,15 +58,15 @@ function getCurrentView(){
     return currentView
 }
 
-function showMainUI(data){
+async function showMainUI(data){
 
     if(!isDev){
         loggerAutoUpdater.info('Initializing..')
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
-    prepareSettings(true)
-    updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
+    await prepareSettings(true)
+    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
     setTimeout(() => {
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
@@ -114,8 +115,8 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Erreur Fatale : Impossible de charger le fichier de Distribution',
-                'Essayer de redémarrer votre launcher, voir votre ordinateur. Si le problème persiste, veuillez contacter un Administrateur via le Disord (https://discord.gg/PkbqPAAqE).',
+                'Erreur fatale : Impossible de charger l\'index de distribution',
+                'Aucune connexion n\'a pu être établie avec nos serveurs pour télécharger l\'index de distribution. Aucune copie locale n\'était disponible pour le chargement. <br><br>L\'index de distribution est un fichier essentiel qui fournit les dernières informations sur le serveur. Le lanceur ne peut pas démarrer sans lui. Assurez-vous d\'être connecté à Internet et relancez l\'application.',
                 'Fermer'
             )
             setOverlayHandler(() => {
@@ -133,10 +134,11 @@ function showFatalStartupError(){
  * @param {Object} data The distro index object.
  */
 function onDistroRefresh(data){
-    updateSelectedServer(data.getServer(ConfigManager.getSelectedServer()))
+    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
     initNews()
     syncModConfigurations(data)
+    ensureJavaSettings(data)
 }
 
 /**
@@ -148,10 +150,10 @@ function syncModConfigurations(data){
 
     const syncedCfgs = []
 
-    for(let serv of data.getServers()){
+    for(let serv of data.servers){
 
-        const id = serv.getID()
-        const mdls = serv.getModules()
+        const id = serv.rawServer.id
+        const mdls = serv.modules
         const cfg = ConfigManager.getModConfiguration(id)
 
         if(cfg != null){
@@ -160,20 +162,20 @@ function syncModConfigurations(data){
             const mods = {}
 
             for(let mdl of mdls){
-                const type = mdl.getType()
+                const type = mdl.rawModule.type
 
-                if(type === DistroManager.Types.ForgeMod || type === DistroManager.Types.LiteMod || type === DistroManager.Types.LiteLoader){
-                    if(!mdl.getRequired().isRequired()){
-                        const mdlID = mdl.getVersionlessID()
+                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
+                    if(!mdl.getRequired().value){
+                        const mdlID = mdl.getVersionlessMavenIdentifier()
                         if(modsOld[mdlID] == null){
-                            mods[mdlID] = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                            mods[mdlID] = scanOptionalSubModules(mdl.subModules, mdl)
                         } else {
-                            mods[mdlID] = mergeModConfiguration(modsOld[mdlID], scanOptionalSubModules(mdl.getSubModules(), mdl), false)
+                            mods[mdlID] = mergeModConfiguration(modsOld[mdlID], scanOptionalSubModules(mdl.subModules, mdl), false)
                         }
                     } else {
-                        if(mdl.hasSubModules()){
-                            const mdlID = mdl.getVersionlessID()
-                            const v = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                        if(mdl.subModules.length > 0){
+                            const mdlID = mdl.getVersionlessMavenIdentifier()
+                            const v = scanOptionalSubModules(mdl.subModules, mdl)
                             if(typeof v === 'object'){
                                 if(modsOld[mdlID] == null){
                                     mods[mdlID] = v
@@ -196,15 +198,15 @@ function syncModConfigurations(data){
             const mods = {}
 
             for(let mdl of mdls){
-                const type = mdl.getType()
-                if(type === DistroManager.Types.ForgeMod || type === DistroManager.Types.LiteMod || type === DistroManager.Types.LiteLoader){
-                    if(!mdl.getRequired().isRequired()){
-                        mods[mdl.getVersionlessID()] = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                const type = mdl.rawModule.type
+                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
+                    if(!mdl.getRequired().value){
+                        mods[mdl.getVersionlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
                     } else {
-                        if(mdl.hasSubModules()){
-                            const v = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                        if(mdl.subModules.length > 0){
+                            const v = scanOptionalSubModules(mdl.subModules, mdl)
                             if(typeof v === 'object'){
-                                mods[mdl.getVersionlessID()] = v
+                                mods[mdl.getVersionlessMavenIdentifier()] = v
                             }
                         }
                     }
@@ -224,6 +226,21 @@ function syncModConfigurations(data){
 }
 
 /**
+ * Ensure java configurations are present for the available servers.
+ * 
+ * @param {Object} data The distro index object.
+ */
+function ensureJavaSettings(data) {
+
+    // Nothing too fancy for now.
+    for(const serv of data.servers){
+        ConfigManager.ensureJavaConfig(serv.rawServer.id, serv.effectiveJavaOptions, serv.rawServer.javaOptions?.ram)
+    }
+
+    ConfigManager.save()
+}
+
+/**
  * Recursively scan for optional sub modules. If none are found,
  * this function returns a boolean. If optional sub modules do exist,
  * a recursive configuration object is returned.
@@ -235,17 +252,17 @@ function scanOptionalSubModules(mdls, origin){
         const mods = {}
 
         for(let mdl of mdls){
-            const type = mdl.getType()
+            const type = mdl.rawModule.type
             // Optional types.
-            if(type === DistroManager.Types.ForgeMod || type === DistroManager.Types.LiteMod || type === DistroManager.Types.LiteLoader){
+            if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
                 // It is optional.
-                if(!mdl.getRequired().isRequired()){
-                    mods[mdl.getVersionlessID()] = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                if(!mdl.getRequired().value){
+                    mods[mdl.getVersionlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
                 } else {
                     if(mdl.hasSubModules()){
-                        const v = scanOptionalSubModules(mdl.getSubModules(), mdl)
+                        const v = scanOptionalSubModules(mdl.subModules, mdl)
                         if(typeof v === 'object'){
-                            mods[mdl.getVersionlessID()] = v
+                            mods[mdl.getVersionlessMavenIdentifier()] = v
                         }
                     }
                 }
@@ -256,13 +273,13 @@ function scanOptionalSubModules(mdls, origin){
             const ret = {
                 mods
             }
-            if(!origin.getRequired().isRequired()){
-                ret.value = origin.getRequired().isDefault()
+            if(!origin.getRequired().value){
+                ret.value = origin.getRequired().def
             }
             return ret
         }
     }
-    return origin.getRequired().isDefault()
+    return origin.getRequired().def
 }
 
 /**
@@ -307,18 +324,6 @@ function mergeModConfiguration(o, n, nReq = false){
     return n
 }
 
-function refreshDistributionIndex(remote, onSuccess, onError){
-    if(remote){
-        DistroManager.pullRemote()
-            .then(onSuccess)
-            .catch(onError)
-    } else {
-        DistroManager.pullLocal()
-            .then(onSuccess)
-            .catch(onError)
-    }
-}
-
 async function validateSelectedAccount(){
     const selectedAcc = ConfigManager.getSelectedAccount()
     if(selectedAcc != null){
@@ -329,8 +334,8 @@ async function validateSelectedAccount(){
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
                 'Échec de l\'actualisation de la connexion',
-                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Merci de ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''} de réessayer.`,
-                'Réessayer',
+                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Merci de ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''} vous connectez de nouveau.`,
+                'Connexion',
                 'Sélectionner un autre compte'
             )
             setOverlayHandler(() => {
@@ -413,14 +418,14 @@ function setSelectedAccount(uuid){
 }
 
 // Synchronous Listener
-document.addEventListener('readystatechange', function(){
+document.addEventListener('readystatechange', async () => {
 
     if (document.readyState === 'interactive' || document.readyState === 'complete'){
         if(rscShouldLoad){
             rscShouldLoad = false
             if(!fatalStartupError){
-                const data = DistroManager.getDistribution()
-                showMainUI(data)
+                const data = await DistroAPI.getDistribution()
+                await showMainUI(data)
             } else {
                 showFatalStartupError()
             }
@@ -430,12 +435,13 @@ document.addEventListener('readystatechange', function(){
 }, false)
 
 // Actions that must be performed after the distribution index is downloaded.
-ipcRenderer.on('distributionIndexDone', (event, res) => {
+ipcRenderer.on('distributionIndexDone', async (event, res) => {
     if(res) {
-        const data = DistroManager.getDistribution()
+        const data = await DistroAPI.getDistribution()
         syncModConfigurations(data)
+        ensureJavaSettings(data)
         if(document.readyState === 'interactive' || document.readyState === 'complete'){
-            showMainUI(data)
+            await showMainUI(data)
         } else {
             rscShouldLoad = true
         }
@@ -448,3 +454,12 @@ ipcRenderer.on('distributionIndexDone', (event, res) => {
         }
     }
 })
+
+// Util for development
+async function devModeToggle() {
+    DistroAPI.toggleDevMode(true)
+    const data = await DistroAPI.refreshDistributionOrFallback()
+    ensureJavaSettings(data)
+    updateSelectedServer(data.servers[0])
+    syncModConfigurations(data)
+}

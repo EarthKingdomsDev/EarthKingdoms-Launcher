@@ -174,7 +174,7 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
     msftLogoutSuccess = false
     msftLogoutSuccessSent = false
     msftLogoutWindow = new BrowserWindow({
-        title: 'Déconnexion du compte Microsoft',
+        title: 'Déconnexion d\'un compte Microsoft',
         backgroundColor: '#222222',
         width: 520,
         height: 600,
@@ -278,29 +278,29 @@ function createMenu() {
         let editSubMenu = {
             label: 'Modifier',
             submenu: [{
-                label: 'Annuler',
+                label: 'Undo',
                 accelerator: 'CmdOrCtrl+Z',
                 selector: 'undo:'
             }, {
-                label: 'Restaurer',
+                label: 'Redo',
                 accelerator: 'Shift+CmdOrCtrl+Z',
                 selector: 'redo:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Couper',
+                label: 'Cut',
                 accelerator: 'CmdOrCtrl+X',
                 selector: 'cut:'
             }, {
-                label: 'Copier',
+                label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
                 selector: 'copy:'
             }, {
-                label: 'Coller',
+                label: 'Paste',
                 accelerator: 'CmdOrCtrl+V',
                 selector: 'paste:'
             }, {
-                label: 'Tout sélectionner',
+                label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
                 selector: 'selectAll:'
             }]

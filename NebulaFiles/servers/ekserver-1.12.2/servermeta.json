@@ -1,10 +1,10 @@
 {
-  "$schema": "file:///C:/Users/jovan/Documents/GitHub/FallenGlory-Launcher/NebulaFiles/schemas/ServerMetaSchema.schema.json",
+  "$schema": "file:///C:/Users/jovan/Documents/GitHub/EarthKingdoms-Launcher/NebulaFiles/schemas/ServerMetaSchema.schema.json",
   "meta": {
     "version": "1.0.0",
-    "name": "FallenGlory Serveur",
-    "description": "Semi Rp-Faction",
-    "address": "188.165.144.18:25577",
+    "name": "EarthKingdoms",
+    "description": "Semi-Rp Faction",
+    "address": "149.202.108.158:25644",
     "discord": {
       "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
       "largeImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
