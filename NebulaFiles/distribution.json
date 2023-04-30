@@ -12,7 +12,7 @@
       "name": "EarthKingdoms",
       "description": "Semi-Rp Faction",
       "icon": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/build/icon.png",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -356,23 +356,23 @@
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomsmods:1.0.1@jar",
-          "name": "EarthKingdoms Mods",
-          "type": "ForgeMod",
-          "artifact": {
-            "size": 4487315,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[1.0.1].jar",
-            "MD5": "bb18169be29d08a1c628807e3b55dae4"
-          }
-        },
-        {
-          "id": "fr.orgealexj06:earthkingdomscore:2.0@jar",
+          "id": "fr.orgealexj06:earthkingdomscore:2.1@jar",
           "name": "EarthKingdomsCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4468954,
-            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdomsCore-[2.0].jar",
-            "MD5": "8e5c122ab53a40dfb4fa6dae0b0d9648"
+            "size": 4469054,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-[2.1].jar",
+            "MD5": "89534c3ab850ce93ec54c6e423c274b9"
+          }
+        },
+        {
+          "id": "fr.orgealexj06:earthkingdomsmods:4.1.0.2@jar",
+          "name": "EarthKingdoms Mods",
+          "type": "ForgeMod",
+          "artifact": {
+            "size": 4474846,
+            "url": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/NebulaFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[4.1.0.2].jar",
+            "MD5": "b6f558c3274e049dab565baede3bc130"
           }
         },
         {
