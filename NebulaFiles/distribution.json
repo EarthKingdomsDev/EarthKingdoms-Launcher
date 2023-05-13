@@ -12,7 +12,7 @@
       "name": "EarthKingdoms",
       "description": "Semi-Rp Faction",
       "icon": "https://raw.githubusercontent.com/EarthKingdomsDev/EarthKingdoms-Launcher/master/build/icon.png",
-      "version": "1.0.4",
+      "version": "1.0.6",
       "address": "149.202.108.158:25644",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -356,23 +356,23 @@
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomscore:2.1@jar",
+          "id": "fr.orgealexj06:earthkingdomscore:2.3@jar",
           "name": "EarthKingdomsCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4469054,
-            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-[2.1].jar",
-            "MD5": "89534c3ab850ce93ec54c6e423c274b9"
+            "size": 4467522,
+            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-[2.3].jar",
+            "MD5": "9c8e0de081b5313ab5c4d440cf1e5216"
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomsmods:4.1.0.3@jar",
+          "id": "fr.orgealexj06:earthkingdomsmods:4.1.1.0@jar",
           "name": "EarthKingdoms Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4503437,
-            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[4.1.0.3].jar",
-            "MD5": "9d3dab0fdbbd968283719b34dc84a2b0"
+            "size": 4449106,
+            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[4.1.1.0].jar",
+            "MD5": "ca62e2e3f345d23f8b59b6cc236a7550"
           }
         },
         {
@@ -476,13 +476,13 @@
           }
         },
         {
-          "id": "icbm.classic:icbmclassic:5.2.3@jar",
+          "id": "icbm.classic:icbmclassic:5.3.0@jar",
           "name": "ICBM Classic",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4423087,
-            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/ICBM-[5.2.3].jar",
-            "MD5": "6e38fd7c43ded947fc82e3581ef11c8a"
+            "size": 4436297,
+            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/ICBM-[5.3.0].jar",
+            "MD5": "b69a69418faae3c803c364205f6019c8"
           }
         },
         {
