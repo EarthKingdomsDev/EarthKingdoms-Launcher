@@ -1,0 +1,21 @@
+{
+  "$schema": "file:///C:/Users/jovan/Documents/GitHub/EarthKingdoms-Launcher/Launcher_Files/schemas/ServerMetaSchema.schema.json",
+  "meta": {
+    "version": "1.0.0",
+    "name": "EarthKingdoms",
+    "description": "Semi-Rp Faction",
+    "icon": "https://earthkingdoms-minecraft-faction.fr/assets/img/icons/ek.png",
+    "address": "earthkingdoms.minesr.com",
+    "discord": {
+      "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
+      "largeImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
+      "largeImageKey": "<FILL IN OR REMOVE DISCORD OBJECT>"
+    },
+    "mainServer": true,
+    "autoconnect": false
+  },
+  "forge": {
+    "version": "14.23.5.2860"
+  },
+  "untrackedFiles": []
+}
