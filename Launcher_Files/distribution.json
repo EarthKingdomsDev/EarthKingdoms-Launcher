@@ -12,7 +12,7 @@
       "name": "EarthKingdoms",
       "description": "Semi-Rp Faction",
       "icon": "https://earthkingdoms-minecraft-faction.fr/assets/img/icons/ek.png",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "address": "earthkingdoms.minesr.com",
       "minecraftVersion": "1.12.2",
       "discord": {
@@ -22,6 +22,7 @@
       },
       "mainServer": true,
       "autoconnect": false,
+
       "modules": [
         {
           "id": "net.minecraftforge:forge:1.12.2-14.23.5.2860:universal",
@@ -366,23 +367,23 @@
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomscore:2.3@jar",
+          "id": "fr.orgealexj06:earthkingdomscore:pre-2.6.1@jar",
           "name": "EarthKingdomsCore",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4467522,
-            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-[2.3].jar",
-            "MD5": "9c8e0de081b5313ab5c4d440cf1e5216"
+            "size": 23322987,
+            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Core-pre-2.6.1.jar",
+            "MD5": "8820cf7a157223d7abbf02276909ebe4"
           }
         },
         {
-          "id": "fr.orgealexj06:earthkingdomsmods:4.1.1.4@jar",
+          "id": "fr.orgealexj06:earthkingdomsmods:4.1.2.1@jar",
           "name": "EarthKingdoms Mods",
           "type": "ForgeMod",
           "artifact": {
-            "size": 4446439,
-            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[4.1.1.4].jar",
-            "MD5": "b6a1a0c1f10dc3bbaebf6a3c31b1c1bb"
+            "size": 4571945,
+            "url": "https://files.earthkingdoms-minecraft-faction.fr/LauncherFiles/servers/ekserver-1.12.2/forgemods/required/EarthKingdoms-Mods-[4.1.2.1].jar",
+            "MD5": "69dce6892f5601f7f695e551dc049505"
           }
         },
         {

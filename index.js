@@ -278,29 +278,29 @@ function createMenu() {
         let editSubMenu = {
             label: 'Modifier',
             submenu: [{
-                label: 'Undo',
+                label: 'Annuler',
                 accelerator: 'CmdOrCtrl+Z',
                 selector: 'undo:'
             }, {
-                label: 'Redo',
+                label: 'Retour',
                 accelerator: 'Shift+CmdOrCtrl+Z',
                 selector: 'redo:'
             }, {
                 type: 'separator'
             }, {
-                label: 'Cut',
+                label: 'Couper',
                 accelerator: 'CmdOrCtrl+X',
                 selector: 'cut:'
             }, {
-                label: 'Copy',
+                label: 'Copier',
                 accelerator: 'CmdOrCtrl+C',
                 selector: 'copy:'
             }, {
-                label: 'Paste',
+                label: 'Coller',
                 accelerator: 'CmdOrCtrl+V',
                 selector: 'paste:'
             }, {
-                label: 'Select All',
+                label: 'Tout sélectionner',
                 accelerator: 'CmdOrCtrl+A',
                 selector: 'selectAll:'
             }]
