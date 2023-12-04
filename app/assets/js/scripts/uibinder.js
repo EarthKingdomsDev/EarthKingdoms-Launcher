@@ -9,7 +9,6 @@ const { Type }      = require('helios-distribution-types')
 const AuthManager   = require('./assets/js/authmanager')
 const ConfigManager = require('./assets/js/configmanager')
 const { DistroAPI } = require('./assets/js/distromanager')
-const Lang          = require('./assets/js/langloader')
 
 let rscShouldLoad = false
 let fatalStartupError = false
@@ -115,9 +114,9 @@ function showFatalStartupError(){
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
             setOverlayContent(
-                'Erreur fatale : Impossible de charger l\'index de distribution',
-                'Aucune connexion n\'a pu être établie avec nos serveurs pour télécharger l\'index de distribution. Aucune copie locale n\'était disponible pour le chargement. <br><br>L\'index de distribution est un fichier essentiel qui fournit les dernières informations sur le serveur. Le lanceur ne peut pas démarrer sans lui. Assurez-vous d\'être connecté à Internet et relancez l\'application.',
-                'Fermer'
+                Lang.queryJS('uibinder.startup.fatalErrorTitle'),
+                Lang.queryJS('uibinder.startup.fatalErrorMessage'),
+                Lang.queryJS('uibinder.startup.closeButton')
             )
             setOverlayHandler(() => {
                 const window = remote.getCurrentWindow()
@@ -164,7 +163,7 @@ function syncModConfigurations(data){
             for(let mdl of mdls){
                 const type = mdl.rawModule.type
 
-                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
+                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader || type === Type.FabricMod){
                     if(!mdl.getRequired().value){
                         const mdlID = mdl.getVersionlessMavenIdentifier()
                         if(modsOld[mdlID] == null){
@@ -199,7 +198,7 @@ function syncModConfigurations(data){
 
             for(let mdl of mdls){
                 const type = mdl.rawModule.type
-                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
+                if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader || type === Type.FabricMod){
                     if(!mdl.getRequired().value){
                         mods[mdl.getVersionlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
                     } else {
@@ -254,7 +253,7 @@ function scanOptionalSubModules(mdls, origin){
         for(let mdl of mdls){
             const type = mdl.rawModule.type
             // Optional types.
-            if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader){
+            if(type === Type.ForgeMod || type === Type.LiteMod || type === Type.LiteLoader || type === Type.FabricMod){
                 // It is optional.
                 if(!mdl.getRequired().value){
                     mods[mdl.getVersionlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
@@ -333,10 +332,12 @@ async function validateSelectedAccount(){
             ConfigManager.save()
             const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
             setOverlayContent(
-                'Échec de l\'actualisation de la connexion',
-                `Nous n'avons pas pu actualiser la connexion pour <strong>${selectedAcc.displayName}</strong>. Merci de ${accLen > 0 ? 'sélectionner un autre compte ou ' : ''} vous connectez de nouveau.`,
-                'Connexion',
-                'Sélectionner un autre compte'
+                Lang.queryJS('uibinder.validateAccount.failedMessageTitle'),
+                accLen > 0
+                    ? Lang.queryJS('uibinder.validateAccount.failedMessage', { 'account': selectedAcc.displayName })
+                    : Lang.queryJS('uibinder.validateAccount.failedMessageSelectAnotherAccount', { 'account': selectedAcc.displayName }),
+                Lang.queryJS('uibinder.validateAccount.loginButton'),
+                Lang.queryJS('uibinder.validateAccount.selectAnotherAccountButton')
             )
             setOverlayHandler(() => {
 

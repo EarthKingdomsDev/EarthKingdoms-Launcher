@@ -3181,7 +3181,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Style for a general label on the bottom of the landing view. */
 .bot_label {
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1px;
     font-weight: bold;
     text-shadow: 0px 0px 0px #bebcbb;
@@ -3189,7 +3189,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Divider used on the bottom of the landing view. */
 .bot_divider {
-    height: 25px;
+    height: 35px;
     width: 2px;
     background: rgba(107, 105, 105, 0.7);
     margin-left: 20px;
@@ -3203,13 +3203,15 @@ input:checked + .toggleSwitchSlider:before {
 /* Maintains maximum width on the status bar. */
 #server_status_wrapper {
     display: inline-flex;
-    width: 105px;
+    position: relative;
+    top: 5px;
+    width: 130px;
 }
 
 /* Span which displays the player count of the selected server. */
 #player_count {
     color: #949494;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 900;
     text-shadow: 0px 0px 20px #949494;
     margin-left: 10px;
@@ -3218,6 +3220,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Wrapper container for the mojang status bar. */
 #mojangStatusWrapper {
     position: relative;
+    top: 5px;
+    left: 20px;
     display: flex;
     cursor: pointer;
 }
@@ -3434,6 +3438,8 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Span which displays percentage complete. */
 #launch_progress_label {
+    position: relative;
+    top: 5px;
     font-weight: 900;
     letter-spacing: 1px;
     text-shadow: 0px 0px 0px #bebcbb;
@@ -3484,9 +3490,11 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Span which displays information about the status of the launch process. */
 #launch_details_text {
-    font-size: 11px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 3px;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
     overflow: hidden;
 }
 

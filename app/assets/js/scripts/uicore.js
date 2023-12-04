@@ -10,6 +10,7 @@ const {ipcRenderer, shell, webFrame} = require('electron')
 const remote                         = require('@electron/remote')
 const isDev                          = require('./assets/js/isdev')
 const { LoggerUtil }                 = require('helios-core')
+const Lang                           = require('./assets/js/langloader')
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')
 const loggerAutoUpdater        = LoggerUtil.getLogger('AutoUpdater')
@@ -42,7 +43,7 @@ if(!isDev){
         switch(arg){
             case 'checking-for-update':
                 loggerAutoUpdater.info('Checking for update..')
-                settingsUpdateButtonStatus('Recherche de Mises à jour...', true)
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.checkingForUpdateButton'), true)
                 break
             case 'update-available':
                 loggerAutoUpdater.info('New update available', info.version)
@@ -56,7 +57,7 @@ if(!isDev){
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus('Installer la Mise à Jour', false, () => {
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
@@ -65,7 +66,7 @@ if(!isDev){
                 break
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
-                settingsUpdateButtonStatus('Rechercher une Mise à Jour')
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.checkForUpdatesButton'))
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {

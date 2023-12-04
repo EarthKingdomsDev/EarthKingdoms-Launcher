@@ -1,0 +1,20 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "EarthKingdoms Launcher"
+
+[ejs.landing]
+mediaGitHubURL = "https://github.com/dscalzi/HeliosLauncher"
+mediaTwitterURL = "https://x.com/EarthKingdomsMC"
+mediaInstagramURL = "https://www.instagram.com/earthkingdomsmc/"
+mediaYouTubeURL = "https://www.youtube.com/@EarthKingdoms"
+mediaDiscordURL = "https://discord.gg/PkbqPAAqEY"
+
+[ejs.settings]
+sourceGithubLink = "https://github.com/dscalZi/HeliosLauncher"
+supportLink = "https://earthkingdoms-minecraft-faction.fr/forum/forumdisplay.php?fid=16"
+
+[ejs.welcome]
+welcomeHeader = "BIENVENUE SUR EARTHKINGDOMS"
+welcomeDescription = "Créer votre pays, développer-le et essayer de surpasser les autres !"
+welcomeDescCTA = "Prêt(e) ?"
